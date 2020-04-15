@@ -30,8 +30,8 @@ export class GraphicsManager {
     initializeCanvas() {
         this.canvas = document.querySelector('#canvas');
 
-        this.canvas.setAttribute('height', gameConstants.GAME_HEIGHT);
         this.canvas.setAttribute('width', gameConstants.GAME_WIDTH);
+        this.canvas.setAttribute('height', gameConstants.GAME_HEIGHT);
     }
 
     initializeGraphics() {

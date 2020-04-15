@@ -94,10 +94,10 @@ export class SpatialGrid {
         // _g.fillStyle = 'orange';
         // _g.strokeRect(xpos, ypos, this.size, this.size);
 
-        if (this.grid[x][y].length > 0){
-          _g.fillStyle = "yellow";
-          _g.fillRect(xpos, ypos, this.size, this.size);
-        }
+        // if (this.grid[x][y].length > 0){
+        //   _g.fillStyle = "yellow";
+        //   _g.fillRect(xpos, ypos, this.size, this.size);
+        // }
       }
     }
   }

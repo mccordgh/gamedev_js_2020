@@ -41,11 +41,11 @@ const createAnimationFor = (asset, name, data) => {
 
 /* CURSOR */
 const cursor = new Assets('cursor', 'cursor.png');
-cursor.pointer = cursor.sheet.crop(0, 0, 28, 32);
+cursor.pointer = cursor.sheet.crop(0, 0, 49, 56);
 
 /* Background */
 const bg = new Assets('background', 'bg.png');
-bg.image = bg.sheet.crop(0, 0, 1280, 800);
+bg.image = bg.sheet.crop(0, 0, gameConstants.GAME_WIDTH, gameConstants.GAME_HEIGHT);
 
 /* MONSTERS */
 // const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');

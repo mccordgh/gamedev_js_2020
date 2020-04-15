@@ -9,7 +9,7 @@
 <style>
 body,
 html,
-#main {
+.main-view {
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -20,24 +20,23 @@ body {
     background-color: black;
 }
 
-#main {
+.main-view {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#screen {
-    background-color: #0978b2;
-    left: 482px;
-    position: relative;
-    top: 193px;
+#canvas {
+    cursor: none;
 }
 
 </style>
 
 <body>
-    <canvas id="canvas"></canvas>
+    <div class="main-view">
+        <canvas id="canvas"></canvas>
+    </div>
 </body>
 
 </html>

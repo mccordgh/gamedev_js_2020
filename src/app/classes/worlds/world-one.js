@@ -2,6 +2,7 @@
 import gameConstants from '../../constants/game-constants';
 import { SpatialGrid } from '../entities/collision/spatial-grid';
 import {Assets} from "../assets/assets";
+import { ComputerScreen } from '../entities/static-entities/computer-screen/computer-screen';
 
 let counter = 0;
 
@@ -25,6 +26,7 @@ export class WorldOne {
     }
 
     loadEntities() {
+        this.entityManager.addEntity(new ComputerScreen(this.handler, 381, 226))
         // const ySpawn = 90;
 
         // this.entityManager.addEntity(new FarmHouse(this.handler, 0, ySpawn));
@@ -52,7 +54,8 @@ export class WorldOne {
         this.drawBackground(graphics);
 
         this.spatialGrid.render(graphics);
-        // this.entityManager.render(graphics);
+
+        this.entityManager.render(graphics);
     }
 
     init() {

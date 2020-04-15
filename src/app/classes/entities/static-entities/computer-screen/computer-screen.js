@@ -1,13 +1,14 @@
 import { StaticEntity } from '../static-entity';
 import { Assets } from '../../../assets/assets';
+import gameConstants from '../../../../constants/game-constants';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
         super(handler, x, y);
 
-        this.width = 320;
-        this.height = 240;
-        this.assets = Assets.getAssets('')
+        this.width = gameConstants.SCREEN_WIDTH;
+        this.height = gameConstants.SCREEN_HEIGHT;
+        // this.assets = Assets.getAssets('')
     }
 
     tick(deltaTime) {
@@ -15,7 +16,8 @@ export class ComputerScreen extends StaticEntity {
     }
 
     render(graphics) {
-      //
+      graphics.fillStyle = "#0978b2";
+      graphics.fillRect(this.x, this.y, this.width, this.height);
     }
 
     wasClickedAt(x, y) {
