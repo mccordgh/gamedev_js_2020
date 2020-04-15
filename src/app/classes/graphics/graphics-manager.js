@@ -8,7 +8,15 @@ export class GraphicsManager {
     }
 
     customizeContext() {
-        CanvasRenderingContext2D.prototype.drawSprite = (asset, x, y, width, height) => {
+        CanvasRenderingContext2D.prototype.drawSprite = (asset, x = 0, y = 0, width, height) => {
+            if (!width) {
+                width = asset.width;
+            }
+
+            if (!height) {
+                height = asset.height;
+            }
+
             this.graphics.drawImage(asset.sheet, asset.x, asset.y, asset.width, asset.height, x, y, width, height);
         };
 

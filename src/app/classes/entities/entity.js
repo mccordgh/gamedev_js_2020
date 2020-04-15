@@ -4,7 +4,7 @@ import { Rectangle } from './collision/rectangle';
 const doesNotCollide = [gameConstants.TYPES.GARDEN, gameConstants.TYPES.PLOT, gameConstants.TYPES.LANE];
 
 export class Entity {
-    constructor(handler, x, y) {
+    constructor(handler, x, y, width, height) {
         this.handler = handler;
         this.x = x;
         this.y = y;

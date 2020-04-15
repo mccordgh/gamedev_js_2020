@@ -1,4 +1,4 @@
-# JS Game Engine Starter Kit
+# Gamedev.js 2020 JAM
 
 ### Setup
 
@@ -11,8 +11,7 @@
 * Windows users should use nvm-windows! [https://github.com/coreybutler/nvm-windows]
 ```
 3. Clone this repository
-4. `$ cd js_game_engine_starter_kit`
+4. cd in
 5. `$ npm install`
 6. `$ npm run start`
 7. Navigate to `http://localhost:8080/`
-8. There should be a screen with grass background and wooden buttons along the bottom.

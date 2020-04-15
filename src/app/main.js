@@ -1,5 +1,7 @@
 import { Game } from './classes/game';
 
-const game = new Game();
+document.title = 'Gamedev.js 2020';
+
+let game = new Game();
 
 game.run();

@@ -1,19 +1,43 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            * {
-                background-color: black;
-                margin: 0;
-                padding: 0;
-            }
 
-            .game-canvas {
-                cursor: none;
-                background-color: white;
-            }
-        </style>
-    </head>
-    <body >
-        <canvas class="game-canvas" id="canvas"></canvas>
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style>
+body,
+html,
+#main {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%
+}
+
+body {
+    background-color: black;
+}
+
+#main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#screen {
+    background-color: #0978b2;
+    left: 482px;
+    position: relative;
+    top: 193px;
+}
+
+</style>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+
 </html>

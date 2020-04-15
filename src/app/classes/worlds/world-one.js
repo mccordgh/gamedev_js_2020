@@ -1,13 +1,7 @@
 
-import { FarmHouse } from '../entities/static-entities/farm-house';
-import { Garden } from '../entities/static-entities/garden/garden';
 import gameConstants from '../../constants/game-constants';
 import { SpatialGrid } from '../entities/collision/spatial-grid';
-import { WalnutSeed } from '../entities/static-entities/seeds/walnut-seed';
-import { PotatoSeed } from '../entities/static-entities/seeds/potato-seed';
-import {TomatoSeed} from "../entities/static-entities/seeds/tomato-seed";
 import {Assets} from "../assets/assets";
-import {OnionSeed} from "../entities/static-entities/seeds/onion-seed";
 
 let counter = 0;
 
@@ -15,10 +9,13 @@ export class WorldOne {
     constructor(handler) {
         this.handler = handler;
         this.entityManager = handler.createEntityManager();
-        this.monsterManager = handler.createMonsterManager();
-        this.heroManager = handler.createHeroManager();
-        this.seedManager = handler.createSeedManager();
-        this.uiManager = handler.createUiManager();
+        // this.monsterManager = handler.createMonsterManager();
+        // this.heroManager = handler.createHeroManager();
+        // this.seedManager = handler.createSeedManager();
+        // this.uiManager = handler.createUiManager();
+        this.assets = {
+            background: Assets.getAssets('background').image,
+        };
 
         this.spatialGrid = new SpatialGrid(
             gameConstants.GAME_WIDTH,
@@ -28,34 +25,34 @@ export class WorldOne {
     }
 
     loadEntities() {
-        const ySpawn = 90;
+        // const ySpawn = 90;
 
-        this.entityManager.addEntity(new FarmHouse(this.handler, 0, ySpawn));
-        this.entityManager.addEntity(Garden.create(this.handler, 101, ySpawn));
+        // this.entityManager.addEntity(new FarmHouse(this.handler, 0, ySpawn));
+        // this.entityManager.addEntity(Garden.create(this.handler, 101, ySpawn));
 
         //TODO: Make Player object to track stats/upgrades/heroes/etc
-        const availableSeeds = [WalnutSeed, PotatoSeed, TomatoSeed, OnionSeed];
+        // const availableSeeds = [WalnutSeed, PotatoSeed, TomatoSeed, OnionSeed];
 
-        this.uiManager.createButtonsFromSeeds(availableSeeds);
+        // this.uiManager.createButtonsFromSeeds(availableSeeds);
     }
 
     tick(deltaTime) {
-        counter++;
+        // counter++;
 
-        if (counter >= (gameConstants.FPS)) {
-            counter = 0;
+        // if (counter >= (gameConstants.FPS)) {
+            // counter = 0;
 
-            this.monsterManager.spawnMonster();
-        }
+            // this.monsterManager.spawnMonster();
+        // }
 
-        this.entityManager.tick(deltaTime);
+        // this.entityManager.tick(deltaTime);
     }
 
     render(graphics) {
         this.drawBackground(graphics);
 
-        // this.spatialGrid.render(graphics);
-        this.entityManager.render(graphics);
+        this.spatialGrid.render(graphics);
+        // this.entityManager.render(graphics);
     }
 
     init() {
@@ -63,13 +60,9 @@ export class WorldOne {
     }
 
     drawBackground(graphics) {
-       // Tiles background
-       const assetSize = 32
-      for(let i =0; i <= gameConstants.GAME_WIDTH; i+=assetSize){
-          for(let j=0; j<= gameConstants.GAME_HEIGHT; j+=assetSize){
-            graphics.drawSprite(this.assets = Assets.getAssets('grass').grass, i, j, assetSize, assetSize);
-          }
-      }
+        const bg = this.assets.background;
+
+        graphics.drawSprite(bg)
     }
 
 

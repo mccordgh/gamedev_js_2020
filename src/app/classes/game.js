@@ -1,7 +1,5 @@
 import { GameState } from './states/game-state';
 import { ManagerHandler } from './helpers/manager-handler';
-import { StateManager } from './states/state-manager';
-import { World } from './worlds/world-one';
 
 import gameConstants from '../constants/game-constants';
 

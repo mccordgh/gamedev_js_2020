@@ -31,9 +31,9 @@ export class EntityManager {
             this.entities[i].render(graphics);
         }
 
-        // if (this.cursor.x && this.cursor.y) {
-        //     this.cursor.render(graphics);
-        // }
+        if (this.cursor.x && this.cursor.y) {
+            this.cursor.render(graphics);
+        }
     }
 
     addEntity(entity) {
