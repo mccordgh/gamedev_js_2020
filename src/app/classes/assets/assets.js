@@ -2,7 +2,7 @@ import { Animation } from './animation';
 import { ImageLoader } from "./image-loader";
 import { SpriteSheet } from './sprite-sheet';
 
-import gameConstants from '../../constants/game-constants';
+import { GameConstants } from '../../constants/game-constants';
 
 const assets = {};
 
@@ -10,7 +10,7 @@ export class Assets {
     constructor (name, path) {
         assets[name] = this;
         this.name = name;
-        this.path = `${gameConstants.ASSETS_PATH}/${path}`;
+        this.path = `${GameConstants.ASSETS_PATH}/${path}`;
         this.sheet = new SpriteSheet(ImageLoader.loadImage(this.path));
         this.animations = {};
     }
@@ -45,7 +45,7 @@ cursor.pointer = cursor.sheet.crop(0, 0, 49, 56);
 
 /* Background */
 const bg = new Assets('background', 'bg.png');
-bg.image = bg.sheet.crop(0, 0, gameConstants.GAME_WIDTH, gameConstants.GAME_HEIGHT);
+bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT);
 
 /* MONSTERS */
 // const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');

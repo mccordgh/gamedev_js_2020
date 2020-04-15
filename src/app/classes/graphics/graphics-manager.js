@@ -1,4 +1,4 @@
-import gameConstants from '../../constants/game-constants';
+import { GameConstants } from '../../constants/game-constants';
 
 export class GraphicsManager {
     constructor() {
@@ -20,7 +20,7 @@ export class GraphicsManager {
             this.graphics.drawImage(asset.sheet, asset.x, asset.y, asset.width, asset.height, x, y, width, height);
         };
 
-        CanvasRenderingContext2D.prototype.drawText = (text, x, y, color = 'white', size = gameConstants.FONT_SIZE) => {
+        CanvasRenderingContext2D.prototype.drawText = (text, x, y, color = 'white', size = GameConstants.FONT_SIZE) => {
             this.graphics.font = `${size}px Arial`;
             this.graphics.fillStyle = color;
             this.graphics.fillText(text,  x, y);
@@ -30,8 +30,8 @@ export class GraphicsManager {
     initializeCanvas() {
         this.canvas = document.querySelector('#canvas');
 
-        this.canvas.setAttribute('width', gameConstants.GAME_WIDTH);
-        this.canvas.setAttribute('height', gameConstants.GAME_HEIGHT);
+        this.canvas.setAttribute('width', GameConstants.GAME_WIDTH);
+        this.canvas.setAttribute('height', GameConstants.GAME_HEIGHT);
     }
 
     initializeGraphics() {

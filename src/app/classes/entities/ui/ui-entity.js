@@ -1,5 +1,5 @@
 import { Entity } from '../entity';
-import gameConstants from '../../../constants/game-constants';
+import { GameConstants } from '../../../constants/game-constants';
 import {Assets} from "../../assets/assets";
 
 
@@ -26,11 +26,11 @@ export class UiEntity extends Entity {
         this.text = this.seed.getDisplayName();
         this.active = false;
 
-        this.type = gameConstants.TYPES.UI;
+        this.type = GameConstants.TYPES.UI;
     }
 
     activeAction(plot) {
-        if(plot.type===gameConstants.TYPES.PLOT){
+        if(plot.type===GameConstants.TYPES.PLOT){
           plot.sownBy(this.seed)
         }
     }

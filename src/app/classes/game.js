@@ -1,7 +1,7 @@
 import { GameState } from './states/game-state';
 import { ManagerHandler } from './helpers/manager-handler';
 
-import gameConstants from '../constants/game-constants';
+import { GameConstants } from '../constants/game-constants';
 
 export class Game {
     // setup all the things aka managers of input, sound, etc
@@ -22,7 +22,7 @@ export class Game {
     run() {
         this.initialize();
 
-        const fps = gameConstants.FPS;
+        const fps = GameConstants.FPS;
         const timePerTick = 1000 / fps;
 
         let delta = 0;
@@ -59,7 +59,7 @@ export class Game {
 
     // Draw everything after it is updated
     render(graphics) {
-        graphics.clearRect(0, 0, gameConstants.GAME_WIDTH, gameConstants.GAME_HEIGHT);
+        graphics.clearRect(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT);
 
         this.stateManager.getState().render(graphics);
     }

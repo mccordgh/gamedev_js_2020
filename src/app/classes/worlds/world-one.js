@@ -1,5 +1,5 @@
 
-import gameConstants from '../../constants/game-constants';
+import { GameConstants } from '../../constants/game-constants';
 import { SpatialGrid } from '../entities/collision/spatial-grid';
 import {Assets} from "../assets/assets";
 import { ComputerScreen } from '../entities/static-entities/computer-screen/computer-screen';
@@ -19,9 +19,9 @@ export class WorldOne {
         };
 
         this.spatialGrid = new SpatialGrid(
-            gameConstants.GAME_WIDTH,
-            gameConstants.GAME_HEIGHT,
-            gameConstants.SPATIAL_GRID_SIZE,
+            GameConstants.GAME_WIDTH,
+            GameConstants.GAME_HEIGHT,
+            GameConstants.SPATIAL_GRID_SIZE,
         );
     }
 
@@ -41,7 +41,7 @@ export class WorldOne {
     tick(deltaTime) {
         // counter++;
 
-        // if (counter >= (gameConstants.FPS)) {
+        // if (counter >= (GameConstants.FPS)) {
             // counter = 0;
 
             // this.monsterManager.spawnMonster();

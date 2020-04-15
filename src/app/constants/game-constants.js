@@ -1,6 +1,6 @@
 const basePath = window.location.href;
 
-export default {
+export const GameConstants = {
     FONT_SIZE: 32,
 
     FPS: 60,
@@ -11,8 +11,8 @@ export default {
     GAME_WIDTH: 1024,
     GAME_HEIGHT: 768,
 
-    ICON_HEIGHT: 32,
-    ICON_WIDTH: 32,
+    ICON_HEIGHT: 96,
+    ICON_WIDTH: 96,
 
     SPATIAL_GRID_SIZE: 64,
 
@@ -26,4 +26,4 @@ export default {
 
     BASE_PATH: basePath,
     ASSETS_PATH: `${basePath}src/resources`,
-}
+};

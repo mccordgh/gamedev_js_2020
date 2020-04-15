@@ -1,7 +1,7 @@
-import gameConstants from "../../constants/game-constants";
+import { GameConstants } from "../../constants/game-constants";
 import { Rectangle } from './collision/rectangle';
 
-const doesNotCollide = [gameConstants.TYPES.GARDEN, gameConstants.TYPES.PLOT, gameConstants.TYPES.LANE];
+const doesNotCollide = [GameConstants.TYPES.GARDEN, GameConstants.TYPES.PLOT, GameConstants.TYPES.LANE];
 
 export class Entity {
     constructor(handler, x, y, width, height) {
@@ -42,31 +42,31 @@ export class Entity {
 
     checkForCollisionEvents(e1, e2) {
         // if player and guard bump
-        if (this.checkCollidingTypes(e1, e2, gameConstants.TYPES.HOUSE, gameConstants.TYPES.MONSTER)) {
-            const house = e1.type === gameConstants.TYPES.HOUSE ? e1 : e2;
-            const monster = e1.type === gameConstants.TYPES.MONSTER ? e1 : e2;
+        // if (this.checkCollidingTypes(e1, e2, GameConstants.TYPES.HOUSE, GameConstants.TYPES.MONSTER)) {
+        //     const house = e1.type === GameConstants.TYPES.HOUSE ? e1 : e2;
+        //     const monster = e1.type === GameConstants.TYPES.MONSTER ? e1 : e2;
 
-            this.monsterHouseCollision(monster, house);
-        }
+        //     this.monsterHouseCollision(monster, house);
+        // }
 
-        if (this.checkCollidingTypes(e1, e2, gameConstants.TYPES.HERO, gameConstants.TYPES.MONSTER)) {
-            const hero = e1.type === gameConstants.TYPES.HERO ? e1 : e2;
-            const monster = e1.type === gameConstants.TYPES.MONSTER ? e1 : e2;
+        // if (this.checkCollidingTypes(e1, e2, GameConstants.TYPES.HERO, GameConstants.TYPES.MONSTER)) {
+        //     const hero = e1.type === GameConstants.TYPES.HERO ? e1 : e2;
+        //     const monster = e1.type === GameConstants.TYPES.MONSTER ? e1 : e2;
 
-            this.monsterHeroCollision(monster, hero);
-        }
+        //     this.monsterHeroCollision(monster, hero);
+        // }
     }
 
     checkCollidingTypes(e1, e2, type1, type2) {
         return ((e1.type === type1 && e2.type === type2) || (e1.type === type2 && e2.type === type1));
     }
 
-    monsterHouseCollision(monster, house) {
-        house.takeDamageFrom(monster);
-    }
+    // monsterHouseCollision(monster, house) {
+    //     house.takeDamageFrom(monster);
+    // }
 
-    monsterHeroCollision(monster, hero) {
-        monster.takeDamageFrom(hero);
-        hero.takeDamageFrom(monster);
-    }
+    // monsterHeroCollision(monster, hero) {
+    //     monster.takeDamageFrom(hero);
+    //     hero.takeDamageFrom(monster);
+    // }
 }

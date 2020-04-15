@@ -1,5 +1,5 @@
 import { EntityManager } from "../entity-manager";
-import gameConstants from "../../../constants/game-constants";
+import { GameConstants } from "../../../constants/game-constants";
 import { UiEntity } from './ui-entity';
 
 export class UiManager {
@@ -13,7 +13,7 @@ export class UiManager {
     }
 
     toggleElement(element) {
-        const uiElements = this.handler.getEntityManager().getEntitiesByType(gameConstants.TYPES.UI);
+        const uiElements = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.UI);
 
         uiElements.forEach((uiElement) => {
             uiElement.active = false;
