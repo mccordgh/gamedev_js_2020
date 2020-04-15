@@ -5,8 +5,8 @@ export default {
 
     FPS: 60,
 
-    SCREEN_WIDTH: 256,
-    SCREEN_HEIGHT: 192,
+    SCREEN_WIDTH: 512,
+    SCREEN_HEIGHT: 384,
 
     GAME_WIDTH: 1024,
     GAME_HEIGHT: 768,

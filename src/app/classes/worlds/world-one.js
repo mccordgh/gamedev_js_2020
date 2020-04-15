@@ -26,7 +26,7 @@ export class WorldOne {
     }
 
     loadEntities() {
-        this.entityManager.addEntity(new ComputerScreen(this.handler, 381, 226))
+        this.entityManager.addEntity(new ComputerScreen(this.handler, 260, 150))
         // const ySpawn = 90;
 
         // this.entityManager.addEntity(new FarmHouse(this.handler, 0, ySpawn));
