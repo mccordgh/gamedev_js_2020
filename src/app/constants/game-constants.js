@@ -17,7 +17,6 @@ export const GameConstants = {
     SPATIAL_GRID_SIZE: 64,
 
     TYPES: {
-        UI: 'ui',
         COMPUTER: 'computer',
         COMPUTER_APP: 'computer-app',
     },

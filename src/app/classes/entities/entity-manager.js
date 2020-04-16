@@ -3,7 +3,6 @@ import { Rectangle } from './collision/rectangle';
 import { GameConstants } from '../../constants/game-constants';
 
 const clickableTypes = [
-    GameConstants.TYPES.UI,
     GameConstants.TYPES.COMPUTER,
     GameConstants.TYPES.COMPUTER_APP,
 ];

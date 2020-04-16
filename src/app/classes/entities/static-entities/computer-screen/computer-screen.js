@@ -34,7 +34,8 @@ export class ComputerScreen extends StaticEntity {
 
         this.resetAppPositions();
 
-        this.state = 'booting';
+        this.state = "idle";
+        // this.state = 'booting';
     }
 
     resetAppPositions() {

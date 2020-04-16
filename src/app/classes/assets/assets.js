@@ -59,7 +59,7 @@ bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIG
 const email = new Assets('email', 'email.png');
 email.icon = email.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 createAnimationFor(email, 'loading', {
-    speed: 180,
+    speed: 240,
     row: 0,
     col: 0,
     length: 10,
