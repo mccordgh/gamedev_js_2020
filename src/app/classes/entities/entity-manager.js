@@ -3,13 +3,19 @@ import { Rectangle } from './collision/rectangle';
 import { GameConstants } from '../../constants/game-constants';
 
 const clickableTypes = [
-    GameConstants.TYPES.GARDEN,
-    GameConstants.TYPES.UI
+    GameConstants.TYPES.UI,
+    GameConstants.TYPES.COMPUTER,
+    GameConstants.TYPES.COMPUTER_APP,
+];
+
+const dontRenderTypes = [
+    GameConstants.TYPES.COMPUTER_APP,
 ];
 
 export class EntityManager {
     constructor(handler) {
         this.handler = handler;
+        this.lastEntityHovered = null;
         this.cursor = new PlayerCursor();
         this.entities = [];
     }
@@ -28,7 +34,11 @@ export class EntityManager {
 
     render(graphics) {
         for (let i = 0; i < this.entities.length; i += 1) {
-            this.entities[i].render(graphics);
+            const entity = this.entities[i];
+
+            if (!dontRenderTypes.includes(entity.type)) {
+                this.entities[i].render(graphics);
+            }
         }
 
         if (this.cursor.x && this.cursor.y) {
@@ -44,6 +54,8 @@ export class EntityManager {
         );
 
         this.handler.getWorld().getSpatialGrid().insert(rectangle, entity);
+
+        return entity;
     }
 
     removeEntity(entity) {
@@ -60,28 +72,27 @@ export class EntityManager {
     }
 
     findClickableEntityAt(x, y) {
-        const fingerRectangle = new Rectangle(
-            x - (GameConstants.FINGER_WIDTH / 2),
-            y - (GameConstants.FINGER_WIDTH / 2),
-            GameConstants.FINGER_WIDTH,
-            GameConstants.FINGER_WIDTH,
+        const cursorBounds = new Rectangle(
+            this.cursor.x + this.cursor.bounds.x,
+            this.cursor.y + this.cursor.bounds.y,
+            this.cursor.bounds.width,
+            this.cursor.bounds.height,
         );
 
         const clickableEntities = this.entities.find((entity) => {
-            const entityRect = new Rectangle(entity.x, entity.y, entity.width, entity.height);
+            if (!entity.bounds) {
+                throw new Error(`entity type ${entity.type} has no bounds`)
+            }
 
-            return fingerRectangle.intersects(entityRect) && clickableTypes.includes(entity.type);
+            const entityRect = new Rectangle(entity.x + entity.bounds.x, entity.y + entity.bounds.y, entity.bounds.width, entity.bounds.height);
+
+            return cursorBounds.intersects(entityRect) && clickableTypes.includes(entity.type);
         });
 
         return clickableEntities;
     }
 
-    findActiveUi() {
-        return this.getEntitiesByType(GameConstants.TYPES.UI).find(ui => ui.active);
-    }
-
     mouseClick(data) {
-        let activeUi = this.findActiveUi();
 
         const { x, y } = data;
         const clicked = this.findClickableEntityAt(x, y);
@@ -90,12 +101,50 @@ export class EntityManager {
             return;
         }
 
-        clicked.wasClickedAt(x, y, activeUi);
+        if (clicked.wasClickedAt) {
+            clicked.wasClickedAt(x, y);
+        }
     }
 
     mouseMove(data) {
-        this.cursor.x = data.x;
-        this.cursor.y = data.y;
+        const { x, y } = data;
+        this.cursor.x = x;
+        this.cursor.y = y;
+
+        const hovered = this.findClickableEntityAt(x, y);
+
+        if (!hovered) {
+            this.cursor.swapToHand();
+
+            if (this.lastEntityHovered && this.lastEntityHovered.wasBlurred) {
+                this.lastEntityHovered.wasBlurred();
+
+                this.lastEntity = null;
+            }
+
+            return;
+        }
+
+        if (hovered.type === GameConstants.TYPES.COMPUTER || hovered.type === GameConstants.TYPES.COMPUTER_APP) {
+            this.cursor.swapToComputer();
+        } else {
+            this.cursor.swapToHand();
+        }
+
+        if (hovered === this.lastEntityHovered) {
+            return;
+        } else {
+            if (this.lastEntityHovered && this.lastEntityHovered.wasBlurred) {
+                this.lastEntityHovered.wasBlurred();
+            }
+
+            if (hovered.wasHoveredAt) {
+                hovered.wasHoveredAt(x, y);
+            }
+
+            this.lastEntityHovered = hovered;
+        }
+
     }
 
     getEntitiesByType(type) {

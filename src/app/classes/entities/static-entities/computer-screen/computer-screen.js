@@ -9,16 +9,61 @@ export class ComputerScreen extends StaticEntity {
 
         this.width = GameConstants.SCREEN_WIDTH;
         this.height = GameConstants.SCREEN_HEIGHT;
-        // this.assets = Assets.getAssets('')
 
-        this.numberOfIconsPerRow = Math.floor(this.width / GameConstants.ICON_WIDTH) - 1;
-        this.numberOfIconsPerColumn = Math.floor(this.height / GameConstants.ICON_HEIGHT) - 1;
-        // padding = screen width minus combined width of numberOfIconsPerRow dividied by the numberOfIconsPerRow + 1 for the number of padded areas
-        this.padding = (this.width - (GameConstants.ICON_WIDTH * this.numberOfIconsPerRow)) / ((this.numberOfIconsPerRow) + 1);
+        this.bounds = {
+          x: 4,
+          y: 4,
+          width: this.width - 4,
+          height: this.height - 4,
+        };
+
+        this.padding = 32;
+        this.iconsPerRow = 4;
+
+        this.type = GameConstants.TYPES.COMPUTER;
+
+        const entityManager = this.handler.getEntityManager();
 
         this.apps = [
-          new Email(handler),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
+          entityManager.addEntity(new Email(handler)),
         ];
+
+        this.resetAppPositions();
+    }
+
+    resetAppPositions() {
+      let currentX = this.x;
+      let currentY = this.y;
+      currentY += this.padding;
+
+      // This handles positioning all apps in the correct row / column.
+      for (let i = 0; i < this.apps.length; i += 1) {
+        const app = this.apps[i];
+
+        currentX += this.padding;
+
+        if ((i % this.iconsPerRow) === 0 && i !== 0) {
+          currentY += app.height + this.padding;
+          currentX = this.x + this.padding;
+        }
+
+        app.x = currentX;
+        app.y = currentY;
+
+        currentX += app.width;
+
+        currentX += this.padding;
+      }
     }
 
     tick(deltaTime) {
@@ -31,20 +76,17 @@ export class ComputerScreen extends StaticEntity {
       graphics.fillRect(this.x - 10, this.y - 10 , this.width + 20, this.height + 20);
 
       //screen
-      graphics.fillStyle = "#0978b2";
+      graphics.fillStyle = "#7b538f";
       graphics.fillRect(this.x, this.y, this.width, this.height);
 
-      // This handles positioning all apps in the correct row / column.
+      // tell all apps to draw themselves
       for (let i = 0; i < this.apps.length; i += 1) {
-        const app = this.apps[i];
-        const rowNumber = Math.floor(i / this.numberOfIconsPerRow);
-        const columnNumber = i % (this.numberOfIconsPerColumn + 1);
-
-        const xx = (this.x + this.padding + (this.padding * columnNumber) + (app.width * columnNumber));
-        const yy = (this.y + this.padding + (this.padding * rowNumber) + (app.height * rowNumber));
-
-        app.render(graphics, xx, yy);
+        this.apps[i].render(graphics);
       }
+    }
+
+    wasHoveredAt(x, y) {
+      console.log('screen hovered')
     }
 
     wasClickedAt(x, y) {

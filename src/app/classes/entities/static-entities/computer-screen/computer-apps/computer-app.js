@@ -12,8 +12,10 @@ export class ComputerApp extends StaticEntity {
     this.y = y;
     this.width = GameConstants.ICON_WIDTH;
     this.height = GameConstants.ICON_HEIGHT;
+    this.type = GameConstants.TYPES.COMPUTER_APP;
 
     this.yPadding = 22;
+    this.hovered = false;
   }
 
   // getCurrentAnimationFrame() {
@@ -21,21 +23,31 @@ export class ComputerApp extends StaticEntity {
   // }
 
   tick() {
-    // this.x += 1;
-    // this.a.animations[this.type + '_idle'].tick();
+    throw new Error('Computer App child must implement tick method')
   }
 
-  render(g) {
-    g.fillStyle = "white";
-    g.fillRect(this.x, this.y, this.width, this.height);
+  render(graphics) {
 
-    g.drawText({
-      text: this.name,
-      fontSize: 16,
-      fillColor: "black",
-      x: ((this.x + this.width) / 2) - (this.nameWidth / 2),
-      y: this.y + this.height + this.yPadding,
-    });
-    // g.myDrawImage(this.getCurrentAnimationFrame(), this.x, this.y, this.width, this.height);
+    graphics.drawSprite(this.assets.icon, this.x, this.y, this.width, this.height);
+
+    if (this.hovered) {
+      graphics.globalAlpha = 0.4;
+      graphics.fillStyle = "black";
+      const padding = 6;
+      graphics.fillRect(this.x + this.bounds.x - padding, this.y + this.bounds.y - padding, this.bounds.width + (padding * 2), this.bounds.height + (padding * 2));
+      graphics.globalAlpha = 1;
+    }
+
+    //draw collision bounds for debugging
+    // graphics.fillStyle = "yellow";
+    // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+  }
+
+  wasHoveredAt(x, y) {
+    this.hovered = true;
+  }
+
+  wasBlurred() {
+    this.hovered = false;
   }
 }

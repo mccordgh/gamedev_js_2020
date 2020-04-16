@@ -11,13 +11,15 @@ export const GameConstants = {
     GAME_WIDTH: 1024,
     GAME_HEIGHT: 768,
 
-    ICON_HEIGHT: 96,
-    ICON_WIDTH: 96,
+    ICON_HEIGHT: 64,
+    ICON_WIDTH: 64,
 
     SPATIAL_GRID_SIZE: 64,
 
     TYPES: {
         UI: 'ui',
+        COMPUTER: 'computer',
+        COMPUTER_APP: 'computer-app',
     },
 
     FINGER_WIDTH: 16,

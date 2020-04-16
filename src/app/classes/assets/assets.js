@@ -39,13 +39,25 @@ const createAnimationFor = (asset, name, data) => {
     asset.addAnimation(name, new Animation(data.frames));
 }
 
-/* CURSOR */
+/* CURSORS */
 const cursor = new Assets('cursor', 'cursor.png');
 cursor.pointer = cursor.sheet.crop(0, 0, 49, 56);
+const cursor2 = new Assets('cursor2', 'cursor2.png');
+cursor2.pointer = cursor2.sheet.crop(0, 0, 32, 32);
+const whiteCursor = new Assets('whiteCursor', 'white-cursor.png');
+whiteCursor.pointer = whiteCursor.sheet.crop(0, 0, 32, 32);
+const hand = new Assets('hand', 'hand.png');
+hand.pointer = hand.sheet.crop(0, 0, 64, 64);
+const hand2 = new Assets('hand2', 'hand2.png');
+hand2.pointer = hand2.sheet.crop(0, 0, 32, 32);
 
 /* Background */
 const bg = new Assets('background', 'bg.png');
 bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT);
+
+/* ICONS */
+const email = new Assets('email', 'email.png');
+email.icon = email.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 
 /* MONSTERS */
 // const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');
