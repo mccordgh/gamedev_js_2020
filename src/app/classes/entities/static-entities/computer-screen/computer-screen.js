@@ -17,28 +17,24 @@ export class ComputerScreen extends StaticEntity {
           height: this.height - 4,
         };
 
+        this.assets = Assets.getAssets('os');
+
         this.padding = 32;
         this.iconsPerRow = 4;
 
+        this.bootCounter = 0;
+        this.bootWait = 120;
         this.type = GameConstants.TYPES.COMPUTER;
 
         const entityManager = this.handler.getEntityManager();
 
         this.apps = [
           entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
-          entityManager.addEntity(new Email(handler)),
         ];
 
         this.resetAppPositions();
+
+        this.state = 'booting';
     }
 
     resetAppPositions() {
@@ -66,8 +62,50 @@ export class ComputerScreen extends StaticEntity {
       }
     }
 
-    tick(deltaTime) {
-      //
+    tick() {
+      switch (this.state) {
+        case "idle":
+          break;
+
+        case "booting":
+          const animation = this.assets.animations['booting'];
+
+          // 9 is used here because this animation has 10 frames 0 to 9 and we want to go to the desktop when it finishes
+          if (animation.index >= 9) {
+            this.bootCounter += 1;
+
+            if (this.bootCounter === this.bootWait) {
+              this.bootCounter = 0;
+              this.state = "idle";
+
+            }
+
+            return;
+          }
+
+          animation.tick();
+
+          break;
+
+        default:
+          throw new Error(`Computer Screen animation state "${this.state} is not accounted for`)
+      }
+    }
+
+    getCurrentAnimationFrame() {
+      switch (this.state) {
+        case "idle":
+          break;
+
+        case "booting":
+          const animation = this.assets.animations['booting'];
+
+          return animation.getCurrentFrame();
+          break;
+
+        default:
+          throw new Error(`Computer App animation state "${this.state} is not accounted for`)
+      }
     }
 
     render(graphics) {
@@ -79,17 +117,36 @@ export class ComputerScreen extends StaticEntity {
       graphics.fillStyle = "#7b538f";
       graphics.fillRect(this.x, this.y, this.width, this.height);
 
-      // tell all apps to draw themselves
-      for (let i = 0; i < this.apps.length; i += 1) {
-        this.apps[i].render(graphics);
+      switch (this.state) {
+        case "idle":
+          // tell all apps to draw themselves
+          for (let i = 0; i < this.apps.length; i += 1) {
+            this.apps[i].render(graphics);
+          }
+          break;
+
+        case "booting":
+          if (this.bootCounter > (this.bootWait / 4)) {
+            graphics.globalAlpha -= this.bootCounter / this.bootWait;
+          }
+
+          graphics.drawSprite(this.getCurrentAnimationFrame(), this.x, this.y, this.width, this.height);
+          graphics.globalAlpha = 1;
+
+          break;
+
+        default:
+          throw new Error(`Computer App animation state "${this.state} is not accounted for`)
       }
+
+
     }
 
-    wasHoveredAt(x, y) {
-      console.log('screen hovered')
-    }
+    // wasHoveredAt(x, y) {
+    //   //
+    // }
 
-    wasClickedAt(x, y) {
-      console.log("screen clicked at ", x, ":", y)
-    }
+    // wasClickedAt(x, y) {
+    //  //
+    // }
 }

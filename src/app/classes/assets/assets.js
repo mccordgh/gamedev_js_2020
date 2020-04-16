@@ -58,6 +58,24 @@ bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIG
 /* ICONS */
 const email = new Assets('email', 'email.png');
 email.icon = email.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
+createAnimationFor(email, 'loading', {
+    speed: 180,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.ICON_WIDTH,
+    height: GameConstants.ICON_HEIGHT,
+});
+
+const os = new Assets('os', 'jam-os-bootup.png');
+createAnimationFor(os, 'booting', {
+    speed: 300,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
 
 /* MONSTERS */
 // const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');

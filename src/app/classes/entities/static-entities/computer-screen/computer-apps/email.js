@@ -12,8 +12,6 @@ export class Email extends ComputerApp {
       height: 36,
     }
 
-    this.assets = {
-      icon: Assets.getAssets('email').icon,
-    }
+    this.assets = Assets.getAssets('email');
   }
 }

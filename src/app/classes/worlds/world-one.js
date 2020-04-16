@@ -41,13 +41,7 @@ export class WorldOne {
     tick(deltaTime) {
         // counter++;
 
-        // if (counter >= (GameConstants.FPS)) {
-            // counter = 0;
-
-            // this.monsterManager.spawnMonster();
-        // }
-
-        // this.entityManager.tick(deltaTime);
+        this.entityManager.tick(deltaTime);
     }
 
     render(graphics) {

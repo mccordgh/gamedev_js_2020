@@ -60,13 +60,4 @@ export class Entity {
     checkCollidingTypes(e1, e2, type1, type2) {
         return ((e1.type === type1 && e2.type === type2) || (e1.type === type2 && e2.type === type1));
     }
-
-    // monsterHouseCollision(monster, house) {
-    //     house.takeDamageFrom(monster);
-    // }
-
-    // monsterHeroCollision(monster, hero) {
-    //     monster.takeDamageFrom(hero);
-    //     hero.takeDamageFrom(monster);
-    // }
 }

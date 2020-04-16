@@ -22,12 +22,6 @@ export class EntityManager {
 
     tick(deltaTime) {
         for (let i = 0; i < this.entities.length; i += 1) {
-            if (this.entities[i].health <= 0) {
-                this.removeEntity(this.entities[i]);
-
-                return;
-            }
-
             this.entities[i].tick(deltaTime);
         }
     }

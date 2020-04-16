@@ -16,31 +16,87 @@ export class ComputerApp extends StaticEntity {
 
     this.yPadding = 22;
     this.hovered = false;
+
+    this.state = 'idle';
   }
 
-  // getCurrentAnimationFrame() {
-  //   return this.a.animations[this.type + '_idle'].getCurrentFrame();
-  // }
-
   tick() {
-    throw new Error('Computer App child must implement tick method')
+    switch (this.state) {
+      case "idle":
+        break;
+
+      case "loading":
+        const animation = this.assets.animations['loading'];
+
+        // 9 is used here because this animation has 10 frames 0 to 9 and we want it to stop animating at the end
+        if (animation.index < 9) {
+          animation.tick();
+        }
+
+        break;
+
+      default:
+        throw new Error(`Computer App animation state "${this.state} is not accounted for`)
+    }
+  }
+
+  getCurrentAnimationFrame() {
+    switch (this.state) {
+      case "idle":
+        break;
+
+      case "loading":
+        const animation = this.assets.animations['loading'];
+
+        return animation.getCurrentFrame();
+        break;
+
+      default:
+        throw new Error(`Computer App animation state "${this.state} is not accounted for`)
+    }
   }
 
   render(graphics) {
+    switch (this.state) {
+      case "idle":
+        graphics.drawSprite(this.assets.icon, this.x, this.y, this.width, this.height);
 
-    graphics.drawSprite(this.assets.icon, this.x, this.y, this.width, this.height);
+        if (this.hovered) {
+          graphics.globalAlpha = 0.4;
+          graphics.fillStyle = "black";
+          const padding = 6;
+          graphics.fillRect(this.x + this.bounds.x - padding, this.y + this.bounds.y - padding, this.bounds.width + (padding * 2), this.bounds.height + (padding * 2));
+          graphics.globalAlpha = 1;
+        }
 
-    if (this.hovered) {
-      graphics.globalAlpha = 0.4;
-      graphics.fillStyle = "black";
-      const padding = 6;
-      graphics.fillRect(this.x + this.bounds.x - padding, this.y + this.bounds.y - padding, this.bounds.width + (padding * 2), this.bounds.height + (padding * 2));
-      graphics.globalAlpha = 1;
+        break;
+
+      case "loading":
+        graphics.drawSprite(this.getCurrentAnimationFrame(), this.x, this.y, this.width, this.height);
+
+        break;
+
+      default:
+        throw new Error(`Computer App state "${this.state} is not accounted for`)
     }
 
     //draw collision bounds for debugging
     // graphics.fillStyle = "yellow";
     // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+  }
+
+  wasClickedAt(x, y) {
+    switch (this.state) {
+      case "idle":
+        this.state = "loading";
+        break;
+
+      case "loading":
+        break;
+
+      default:
+        throw new Error(`Computer App state "${this.state} is not accounted for during mouseclicked`)
+    }
   }
 
   wasHoveredAt(x, y) {
