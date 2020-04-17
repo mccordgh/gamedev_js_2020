@@ -23,14 +23,15 @@ export class Email extends ComputerApp {
 
     this.emails = [
       new BigEmail(this.handler, emailCopy.one, 'Thor, Son of Odin', 'I demand you fix my mistakes because I am great.', false),
-      new BigEmail(this.handler, emailCopy.one, 'Odin, god', 'Why have you not paid tribute to me recently? :(', true),
-      new BigEmail(this.handler, emailCopy.one, 'Lonely Russian Women', 'I want to meet you online come to my site', true),
-      new BigEmail(this.handler, emailCopy.one, 'Prestige Worldwide', 'Grow your own sea monkeys!!@', true),
+      new BigEmail(this.handler, emailCopy.two, 'Odin, god', 'Why have you not paid tribute to me recently? :(', true),
+      new BigEmail(this.handler, emailCopy.three, 'Lonely Russian Women', 'I want to meet you online come to my site', true),
+      new BigEmail(this.handler, emailCopy.four, 'Prestige Worldwide', 'Grow your own sea monkeys!!@', true),
     ];
 
     //TODO REMOVE
-    this.state = 'loading';
-    this.assets.animations['loading'].index = 10;
+    this.state = 'idle';
+    // this.state = 'loading';
+    // this.assets.animations['loading'].index = 10;
   }
 
   appLoaded() {

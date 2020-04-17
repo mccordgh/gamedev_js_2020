@@ -106,10 +106,12 @@ export class ComputerApp extends StaticEntity {
   }
 
   wasHoveredAt(x, y) {
+    console.log('was hovered');
     this.hovered = true;
   }
 
   wasBlurred() {
+    console.log('was blurred')
     this.hovered = false;
   }
 }

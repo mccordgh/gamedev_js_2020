@@ -5,10 +5,17 @@ import { GameConstants } from '../../constants/game-constants';
 const clickableTypes = [
     GameConstants.TYPES.INTERACTIVE,
     GameConstants.TYPES.COMPUTER_APP,
+    GameConstants.TYPES.EMAIL_ITEMS,
 ];
 
 const dontRenderTypes = [
     GameConstants.TYPES.COMPUTER_APP,
+];
+
+const hoverableTypes = [
+    GameConstants.TYPES.COMPUTER,
+    GameConstants.TYPES.COMPUTER_APP,
+    GameConstants.TYPES.EMAIL_ITEMS,
 ];
 
 export class EntityManager {
@@ -113,22 +120,22 @@ export class EntityManager {
         const hovered = this.findClickableEntityAt(x, y);
 
         if (!hovered) {
-            this.cursor.swapToHand();
+            // this.cursor.swapToHand();
 
             if (this.lastEntityHovered && this.lastEntityHovered.wasBlurred) {
                 this.lastEntityHovered.wasBlurred();
 
-                this.lastEntity = null;
+                this.lastEntityHovered = null;
             }
 
             return;
         }
 
-        if (hovered.type === GameConstants.TYPES.COMPUTER || hovered.type === GameConstants.TYPES.COMPUTER_APP) {
-            this.cursor.swapToComputer();
-        } else {
-            this.cursor.swapToHand();
-        }
+        // if (hoverableTypes.includes(hovered.type)) {
+        //     this.cursor.swapToComputer();
+        // } else {
+        //     this.cursor.swapToHand();
+        // }
 
         if (hovered === this.lastEntityHovered) {
             return;

@@ -8,6 +8,7 @@ export const GameConstants = {
     BIG_FONT_SIZE: 32,
     FONT_SIZE: 18,
     EMAIL_ITEM_SIZE: 16,
+    APP_NAME_SIZE: 16,
 
     COLORS: {
         PURPLE: "#7B538F",
@@ -29,6 +30,7 @@ export const GameConstants = {
     SPATIAL_GRID_SIZE: 64,
 
     TYPES: {
+        EMAIL_ITEMS: 'email-items',
         INTERACTIVE: 'interactive',
         COMPUTER: 'computer',
         COMPUTER_APP: 'computer-app',

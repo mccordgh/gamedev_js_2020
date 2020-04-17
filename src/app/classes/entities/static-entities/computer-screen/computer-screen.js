@@ -66,11 +66,12 @@ export class ComputerScreen extends StaticEntity {
     resetAppPositions() {
       // this.alignIconsTopLeftToBottomRight()
 
+      // center single app
       if (this.apps.length === 1) {
         const [app] = this.apps;
 
-        app.x = this.x + (this.width / 2) - (app.width / 2);
-        app.y = this.y + (this.height / 2) - (app.height / 2);
+        app.x = this.x + (this.width / 2) - (app.bounds.width / 2);
+        app.y = this.y + (this.height / 2) - (app.bounds.height);
       }
     }
 

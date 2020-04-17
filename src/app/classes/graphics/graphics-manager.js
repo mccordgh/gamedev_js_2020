@@ -26,7 +26,7 @@ export class GraphicsManager {
             y,
             color = GameConstants.COLORS.CREAM,
             highlight = true,
-            size = GameConstants.FONT_SIZ
+            size = GameConstants.FONT_SIZE
         ) => {
             this.graphics.font = `${size}px Arial`;
 

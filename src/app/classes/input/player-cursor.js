@@ -14,10 +14,10 @@ export class PlayerCursor {
         };
 
         this.arrowBounds = {
-            x: 6,
-            y: 6,
-            width: 24,
-            height: 24,
+            x: 0,
+            y: 0,
+            width: 12,
+            height: 12,
         };
 
         this.assets = {
@@ -25,7 +25,8 @@ export class PlayerCursor {
             arrow: Assets.getAssets('cursor2').pointer,
         };
 
-        this.swapToHand();
+        this.swapToComputer();
+        // this.swapToHand();
     }
 
     render(graphics) {
@@ -36,8 +37,8 @@ export class PlayerCursor {
 
         graphics.drawSprite(this.cursor, this.x - offset, this.y - offset, size, size);
 
-        //draw collision bounds for debugging
-        // graphics.fillStyle = "blue";
+        // draw collision bounds for debugging
+        // graphics.fillStyle = this.bounds === this.arrowBounds ? "red" : "blue";
         // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
     }
 

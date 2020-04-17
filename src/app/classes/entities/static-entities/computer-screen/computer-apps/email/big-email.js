@@ -71,6 +71,7 @@ export class BigEmail extends StaticEntity {
   }
 
   wasClickedAt() {
+    this.setHiddenCallback(false);
     this.handler.getEntityManager().removeEntity(this);
   }
 }
