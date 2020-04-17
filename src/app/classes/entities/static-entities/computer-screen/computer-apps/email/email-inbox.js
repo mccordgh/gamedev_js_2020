@@ -29,12 +29,44 @@ export class EmailInbox extends StaticEntity {
     this.hidden = false;
 
     this.emails = emails;
-    this.emailItems = [];
     this.assets = Assets.getAssets('inbox');
+    this.emailItems = [];
+
+    this.initializeEmailItems();
   }
 
   tick() {
     //
+  }
+
+  initializeEmailItems() {
+    let xx = this.paddingX + 16;
+    let yy = this.paddingY + 64 + 38;
+
+    const subjectColX = xx + 74
+
+    for (let i = 0; i < this.emails.length; i += 1) {
+      const email = this.emails[i];
+      const bgColor = (i % 2) ? GameConstants.COLORS.PURPLE : GameConstants.COLORS.RED;
+      const highlightColor = (i % 2) ? GameConstants.COLORS.LIGHT_PURPLE : GameConstants.COLORS.LIGHT_RED;
+
+      const emailItem = new EmailInboxItem(
+        this.handler,
+        xx,
+        yy,
+        this.width,
+        34,
+        email,
+        bgColor,
+        highlightColor,
+        this.setHidden.bind(this)
+        );
+
+      this.handler.getEntityManager().addEntity(emailItem);
+      this.emailItems.push(emailItem);
+
+      yy += 36;
+    }
   }
 
   drawFadedBackground(graphics) {
@@ -48,6 +80,7 @@ export class EmailInbox extends StaticEntity {
     if (!this.hidden) {
       this.drawFadedBackground(graphics);
       this.drawInbox(graphics);
+      this.drawEmailItems(graphics);
     }
 
     // draw collision bounds for debugging
@@ -59,42 +92,18 @@ export class EmailInbox extends StaticEntity {
     this.hidden = value;
 
     for (let i = 0; i < this.emailItems.length; i += 1) {
-      this.emailItems[i].hidden = true;
+      this.emailItems[i].hidden = value;
     }
   }
 
-  drawEmails(graphics) {
-    let xx = this.paddingX + 16;
-    let yy = this.paddingY + 64 + 38;
-
-    const subjectColX = xx + 74
-
-    for (let i = 0; i < this.emails.length; i += 1) {
-      const email = this.emails[i];
-      const bgColor = (i % 2) ? GameConstants.COLORS.PURPLE : GameConstants.COLORS.RED;
-
-      const emailItem = new EmailInboxItem(
-        this.handler,
-        xx,
-        yy,
-        this.width,
-        GameConstants.FONT_SIZE * 2,
-        email,
-        bgColor,
-        this.setHidden.bind(this)
-        );
-
-        this.handler.getEntityManager().addEntity(emailItem);
-        this.emailItems.push(emailItem);
-
-      yy += 36;
+  drawEmailItems(graphics) {
+    for (let i = 0; i < this.emailItems.length; i += 1) {
+      this.emailItems[i].render(graphics);
     }
   }
 
   drawInbox(graphics) {
     graphics.drawSprite(this.assets.bg, this.paddingX, this.paddingY, this.width, this.height);
-
-    this.drawEmails(graphics);
   }
 
   wasClickedAt() {

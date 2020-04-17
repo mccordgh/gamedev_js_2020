@@ -3,13 +3,14 @@ import { GameConstants } from '../../../../../../constants/game-constants';
 import { BigEmail } from './big-email';
 
 export class EmailInboxItem extends StaticEntity {
-  constructor(handler, x, y, width, height, email, bgColor, setHiddenCallback) {
+  constructor(handler, x, y, width, height, email, bgColor, highlightColor, setHiddenCallback) {
     super(handler, x, y);
 
     this.width = width;
     this.height = height;
     this.email = email;
     this.bgColor = bgColor;
+    this.highlightColor = highlightColor;
 
     this.hovered = false;
 
@@ -20,7 +21,7 @@ export class EmailInboxItem extends StaticEntity {
       height: this.height,
     };
 
-    this.type = GameConstants.TYPES.EMAIL_ITEMS;
+    this.type = GameConstants.TYPES.EMAIL_INBOX_ITEMS;
     this.setHiddenCallback = setHiddenCallback;
 
     this.hidden = false;
@@ -34,7 +35,8 @@ export class EmailInboxItem extends StaticEntity {
     if (!this.hidden) {
       const { x, y, width, height } = this;
 
-      graphics.fillStyle = this.bgColor;
+      graphics.fillStyle = this.hovered ? this.highlightColor : this.bgColor;
+
       graphics.fillRect(x - 16, y - 26, width, height);
       graphics.fillStyle = 'black';
 
@@ -56,12 +58,16 @@ export class EmailInboxItem extends StaticEntity {
         GameConstants.EMAIL_ITEM_SIZE,
       );
 
-      if (this.hovered) {
-        graphics.fillStyle = 'black';
-        graphics.globalAlpha = 1;
-        graphics.fillRect(x - 16, y - 26, width, height);
-        graphics.globalAlpha = 1;
-      }
+      //draw collision bounds for debugging
+      // graphics.fillStyle = "yellow";
+      // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+
+      // if (this.hovered) {
+      //   graphics.fillStyle = 'black';
+      //   graphics.globalAlpha = 1;
+      //   graphics.fillRect(x - 16, y - 26, width, height);
+      //   graphics.globalAlpha = 1;
+      // }
     }
   }
 

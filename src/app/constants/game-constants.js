@@ -12,8 +12,12 @@ export const GameConstants = {
 
     COLORS: {
         PURPLE: "#7B538F",
+        LIGHT_PURPLE: "#BD7FDB",
+        DARK_PURPLE: "#4F355C",
         CREAM: "#FCEDC3",
         RED: "#FF2F4C",
+        LIGHT_RED: "#FF7A8C",
+        DARK_RED: "#803D46",
     },
 
     FPS: 60,
@@ -31,6 +35,7 @@ export const GameConstants = {
 
     TYPES: {
         EMAIL_ITEMS: 'email-items',
+        EMAIL_INBOX_ITEMS: 'email-inbox-items',
         INTERACTIVE: 'interactive',
         COMPUTER: 'computer',
         COMPUTER_APP: 'computer-app',

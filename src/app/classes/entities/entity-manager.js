@@ -6,17 +6,22 @@ const clickableTypes = [
     GameConstants.TYPES.INTERACTIVE,
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_ITEMS,
+    GameConstants.TYPES.EMAIL_INBOX_ITEMS,
 ];
 
 const dontRenderTypes = [
     GameConstants.TYPES.COMPUTER_APP,
+    GameConstants.TYPES.EMAIL_INBOX_ITEMS,
 ];
 
 const hoverableTypes = [
     GameConstants.TYPES.COMPUTER,
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_ITEMS,
+    GameConstants.TYPES.EMAIL_INBOX_ITEMS,
 ];
+
+let idCounter = 1;
 
 export class EntityManager {
     constructor(handler) {
@@ -47,6 +52,9 @@ export class EntityManager {
     }
 
     addEntity(entity) {
+        entity.id = idCounter;
+        idCounter += 1;
+
         this.entities.push(entity);
 
         const rectangle = new Rectangle(
@@ -137,7 +145,7 @@ export class EntityManager {
         //     this.cursor.swapToHand();
         // }
 
-        if (hovered === this.lastEntityHovered) {
+        if (hovered && this.lastEntityHovered && hovered.id === this.lastEntityHovered.id) {
             return;
         } else {
             if (this.lastEntityHovered && this.lastEntityHovered.wasBlurred) {
