@@ -32,6 +32,7 @@ export class ComputerApp extends StaticEntity {
         if (animation.index >= 9) {
           this.appLoaded();
 
+          animation.index = 0;
           this.state = 'idle';
 
           return;
@@ -70,7 +71,7 @@ export class ComputerApp extends StaticEntity {
           graphics.globalAlpha = 0.4;
           graphics.fillStyle = "black";
           const padding = 6;
-          graphics.fillRect(this.x + this.bounds.x - padding, this.y + this.bounds.y - padding, this.bounds.width + (padding * 2), this.bounds.height + (padding * 2));
+          graphics.fillRect(this.x + this.bounds.x - padding, this.y + this.bounds.y - padding, this.bounds.width + (padding * 2), this.bounds.height + (padding * 2) + GameConstants.FONT_SIZE + 2);
           graphics.globalAlpha = 1;
         }
 

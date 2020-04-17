@@ -1,38 +1,39 @@
 {
-  "name": "game_engine_from_scratch",
+  "name": "gamedev_js_jam_2020",
   "version": "1.0.0",
-  "description": "Create a game engine from scratch, bud",
-  "main": "index.js",
-  "dependencies": {
+  "description": "Gamedev.js Jam 2020",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
-    "compression-webpack-plugin": "^2.0.0",
-    "copy-webpack-plugin": "^4.6.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "file-loader": "^6.0.0",
+    "gh-pages": "^2.2.0",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   },
-  "devDependencies": {
-    "file-loader": "^6.0.0"
-  },
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "NODE_ENV='development' webpack-dev-server --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "git subtree push --prefix dist origin gh-pages",
-    "build": "rm -rf dist/ && webpack"
+    "deploy": "npm run build && gh-pages -d dist",
+    "build": "NODE_ENV='production' webpack -p"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mccordgh/create_a_js_game_engine.git"
+    "url": "git+ssh://git@github.com:mccordgh/gamedev_js_2020.git"
   },
-  "author": "Matthew McCord & Adam Simpson",
+  "author": "Matthew McCord & Keith Davis & TheCodingGeek",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mccordgh/create_a_js_game_engine/issues"
+    "url": "https://github.com/mccordgh/gamedev_js_2020.git"
   },
-  "homepage": "https://github.com/mccordgh/create_a_js_game_engine#readme"
+  "homepage": "https://github.com/mccordgh/gamedev_js_2020.git#readme"
 }

@@ -1,7 +1,7 @@
 import { StaticEntity } from '../static-entity';
 import { Assets } from '../../../assets/assets';
 import { GameConstants } from '../../../../constants/game-constants';
-import { Email } from './computer-apps/email';
+import { Email } from './computer-apps/email/email';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
@@ -38,7 +38,7 @@ export class ComputerScreen extends StaticEntity {
         // this.state = 'booting';
     }
 
-    resetAppPositions() {
+    alignIconsTopLeftToBottomRight() {
       let currentX = this.x;
       let currentY = this.y;
       currentY += this.padding;
@@ -60,6 +60,17 @@ export class ComputerScreen extends StaticEntity {
         currentX += app.width;
 
         currentX += this.padding;
+      }
+    }
+
+    resetAppPositions() {
+      // this.alignIconsTopLeftToBottomRight()
+
+      if (this.apps.length === 1) {
+        const [app] = this.apps;
+
+        app.x = this.x + (this.width / 2) - (app.width / 2);
+        app.y = this.y + (this.height / 2) - (app.height / 2);
       }
     }
 
@@ -115,14 +126,17 @@ export class ComputerScreen extends StaticEntity {
       graphics.fillRect(this.x - 10, this.y - 10 , this.width + 20, this.height + 20);
 
       //screen
-      graphics.fillStyle = "#7b538f";
+      graphics.fillStyle = GameConstants.COLORS.PURPLE;
       graphics.fillRect(this.x, this.y, this.width, this.height);
 
       switch (this.state) {
         case "idle":
           // tell all apps to draw themselves
           for (let i = 0; i < this.apps.length; i += 1) {
-            this.apps[i].render(graphics);
+            const app = this.apps[i];
+
+            graphics.drawText(app.name, app.x + app.textXOffset, app.y + app.textYOffset);
+            app.render(graphics);
           }
           break;
 

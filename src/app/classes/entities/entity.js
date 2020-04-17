@@ -12,6 +12,10 @@ export class Entity {
         this.bounds = new Rectangle(0, 0, this.width, this.height);
     }
 
+    tick() {
+        throw new Error(`${this.constructor.name} did not implement tick() method`)
+    }
+
     getCollisionBounds(xOffset, yOffset) {
         const x = parseInt(this.x + this.bounds.x + xOffset, 10);
         const y = parseInt(this.y + this.bounds.y + yOffset);

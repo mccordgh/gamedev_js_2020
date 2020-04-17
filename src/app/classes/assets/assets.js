@@ -77,6 +77,9 @@ createAnimationFor(os, 'booting', {
     height: GameConstants.SCREEN_HEIGHT,
 });
 
+const inbox = new Assets('inbox', 'inbox-bg.png');
+inbox.bg = inbox.sheet.crop(0, 0, 768, 672);
+
 /* MONSTERS */
 // const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');
 // createAnimationFor(skeleton, 'walk_left', {

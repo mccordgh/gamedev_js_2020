@@ -1,7 +1,19 @@
-const basePath = window.location.href;
+let basePath = window.location.href;
+
+if (process.env.NODE_ENV === 'production') {
+    basePath = basePath.replace(/index.html/, '');
+}
 
 export const GameConstants = {
-    FONT_SIZE: 32,
+    BIG_FONT_SIZE: 32,
+    FONT_SIZE: 18,
+    EMAIL_ITEM_SIZE: 16,
+
+    COLORS: {
+        PURPLE: "#7B538F",
+        CREAM: "#FCEDC3",
+        RED: "#FF2F4C",
+    },
 
     FPS: 60,
 
@@ -17,6 +29,7 @@ export const GameConstants = {
     SPATIAL_GRID_SIZE: 64,
 
     TYPES: {
+        INTERACTIVE: 'interactive',
         COMPUTER: 'computer',
         COMPUTER_APP: 'computer-app',
     },

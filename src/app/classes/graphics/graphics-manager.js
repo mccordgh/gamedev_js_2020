@@ -20,8 +20,21 @@ export class GraphicsManager {
             this.graphics.drawImage(asset.sheet, asset.x, asset.y, asset.width, asset.height, x, y, width, height);
         };
 
-        CanvasRenderingContext2D.prototype.drawText = (text, x, y, color = 'white', size = GameConstants.FONT_SIZE) => {
+        CanvasRenderingContext2D.prototype.drawText = (
+            text,
+            x,
+            y,
+            color = GameConstants.COLORS.CREAM,
+            highlight = true,
+            size = GameConstants.FONT_SIZ
+        ) => {
             this.graphics.font = `${size}px Arial`;
+
+            if (highlight) {
+                this.graphics.fillStyle = 'black';
+                this.graphics.fillText(text, x - 2, y + 2);
+            }
+
             this.graphics.fillStyle = color;
             this.graphics.fillText(text,  x, y);
         };
@@ -29,6 +42,7 @@ export class GraphicsManager {
 
     initializeCanvas() {
         this.canvas = document.querySelector('#canvas');
+
 
         this.canvas.setAttribute('width', GameConstants.GAME_WIDTH);
         this.canvas.setAttribute('height', GameConstants.GAME_HEIGHT);

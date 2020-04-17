@@ -3,7 +3,7 @@ import { Rectangle } from './collision/rectangle';
 import { GameConstants } from '../../constants/game-constants';
 
 const clickableTypes = [
-    GameConstants.TYPES.COMPUTER,
+    GameConstants.TYPES.INTERACTIVE,
     GameConstants.TYPES.COMPUTER_APP,
 ];
 
@@ -72,7 +72,13 @@ export class EntityManager {
             this.cursor.bounds.height,
         );
 
-        const clickableEntities = this.entities.find((entity) => {
+        // creating new array here so we dont reverse the original which causing crazy render and tick issues
+        // because the entities array flips in reverse every frame LOL
+        const reversed = [...this.entities].reverse();
+
+        // searching through the entities in reverse because they are drawn first to last
+        // so the last will be on drawn on top and the first on bottom covered by anything else, etc
+        const clickableEntities = reversed.find((entity) => {
             if (!entity.bounds) {
                 throw new Error(`entity type ${entity.type} has no bounds`)
             }
