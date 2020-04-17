@@ -1,3 +1,11 @@
+# build directory
+dist/
+
+# visual studio code local settings
 .vscode/
+
+# local node_modules
 node_modules/
+
+# OS X indexing/cache files
 *.DS_Store

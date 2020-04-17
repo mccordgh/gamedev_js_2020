@@ -3,7 +3,6 @@ import { GraphicsManager } from "../graphics/graphics-manager";
 import { EntityManager } from '../entities/entity-manager';
 import { StateManager } from '../states/state-manager';
 import { WorldOne } from '../worlds/world-one';
-import { UiManager } from '../entities/ui/ui-manager';
 
 export class ManagerHandler {
     constructor(game) {

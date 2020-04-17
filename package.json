@@ -16,10 +16,14 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "file-loader": "^6.0.0"
+  },
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "build": "rm -rf dist/ && webpack"
   },
   "repository": {
     "type": "git",
