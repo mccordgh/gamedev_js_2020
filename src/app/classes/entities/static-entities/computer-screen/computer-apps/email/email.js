@@ -29,12 +29,15 @@ export class Email extends ComputerApp {
     ];
 
     //TODO REMOVE
-    this.state = 'idle';
     // this.state = 'loading';
     // this.assets.animations['loading'].index = 10;
   }
 
+  setActive() {
+    this.state = 'idle';
+  }
+
   appLoaded() {
-    this.handler.getEntityManager().addEntity(new EmailInbox(this.handler, this.emails));
+    this.handler.getEntityManager().addEntity(new EmailInbox(this.handler, this.emails, this.setActive.bind(this)));
   }
 }

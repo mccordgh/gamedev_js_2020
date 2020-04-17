@@ -4,7 +4,7 @@ import { Assets } from '../../../../../assets/assets';
 import { EmailInboxItem } from './email-inbox-item';
 
 export class EmailInbox extends StaticEntity {
-  constructor(handler, emails) {
+  constructor(handler, emails, setActiveCallback) {
     super(handler, 0, 0);
 
     this.x = 0;
@@ -16,6 +16,7 @@ export class EmailInbox extends StaticEntity {
     this.width = GameConstants.GAME_WIDTH - (this.paddingX * 2);
     this.height = GameConstants.GAME_HEIGHT - (this.paddingY * 2);
 
+    this.setActiveCallback = setActiveCallback;
 
     this.bounds = {
       x: 850,
@@ -104,5 +105,7 @@ export class EmailInbox extends StaticEntity {
     }
 
     entityManager.removeEntity(this);
+
+    this.setActiveCallback();
   }
 }

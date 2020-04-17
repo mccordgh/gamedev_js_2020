@@ -33,12 +33,15 @@ export class ComputerApp extends StaticEntity {
           this.appLoaded();
 
           animation.index = 0;
-          this.state = 'idle';
+          this.state = 'inactive';
 
           return;
         }
 
         animation.tick();
+        break;
+
+      case "inactive":
         break;
 
       default:
@@ -55,6 +58,9 @@ export class ComputerApp extends StaticEntity {
         const animation = this.assets.animations['loading'];
 
         return animation.getCurrentFrame();
+        break;
+
+      case "inactive":
         break;
 
       default:
@@ -82,6 +88,9 @@ export class ComputerApp extends StaticEntity {
 
         break;
 
+      case "inactive":
+        break;
+
       default:
         throw new Error(`Computer App state "${this.state} is not accounted for`)
     }
@@ -106,12 +115,14 @@ export class ComputerApp extends StaticEntity {
   }
 
   wasHoveredAt(x, y) {
-    console.log('was hovered');
-    this.hovered = true;
+    if (this.state !== 'inactive') {
+      this.hovered = true;
+    }
   }
 
   wasBlurred() {
-    console.log('was blurred')
-    this.hovered = false;
+    if (this.state !== 'inactive') {
+      this.hovered = false;
+    }
   }
 }
