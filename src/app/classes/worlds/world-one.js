@@ -23,6 +23,8 @@ export class WorldOne {
             GameConstants.GAME_HEIGHT,
             GameConstants.SPATIAL_GRID_SIZE,
         );
+
+        this.state = 'intro';
     }
 
     loadEntities() {

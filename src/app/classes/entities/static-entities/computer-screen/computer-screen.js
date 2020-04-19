@@ -7,6 +7,13 @@ export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
         super(handler, x, y);
 
+        this.states = {
+          OFF: 'off',
+          INITIALIZE: 'initialize',
+          BOOTING: 'booting',
+          IDLE: 'idle',
+        };
+
         this.width = GameConstants.SCREEN_WIDTH;
         this.height = GameConstants.SCREEN_HEIGHT;
 
@@ -28,14 +35,15 @@ export class ComputerScreen extends StaticEntity {
 
         const entityManager = this.handler.getEntityManager();
 
-        this.apps = [
-          entityManager.addEntity(new Email(handler)),
-        ];
+        this.state = this.states.OFF;
+        // this.state = this.states.IDLE;
+        // this.state = this.states.BOOTING;
+    }
 
-        this.resetAppPositions();
-
-        this.state = "idle";
-        // this.state = 'booting';
+    initializeApps() {
+      this.apps = [
+        this.handler.getEntityManager().addEntity(new Email(this.handler)),
+      ];
     }
 
     alignIconsTopLeftToBottomRight() {
@@ -77,11 +85,22 @@ export class ComputerScreen extends StaticEntity {
 
     tick() {
       switch (this.state) {
-        case "idle":
+        case this.states.OFF:
+          this.state = this.states.INITIALIZE;
           break;
 
-        case "booting":
-          const animation = this.assets.animations['booting'];
+        case this.states.INITIALIZE:
+          this.initializeApps();
+          this.resetAppPositions();
+
+          this.state = this.states.BOOTING;
+          break;
+
+        case this.states.IDLE:
+          break;
+
+        case this.states.BOOTING:
+          const animation = this.assets.animations[this.states.BOOTING];
 
           // 9 is used here because this animation has 10 frames 0 to 9 and we want to go to the desktop when it finishes
           if (animation.index >= 9) {
@@ -89,7 +108,7 @@ export class ComputerScreen extends StaticEntity {
 
             if (this.bootCounter === this.bootWait) {
               this.bootCounter = 0;
-              this.state = "idle";
+              this.state = this.states.IDLE;
 
             }
 
@@ -107,11 +126,13 @@ export class ComputerScreen extends StaticEntity {
 
     getCurrentAnimationFrame() {
       switch (this.state) {
-        case "idle":
+        case "off":
+        case this.states.INITIALIZE:
+        case this.states.IDLE:
           break;
 
-        case "booting":
-          const animation = this.assets.animations['booting'];
+        case this.states.BOOTING:
+          const animation = this.assets.animations[this.states.BOOTING];
 
           return animation.getCurrentFrame();
           break;
@@ -127,11 +148,15 @@ export class ComputerScreen extends StaticEntity {
       graphics.fillRect(this.x - 10, this.y - 10 , this.width + 20, this.height + 20);
 
       //screen
-      graphics.fillStyle = GameConstants.COLORS.PURPLE;
+      graphics.fillStyle = (this.state === this.states.OFF ? 'black' : GameConstants.COLORS.PURPLE);
       graphics.fillRect(this.x, this.y, this.width, this.height);
 
       switch (this.state) {
-        case "idle":
+        case "off":
+        case this.states.INITIALIZE:
+          break;
+
+        case this.states.IDLE:
           // tell all apps to draw themselves
           for (let i = 0; i < this.apps.length; i += 1) {
             const app = this.apps[i];
@@ -141,7 +166,7 @@ export class ComputerScreen extends StaticEntity {
           }
           break;
 
-        case "booting":
+        case this.states.BOOTING:
           if (this.bootCounter > (this.bootWait / 4)) {
             graphics.globalAlpha -= this.bootCounter / this.bootWait;
           }
