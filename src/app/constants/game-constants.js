@@ -22,6 +22,13 @@ export const GameConstants = {
 
     FPS: 60,
 
+    DIALOGUE: {
+        X: 64,
+        Y: 448,
+        WIDTH: 896,
+        HEIGHT: 256 / 1.5,
+    },
+
     SCREEN_WIDTH: 512,
     SCREEN_HEIGHT: 384,
 

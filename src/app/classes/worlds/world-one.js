@@ -3,6 +3,7 @@ import { GameConstants } from '../../constants/game-constants';
 import { SpatialGrid } from '../entities/collision/spatial-grid';
 import {Assets} from "../assets/assets";
 import { ComputerScreen } from '../entities/static-entities/computer-screen/computer-screen';
+import { Dialogue } from '../dialogue/dialogue';
 
 let counter = 0;
 
@@ -24,7 +25,46 @@ export class WorldOne {
             GameConstants.SPATIAL_GRID_SIZE,
         );
 
-        this.state = 'intro';
+        this.states = {
+            INITIALIZE: 'initialize',
+            INTRO: 'intro',
+            IDLE: 'idle',
+        };
+
+        this.state = this.states.INITIALIZE;
+    }
+
+    initDialogue() {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(
+                this.handler,
+                [
+                    'Hello, click to continue.',
+                    'This is more intro text.',
+                ]
+            ),
+        );
+    }
+
+    dialogueFinished() {
+        console.log('Dialogue finished in state', this.state)
+        switch (this.state) {
+            case this.states.INITIALIZE:
+                break;
+
+            case this.states.INTRO:
+                this.state = this.states.IDLE;
+                break;
+
+
+            case this.states.IDLE:
+                this.spatialGrid.render(graphics);
+                this.entityManager.render(graphics);
+                break;
+
+            default:
+                throw new Error(`World One animation state "${this.state} is not accounted for`)
+        }
     }
 
     loadEntities() {
@@ -41,17 +81,48 @@ export class WorldOne {
     }
 
     tick(deltaTime) {
-        // counter++;
+        switch (this.state) {
+            case this.states.INITIALIZE:
+                this.initDialogue();
 
-        this.entityManager.tick(deltaTime);
+                this.state = this.states.INTRO;
+                break;
+
+            case this.states.INTRO:
+                this.dialogue.tick();
+                break;
+
+
+            case this.states.IDLE:
+                this.entityManager.tick(deltaTime);
+                break;
+
+            default:
+                throw new Error(`World One animation state "${this.state} is not accounted for`)
+        }
+
     }
 
     render(graphics) {
         this.drawBackground(graphics);
 
-        this.spatialGrid.render(graphics);
+        switch (this.state) {
+            case this.states.INITIALIZE:
+                break;
 
-        this.entityManager.render(graphics);
+            case this.states.INTRO:
+                this.dialogue.render(graphics);
+                break;
+
+
+            case this.states.IDLE:
+                this.spatialGrid.render(graphics);
+                this.entityManager.render(graphics);
+                break;
+
+            default:
+                throw new Error(`World One state "${this.state} is not accounted for`)
+        }
     }
 
     init() {
