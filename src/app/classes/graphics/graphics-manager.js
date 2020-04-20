@@ -32,7 +32,7 @@ export class GraphicsManager {
 
             if (highlight) {
                 this.graphics.fillStyle = 'black';
-                this.graphics.fillText(text, x - 2, y + 2);
+                this.graphics.fillText(text, x - 1, y + 1);
             }
 
             this.graphics.fillStyle = color;
