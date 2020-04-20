@@ -31,7 +31,7 @@ export class Entity {
             let entity = candidates[i];
 
             if (entity.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(xOffset, yOffset))) {
-              this.checkForCollisionEvents(this, entity);
+            //   this.checkForCollisionEvents(this, entity);
 
               return true;
             }
@@ -40,11 +40,20 @@ export class Entity {
         return false;
     }
 
-    takeDamageFrom(entity) {
-        this.health -= entity.getAttackDamage();
+    drawCollisionBounds(graphics, color = 'blue') {
+        graphics.fillStyle = color;
+        graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
     }
 
-    checkForCollisionEvents(e1, e2) {
+    // takeDamageFrom(entity) {
+    //     this.health -= entity.getAttackDamage();
+    // }
+
+    destroySelf() {
+      this.handler.getEntityManager().removeEntity(this);
+    }
+
+    // checkForCollisionEvents(e1, e2) {
         // if player and guard bump
         // if (this.checkCollidingTypes(e1, e2, GameConstants.TYPES.HOUSE, GameConstants.TYPES.MONSTER)) {
         //     const house = e1.type === GameConstants.TYPES.HOUSE ? e1 : e2;
@@ -59,9 +68,9 @@ export class Entity {
 
         //     this.monsterHeroCollision(monster, hero);
         // }
-    }
+    // }
 
-    checkCollidingTypes(e1, e2, type1, type2) {
-        return ((e1.type === type1 && e2.type === type2) || (e1.type === type2 && e2.type === type1));
-    }
+    // checkCollidingTypes(e1, e2, type1, type2) {
+    //     return ((e1.type === type1 && e2.type === type2) || (e1.type === type2 && e2.type === type1));
+    // }
 }

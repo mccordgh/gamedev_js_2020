@@ -17,7 +17,7 @@ export class Dialogue extends StaticEntity{
       height: GameConstants.GAME_HEIGHT,
     };
 
-    this.fontSize = 48;
+    this.fontSize = 42;
     this.textX = this.x + this.fontSize;
     this.textY = this.y + (this.height / 2) + this.fontSize / 3;
 
@@ -56,30 +56,28 @@ export class Dialogue extends StaticEntity{
 	}
 
   render(graphics) {
-    if (this.words[0]) {
-      graphics.fillStyle = 'white';
-      graphics.fillRect(this.x, this.y, this.width, this.height);
-
-      graphics.drawText(this.dialogue, this.textX, this.textY, 'black', false, this.fontSize);
-
-      if (!this.words[0].length) {
-        graphics.fillStyle = 'blue';
-        graphics.fillRect(this.x + this.width - 64, this.y + this.height - 64, 32, 32);
-      }
+    if (!this.words[0]) {
+      return;
     }
 
-    // draw collision bounds for debugging
-    // graphics.fillStyle = "yellow";
-    // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
-
     graphics.fillStyle = 'black';
+    graphics.globalAlpha = 0.6;
+    graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+    graphics.globalAlpha = 1;
+
+    graphics.fillStyle = 'white';
+    graphics.fillRect(this.x, this.y, this.width, this.height);
+
+    graphics.drawText(this.dialogue, this.textX, this.textY, 'black', false, this.fontSize);
+
+    if (!this.words[0].length) {
+      graphics.fillStyle = 'blue';
+      graphics.fillRect(this.x + this.width - 64, this.y + this.height - 64, 32, 32);
+    }
   }
 
-  // rNS
 	readNextSentence() {
 		this.words.splice(0, 1);
-
-    console.log({readNextSentence: [...this.words]});
 
     this.clean();
 	}
@@ -90,7 +88,6 @@ export class Dialogue extends StaticEntity{
     this.sentencePause = 0;
   }
 
-  //sNL
 	sayNextLetter() {
 		let nextLetter = this.words[0][0];
 		let color, txtClass;
@@ -102,12 +99,9 @@ export class Dialogue extends StaticEntity{
 		this.speechTimer = 0;
 	}
 
-  // aW
 	addWords(_words) {
   if (!(_words instanceof Array)) _words = [_words];
 	  _words.forEach((w) => { this.words.push(w.split('')); });
-
-    console.log({addWords: [...this.words]});
 	}
 
 	clear() {
@@ -117,6 +111,8 @@ export class Dialogue extends StaticEntity{
 	}
 
   wasClickedAt() {
-    this.wasClicked = true;
+    if (!this.words[0].length) {
+      this.wasClicked = true;
+    }
   }
 }

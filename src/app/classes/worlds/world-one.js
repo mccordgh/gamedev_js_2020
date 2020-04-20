@@ -4,6 +4,10 @@ import { SpatialGrid } from '../entities/collision/spatial-grid';
 import {Assets} from "../assets/assets";
 import { ComputerScreen } from '../entities/static-entities/computer-screen/computer-screen';
 import { Dialogue } from '../dialogue/dialogue';
+import { EasterEggGame } from '../entities/static-entities/easter-eggs/easter-egg-game';
+import { TheCore } from '../entities/static-entities/easter-eggs/the-core';
+import { MeMyselfAndI } from '../entities/static-entities/easter-eggs/me-myself-and-i';
+import { TheCodersGame } from '../entities/static-entities/easter-eggs/the-coder';
 
 let counter = 0;
 
@@ -29,9 +33,12 @@ export class WorldOne {
             INITIALIZE: 'initialize',
             INTRO: 'intro',
             IDLE: 'idle',
+            TEST: 'test',
+            TEST_INIT: 'test-init',
         };
 
         this.state = this.states.INITIALIZE;
+        // this.state = this.states.TEST_INIT;
     }
 
     initDialogue() {
@@ -39,15 +46,14 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    'Hello, click to continue.',
-                    'This is more intro text.',
+                    'Hey, newbie! Better get crackin...',
+                    'The boys upstairs really did it this time.',
                 ]
             ),
         );
     }
 
     dialogueFinished() {
-        console.log('Dialogue finished in state', this.state)
         switch (this.state) {
             case this.states.INITIALIZE:
                 break;
@@ -68,20 +74,20 @@ export class WorldOne {
     }
 
     loadEntities() {
-        this.entityManager.addEntity(new ComputerScreen(this.handler, 260, 150))
-        // const ySpawn = 90;
-
-        // this.entityManager.addEntity(new FarmHouse(this.handler, 0, ySpawn));
-        // this.entityManager.addEntity(Garden.create(this.handler, 101, ySpawn));
-
-        //TODO: Make Player object to track stats/upgrades/heroes/etc
-        // const availableSeeds = [WalnutSeed, PotatoSeed, TomatoSeed, OnionSeed];
-
-        // this.uiManager.createButtonsFromSeeds(availableSeeds);
+        this.entityManager.addEntity(new ComputerScreen(this.handler, 260, 150));
     }
 
     tick(deltaTime) {
         switch (this.state) {
+            case this.states.TEST_INIT:
+                this.entityManager.addEntity(new MeMyselfAndI(this.handler));
+                this.state = this.states.IDLE;
+                break;
+
+            case this.states.TEST:
+                break;
+
+
             case this.states.INITIALIZE:
                 this.initDialogue();
 
@@ -107,6 +113,7 @@ export class WorldOne {
         this.drawBackground(graphics);
 
         switch (this.state) {
+            case this.states.TEST_INIT:
             case this.states.INITIALIZE:
                 break;
 
@@ -115,6 +122,7 @@ export class WorldOne {
                 break;
 
 
+            case this.states.TEST:
             case this.states.IDLE:
                 this.spatialGrid.render(graphics);
                 this.entityManager.render(graphics);
