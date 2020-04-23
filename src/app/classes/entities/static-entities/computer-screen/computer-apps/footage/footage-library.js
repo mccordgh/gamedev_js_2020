@@ -49,7 +49,7 @@ export class FootageLibrary extends StaticEntity {
     for (let i = 0; i < this.footage.length; i += 1) {
       const video = this.footage[i];
       const bgColor = 'black';
-      const highlightColor = GameConstants.COLORS.CREAM;
+      const highlightColor = 'grey';
 
       const footageItem = new FootageLibraryItem(
         this.handler,
@@ -108,7 +108,7 @@ export class FootageLibrary extends StaticEntity {
   }
 
   wasClickedAt() {
-    const entityManager = this.handler.getEntityManager()
+    const entityManager = this.handler.getEntityManager();
 
     for (let i = 0; i < this.footageItems.length; i += 1) {
       entityManager.removeEntity(this.footageItems[i]);

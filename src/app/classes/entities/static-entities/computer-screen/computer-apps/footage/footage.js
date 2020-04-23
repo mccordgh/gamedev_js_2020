@@ -2,6 +2,7 @@ import { ComputerApp } from "../computer-app.js";
 import { Assets } from '../../../../../assets/assets';
 import { GameConstants } from '../../../../../../constants/game-constants';
 import { FootageLibrary } from './footage-library';
+import { BigFootage } from './big-footage';
 
 export class Footage extends ComputerApp {
   constructor(handler) {
@@ -19,7 +20,20 @@ export class Footage extends ComputerApp {
 
     this.assets = Assets.getAssets('footage');
 
-    this.footage = [];
+    this.videos = {
+      johnDies: {
+        who: "John Smith",
+        status: "He ded",
+        assets: Assets.getAssets('johnDies'),
+      },
+    };
+
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+    const screenPos = { x: computer.x, y: computer.y };
+
+    this.footage = [
+      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnDies, false)
+    ];
 
     // skip opening/loading animation for dev
     // this.state = 'loading';

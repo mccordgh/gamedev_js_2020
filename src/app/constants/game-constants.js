@@ -48,6 +48,8 @@ export const GameConstants = {
     TYPES: {
         EMAIL_ITEMS: 'email-items',
         EMAIL_INBOX_ITEMS: 'email-inbox-items',
+        FOOTAGE_ITEMS: 'footage-items',
+        FOOTAGE_LIBRARY_ITEMS: 'footage-library-items',
         INTERACTIVE: 'interactive',
         // Make sure no one uses COMPUTER type except computer-screen.
         COMPUTER: 'computer',

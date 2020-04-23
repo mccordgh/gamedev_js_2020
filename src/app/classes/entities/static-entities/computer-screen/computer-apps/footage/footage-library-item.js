@@ -2,15 +2,14 @@ import { StaticEntity } from '../../../static-entity';
 import { GameConstants } from '../../../../../../constants/game-constants';
 
 export class FootageLibraryItem extends StaticEntity {
-  constructor(handler, x, y, width, height, email, bgColor, highlightColor, setHiddenCallback) {
+  constructor(handler, x, y, width, height, video, bgColor, highlightColor, setHiddenCallback) {
     super(handler, x, y);
 
     this.width = width;
     this.height = height;
-    this.email = email;
+    this.video = video;
     this.bgColor = bgColor;
     this.highlightColor = highlightColor;
-
     this.hovered = false;
 
     this.bounds = {
@@ -20,7 +19,7 @@ export class FootageLibraryItem extends StaticEntity {
       height: this.height,
     };
 
-    this.type = GameConstants.TYPES.EMAIL_INBOX_ITEMS;
+    this.type = GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS;
     this.setHiddenCallback = setHiddenCallback;
 
     this.hidden = false;
@@ -40,7 +39,7 @@ export class FootageLibraryItem extends StaticEntity {
       graphics.fillStyle = 'black';
 
       graphics.drawText(
-        this.email.sender,
+        this.video.video.who,
         this.x,
         this.y - 4,
         'white',
@@ -49,7 +48,7 @@ export class FootageLibraryItem extends StaticEntity {
       );
 
       graphics.drawText(
-        this.email.subject,
+        this.video.video.status,
         this.x + 224,
         this.y - 4,
         'white',
@@ -81,13 +80,9 @@ export class FootageLibraryItem extends StaticEntity {
   wasClickedAt() {
     this.setHiddenCallback(true);
 
-    this.email.isRead = true;
-    this.email.setHiddenCallback = this.setHiddenCallback;
+    this.video.video.isViewed = true;
+    this.video.setHiddenCallback = this.setHiddenCallback;
 
-    this.handler.getEntityManager().addEntity(this.email);
-
-    if (this.email.unlocksOnOpen) {
-      this.handler.getEmailManager().unlockApp(this.email.unlocksOnOpen);
-    }
+    this.handler.getEntityManager().addEntity(this.video);
   }
 }

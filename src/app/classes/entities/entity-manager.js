@@ -7,11 +7,14 @@ const clickableTypes = [
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_ITEMS,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
+    GameConstants.TYPES.FOOTAGE_ITEMS,
+    GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
 ];
 
 const dontRenderTypes = [
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
+    GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
 ];
 
 const hoverableTypes = [
@@ -19,6 +22,8 @@ const hoverableTypes = [
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_ITEMS,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
+    GameConstants.TYPES.FOOTAGE_ITEMS,
+    GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
 ];
 
 let idCounter = 1;

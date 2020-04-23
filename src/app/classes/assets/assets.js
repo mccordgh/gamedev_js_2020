@@ -78,6 +78,19 @@ createAnimationFor(footage, 'loading', {
     height: GameConstants.ICON_HEIGHT,
 });
 
+const bigFootage = new Assets('bigFootage', 'big-footage.png');
+bigFootage.playButton = bigFootage.sheet.crop(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
+
+const johnDies = new Assets('johnDies', 'john-dies.png');
+createAnimationFor(johnDies, 'playing', {
+    speed: 200,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
 const os = new Assets('os', 'jam-os-bootup.png');
 createAnimationFor(os, 'booting', {
     speed: 300,
