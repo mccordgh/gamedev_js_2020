@@ -86,5 +86,9 @@ export class EmailInboxItem extends StaticEntity {
     this.email.setHiddenCallback = this.setHiddenCallback;
 
     this.handler.getEntityManager().addEntity(this.email);
+
+    if (this.email.unlocksOnOpen) {
+      this.handler.getEmailManager().unlockApp(this.email.unlocksOnOpen);
+    }
   }
 }

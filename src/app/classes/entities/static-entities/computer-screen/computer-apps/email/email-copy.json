@@ -1,30 +1,17 @@
 {
-  "one": [
-    "Hey BRO,",
-    "I am Thor and you are not.",
-    "BOW DOWN.",
-    "",
-    "Lift,",
-    "Thor"
-  ],
-  "two": [
-    "Dear Sir or Madam,",
-    "Please pay respects immediately.",
-    "",
-    "Love,",
-    "Odin"
-  ],
-  "three": [
-    "Dear Sir",
-    "You are lonely I know you are.",
-    "",
-    "Check out the site: www.maga.com"
-  ],
-  "four": [
-    "WHat up HOMIE",
-    "Prestige Worldwide can help you out.",
-    "",
-    "Sea Monkeys Dude,",
-    "The Crew"
+  "first": {
+    "sender": "sender",
+    "subject": "subject",
+    "text": [
+      "Regarding John:",
+      "",
+      "There has been an incident with John Smith.",
+      "",
+      "I've given you access to the Fate app.",
+      "Please review the footage of John.",
+      "",
+      "Thanks,",
+      "MGMT"
   ]
+}
 }

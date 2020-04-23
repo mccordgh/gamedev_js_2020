@@ -60,7 +60,7 @@ export class EmailInbox extends StaticEntity {
         bgColor,
         highlightColor,
         this.setHidden.bind(this)
-        );
+      );
 
       this.handler.getEntityManager().addEntity(emailItem);
       this.emailItems.push(emailItem);

@@ -2,6 +2,7 @@ import { StaticEntity } from '../static-entity';
 import { Assets } from '../../../assets/assets';
 import { GameConstants } from '../../../../constants/game-constants';
 import { Email } from './computer-apps/email/email';
+import { Footage } from './computer-apps/footage/footage';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
@@ -30,20 +31,30 @@ export class ComputerScreen extends StaticEntity {
         this.iconsPerRow = 4;
 
         this.bootCounter = 0;
-        this.bootWait = 120;
+        this.bootWait = 0;
+        // this.bootWait = 120;
         this.type = GameConstants.TYPES.COMPUTER;
 
         const entityManager = this.handler.getEntityManager();
 
-        this.state = this.states.OFF;
+        // this.state = this.states.OFF;
         // this.state = this.states.IDLE;
-        // this.state = this.states.BOOTING;
+
+
+        this.state = this.states.INITIALIZE;
+        this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
+        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
       ];
+    }
+
+    addApp(app) {
+      this.apps.push(app);
+      this.resetAppPositions();
     }
 
     alignIconsTopLeftToBottomRight() {
@@ -74,13 +85,32 @@ export class ComputerScreen extends StaticEntity {
     resetAppPositions() {
       // this.alignIconsTopLeftToBottomRight()
 
+      const centerX = this.x + (this.width / 2);
+      const centerY = this.y + (this.height / 2);
+
       // center single app
       if (this.apps.length === 1) {
         const [app] = this.apps;
 
-        app.x = this.x + (this.width / 2) - (app.bounds.width / 2);
-        app.y = this.y + (this.height / 2) - (app.bounds.height);
+        app.x = centerX - (app.bounds.width / 2);
+        app.y = centerY - (app.bounds.height);
+
+        return;
       }
+
+      if (this.apps.length === 2) {
+        const [app1, app2] = this.apps;
+
+        app1.x = centerX - (app1.bounds.width / 2) - 96;
+        app1.y = centerY - (app1.bounds.height);
+
+        app2.x = centerX - (app2.bounds.width / 2) + 96;
+        app2.y = centerY - (app2.bounds.height);
+
+        return;
+      }
+
+      throw new Error(`apps length is great then expected (${this.apps.length}) in ComputerScreen.resetAppPositions()`)
     }
 
     tick() {
@@ -106,7 +136,7 @@ export class ComputerScreen extends StaticEntity {
           if (animation.index >= 9) {
             this.bootCounter += 1;
 
-            if (this.bootCounter === this.bootWait) {
+            if (this.bootCounter >= this.bootWait) {
               this.bootCounter = 0;
               this.state = this.states.IDLE;
 
@@ -144,8 +174,8 @@ export class ComputerScreen extends StaticEntity {
 
     render(graphics) {
       //border
-      graphics.fillStyle = "grey";
-      graphics.fillRect(this.x - 10, this.y - 10 , this.width + 20, this.height + 20);
+      // graphics.fillStyle = "grey";
+      // graphics.fillRect(this.x - 10, this.y - 10 , this.width + 20, this.height + 20);
 
       //screen
       graphics.fillStyle = (this.state === this.states.OFF ? 'black' : GameConstants.COLORS.PURPLE);

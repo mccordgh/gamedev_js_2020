@@ -2,7 +2,7 @@ import { StaticEntity } from '../../../static-entity';
 import { GameConstants } from '../../../../../../constants/game-constants';
 
 export class BigEmail extends StaticEntity {
-  constructor(handler, textArray, sender, subject, isRead = false) {
+  constructor(handler, email, isRead = false, unlocksOnOpen) {
     super(handler, 0, 0);
 
     this.x = 0;
@@ -16,10 +16,14 @@ export class BigEmail extends StaticEntity {
     };
 
     this.type = GameConstants.TYPES.INTERACTIVE;
-    this.textArray = textArray;
+    this.textArray = email.text;
     this.isRead = isRead;
-    this.sender = sender;
-    this.subject = subject;
+    this.sender = email.sender;
+    this.subject = email.subject;
+
+    if (unlocksOnOpen) {
+      this.unlocksOnOpen = unlocksOnOpen;
+    }
   }
 
   tick() {

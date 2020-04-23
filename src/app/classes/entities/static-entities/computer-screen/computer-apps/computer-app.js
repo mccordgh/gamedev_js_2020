@@ -101,6 +101,8 @@ export class ComputerApp extends StaticEntity {
   }
 
   wasClickedAt(x, y) {
+    this.hovered = false;
+
     switch (this.state) {
       case "idle":
         this.state = "loading";
@@ -115,13 +117,13 @@ export class ComputerApp extends StaticEntity {
   }
 
   wasHoveredAt(x, y) {
-    if (this.state !== 'inactive') {
+    if (this.state !== 'inactive' && this.state !== 'loading') {
       this.hovered = true;
     }
   }
 
   wasBlurred() {
-    if (this.state !== 'inactive') {
+    if (this.state !== 'inactive' && this.state !== 'loading') {
       this.hovered = false;
     }
   }

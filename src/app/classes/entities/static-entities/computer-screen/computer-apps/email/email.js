@@ -7,14 +7,14 @@ import { EmailInbox } from './email-inbox';
 
 export class Email extends ComputerApp {
   constructor(handler) {
-    super(handler, "Email");
+    super(handler, GameConstants.APPS.EMAIL);
 
     this.bounds = {
       x: 0,
       y: 26,
       width: this.width,
       height: 36,
-    }
+    };
 
     this.textXOffset = 10;
     this.textYOffset = this.height + 18;
@@ -22,15 +22,12 @@ export class Email extends ComputerApp {
     this.assets = Assets.getAssets('email');
 
     this.emails = [
-      new BigEmail(this.handler, emailCopy.one, 'Thor, Son of Odin', 'I demand you fix my mistakes because I am great.', false),
-      new BigEmail(this.handler, emailCopy.two, 'Odin, god', 'Why have you not paid tribute to me recently? :(', true),
-      new BigEmail(this.handler, emailCopy.three, 'Lonely Russian Women', 'I want to meet you online come to my site', true),
-      new BigEmail(this.handler, emailCopy.four, 'Prestige Worldwide', 'Grow your own sea monkeys!!@', true),
+      new BigEmail(this.handler, emailCopy.first, false, GameConstants.APPS.FOOTAGE),
     ];
 
-    //TODO REMOVE
+    // skip opening/loading animation for dev
     // this.state = 'loading';
-    // this.assets.animations['loading'].index = 10;
+    this.assets.animations['loading'].index = 10;
   }
 
   setActive() {

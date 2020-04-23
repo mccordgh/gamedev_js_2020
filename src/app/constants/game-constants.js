@@ -10,6 +10,11 @@ export const GameConstants = {
     EMAIL_ITEM_SIZE: 16,
     APP_NAME_SIZE: 16,
 
+    APPS: {
+        FOOTAGE: 'Footage',
+        EMAIL: 'Email',
+    },
+
     COLORS: {
         PURPLE: "#7B538F",
         LIGHT_PURPLE: "#BD7FDB",
@@ -44,6 +49,7 @@ export const GameConstants = {
         EMAIL_ITEMS: 'email-items',
         EMAIL_INBOX_ITEMS: 'email-inbox-items',
         INTERACTIVE: 'interactive',
+        // Make sure no one uses COMPUTER type except computer-screen.
         COMPUTER: 'computer',
         COMPUTER_APP: 'computer-app',
     },

@@ -37,7 +37,8 @@ export class WorldOne {
             TEST_INIT: 'test-init',
         };
 
-        this.state = this.states.INITIALIZE;
+        this.state = this.states.IDLE;
+        // this.state = this.states.INITIALIZE;
         // this.state = this.states.TEST_INIT;
     }
 
@@ -74,7 +75,7 @@ export class WorldOne {
     }
 
     loadEntities() {
-        this.entityManager.addEntity(new ComputerScreen(this.handler, 260, 150));
+        this.entityManager.addEntity(new ComputerScreen(this.handler, 256, 136));
     }
 
     tick(deltaTime) {
@@ -95,7 +96,9 @@ export class WorldOne {
                 break;
 
             case this.states.INTRO:
-                this.dialogue.tick();
+                if (this.dialogue) {
+                    this.dialogue.tick();
+                }
                 break;
 
 
@@ -118,7 +121,9 @@ export class WorldOne {
                 break;
 
             case this.states.INTRO:
-                this.dialogue.render(graphics);
+                if (this.dialogue) {
+                    this.dialogue.render(graphics);
+                }
                 break;
 
 

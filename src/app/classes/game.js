@@ -10,6 +10,7 @@ export class Game {
         this.graphicsManager = this.managerHandler.createGraphicsManager();
         this.stateManager = this.managerHandler.createStateManager();
         this.mouseManager = this.managerHandler.createMouseManager();
+        this.managerHandler.createEmailManager();
 
         const world = this.managerHandler.createWorld();
         world.init();

@@ -52,13 +52,24 @@ const hand2 = new Assets('hand2', 'hand2.png');
 hand2.pointer = hand2.sheet.crop(0, 0, 32, 32);
 
 /* Background */
-const bg = new Assets('background', 'bg.png');
+const bg = new Assets('background', 'gameJamBg.png');
 bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT);
 
 /* ICONS */
 const email = new Assets('email', 'email.png');
 email.icon = email.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 createAnimationFor(email, 'loading', {
+    speed: 240,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.ICON_WIDTH,
+    height: GameConstants.ICON_HEIGHT,
+});
+
+const footage = new Assets('footage', 'footage.png');
+footage.icon = footage.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
+createAnimationFor(footage, 'loading', {
     speed: 240,
     row: 0,
     col: 0,
@@ -80,13 +91,5 @@ createAnimationFor(os, 'booting', {
 const inbox = new Assets('inbox', 'inbox-bg.png');
 inbox.bg = inbox.sheet.crop(0, 0, 768, 672);
 
-/* MONSTERS */
-// const skeleton = new Assets('skeleton', 'zombie_n_skeleton2.png');
-// createAnimationFor(skeleton, 'walk_left', {
-//     speed: 200,
-//     row: 1,
-//     col: 6,
-//     length: 3,
-//     width: 32,
-//     height: 64,
-// });
+const footageLibrary = new Assets('footageLibrary', 'footage-library-bg.png');
+footageLibrary.bg = footageLibrary.sheet.crop(0, 0, 768, 672);
