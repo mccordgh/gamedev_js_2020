@@ -37,23 +37,22 @@ export class ComputerScreen extends StaticEntity {
 
         const entityManager = this.handler.getEntityManager();
 
-        // this.state = this.states.OFF;
+        this.state = this.states.OFF;
         // this.state = this.states.IDLE;
 
-
-        this.state = this.states.INITIALIZE;
-        this.assets.animations[this.states.BOOTING].index = 9;
+        // this.state = this.states.INITIALIZE;
+        // this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
-        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
       ];
     }
 
     addApp(app) {
       this.apps.push(app);
+      this.handler.getEntityManager().addEntity(app);
       this.resetAppPositions();
     }
 

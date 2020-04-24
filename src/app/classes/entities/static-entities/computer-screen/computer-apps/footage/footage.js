@@ -37,7 +37,7 @@ export class Footage extends ComputerApp {
 
     // skip opening/loading animation for dev
     // this.state = 'loading';
-    this.assets.animations['loading'].index = 10;
+    // this.assets.animations['loading'].index = 10;
   }
 
   setActive() {
@@ -50,13 +50,13 @@ export class Footage extends ComputerApp {
 
   intervened() {
     console.log('footage intervened!');
-    this.updateFootage(this.videos.johnLives, '>>Deceased')
+    this.updateFootage(this.videos.johnLives)
   }
 
-  updateFootage(video, status) {
+  updateFootage(video) {
     const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
     const screenPos = { x: computer.x, y: computer.y };
 
-    this.footage = [ new BigFootage(this.handler, screenPos.x, screenPos.y, video, false, 'Deceased') ];
+    this.footage = [ new BigFootage(this.handler, screenPos.x, screenPos.y, video, false) ];
   }
 }

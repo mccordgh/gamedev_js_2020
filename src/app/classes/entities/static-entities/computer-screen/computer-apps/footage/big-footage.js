@@ -3,13 +3,11 @@ import { GameConstants } from '../../../../../../constants/game-constants';
 import { Assets } from '../../../../../assets/assets';
 
 export class BigFootage extends StaticEntity {
-  constructor(handler, x, y, video, isViewed = false, status) {
+  constructor(handler, x, y, video, isViewed = false) {
     super(handler, x, y);
 
     this.x = x;
     this.y = y;
-
-    this.status = status;
 
     this.bounds = {
       x: 0,
@@ -138,7 +136,7 @@ console.log(this.video.type);
 
       case this.states.PLAYING:
         //
-        break;
+        break;i
 
       case this.states.FINISHED:
         this.video.assets.animations[this.states.PLAYING].index = 0;
@@ -147,7 +145,7 @@ console.log(this.video.type);
         this.state = this.states.IDLE;
 
         if (this.handler.getFootageManager().isLogComplete()) {
-          alert('you wonnered');
+          this.handler.getWorld().gameWon();
         }
 
         this.handler.getEntityManager().removeEntity(this);
