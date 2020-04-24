@@ -3,11 +3,13 @@ import { GameConstants } from '../../../../../../constants/game-constants';
 import { Assets } from '../../../../../assets/assets';
 
 export class BigFootage extends StaticEntity {
-  constructor(handler, x, y, video, isViewed = false) {
+  constructor(handler, x, y, video, isViewed = false, status) {
     super(handler, x, y);
 
     this.x = x;
     this.y = y;
+
+    this.status = status;
 
     this.bounds = {
       x: 0,
@@ -41,6 +43,14 @@ export class BigFootage extends StaticEntity {
 
         // 9 is used here because this animation has 10 frames 0 to 9 and we want it to stop animating at the end
         if (animation.index >= 9) {
+          this.video.status = this.video.type === 'death' ? 'Deceased' : 'Alive';
+
+console.log(this.video.type);
+          if (this.video.type === 'alive') {
+            console.log('just watched best vid');
+            this.handler.getFootageManager().updateWatchedBestVideo();
+          }
+
           this.state = this.states.FINISHED;
 
           return;
@@ -97,6 +107,14 @@ export class BigFootage extends StaticEntity {
         graphics.globalAlpha = 1;
         graphics.fillStyle = 'black';
 
+        graphics.drawText(
+          "X",
+          this.x + this.assets.playButton.height + 60,
+          this.y + 80,
+          'white',
+          true,
+          64,
+        );
         break;
 
 
@@ -124,7 +142,14 @@ export class BigFootage extends StaticEntity {
 
       case this.states.FINISHED:
         this.video.assets.animations[this.states.PLAYING].index = 0;
+
         this.setHiddenCallback(false);
+        this.state = this.states.IDLE;
+
+        if (this.handler.getFootageManager().isLogComplete()) {
+          alert('you wonnered');
+        }
+
         this.handler.getEntityManager().removeEntity(this);
         break;
 

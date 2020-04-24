@@ -91,6 +91,16 @@ createAnimationFor(johnDies, 'playing', {
     height: GameConstants.SCREEN_HEIGHT,
 });
 
+const johnLives = new Assets('johnLives', 'john-lives.png');
+createAnimationFor(johnLives, 'playing', {
+    speed: 200,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
 const os = new Assets('os', 'jam-os-bootup.png');
 createAnimationFor(os, 'booting', {
     speed: 300,

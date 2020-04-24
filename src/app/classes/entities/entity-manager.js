@@ -71,6 +71,10 @@ export class EntityManager {
         return entity;
     }
 
+    findEntityByName(name) {
+        return this.entities.find(entity => entity.name === name);
+    }
+
     removeEntity(entity) {
         let index = this.entities.indexOf(entity);
 

@@ -8,6 +8,7 @@ import { EasterEggGame } from '../entities/static-entities/easter-eggs/easter-eg
 import { TheCore } from '../entities/static-entities/easter-eggs/the-core';
 import { MeMyselfAndI } from '../entities/static-entities/easter-eggs/me-myself-and-i';
 import { TheCodersGame } from '../entities/static-entities/easter-eggs/the-coder';
+import { Radio } from '../entities/static-entities/radio/radio';
 
 let counter = 0;
 
@@ -75,7 +76,14 @@ export class WorldOne {
     }
 
     loadEntities() {
-        this.entityManager.addEntity(new ComputerScreen(this.handler, 256, 136));
+        const entities = [
+            new ComputerScreen(this.handler, 256, 136),
+            new Radio(this.handler, 52, 62),
+        ];
+
+        entities.forEach(entity => {
+            this.entityManager.addEntity(entity);
+        });
     }
 
     tick(deltaTime) {

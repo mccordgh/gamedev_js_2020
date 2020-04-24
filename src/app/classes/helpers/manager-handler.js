@@ -4,6 +4,7 @@ import { EntityManager } from '../entities/entity-manager';
 import { StateManager } from '../states/state-manager';
 import { WorldOne } from '../worlds/world-one';
 import { EmailManager } from '../entities/static-entities/computer-screen/computer-apps/email/email-manager';
+import { FootageManager } from '../entities/static-entities/computer-screen/computer-apps/footage/footage-manager';
 
 export class ManagerHandler {
     constructor(game) {
@@ -21,6 +22,10 @@ export class ManagerHandler {
 
     getEmailManager() {
         return this.emailManager;
+    }
+
+    getFootageManager() {
+        return this.footageManager;
     }
 
     getEntityManager() {
@@ -53,6 +58,10 @@ export class ManagerHandler {
 
     createEmailManager() {
         return this.emailManager = new EmailManager(this);
+    }
+
+    createFootageManager() {
+        return this.footageManager = new FootageManager(this);
     }
 
     createGraphicsManager() {
