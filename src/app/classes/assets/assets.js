@@ -122,3 +122,6 @@ radio.off = radio.sheet.crop(0, 0, GameConstants.RADIO_WIDTH, GameConstants.RADI
 radio.station1 = radio.sheet.crop(GameConstants.RADIO_WIDTH, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
 radio.station2 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 2, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
 radio.station3 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 3, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+
+const radioBanner = new Assets('radioBanner', 'radio-banner.png');
+radioBanner.img = radioBanner.sheet.crop(0, 0, 225, 225);

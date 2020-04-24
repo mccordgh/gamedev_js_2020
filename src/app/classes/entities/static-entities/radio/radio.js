@@ -18,6 +18,7 @@ export class Radio extends StaticEntity {
 
     this.type = GameConstants.TYPES.INTERACTIVE;
     this.assets = Assets.getAssets('radio');
+    this.bannerAssets = Assets.getAssets('radioBanner');
 
     this.states = {
       OFF: 'off',
@@ -27,10 +28,38 @@ export class Radio extends StaticEntity {
     }
 
     this.state = this.states.OFF;
+
+    this.titles = {
+      [this.states.STATION1]: 'Dirt',
+      [this.states.STATION2]: 'Råtten',
+      [this.states.STATION3]: 'B-L-U-E',
+    };
+
+    this.artists = {
+      [this.states.STATION1]: 'The Greebles',
+      [this.states.STATION2]: 'Black Eyeball',
+      [this.states.STATION3]: 'The Clue-sters',
+    };
+
+    this.bannerCounter = 0;
+    this.showBannerMax = 60 * 8;
+    this.showBanner = false;
   }
 
   tick() {
-    //
+    if (this.showBanner) {
+      this.bannerCounter += 1;
+
+      if (this.bannerCounter >= this.showBannerMax) {
+        this.showBanner = false;
+        this.bannerCounter = 0;
+      }
+    }
+  }
+
+  startBanner() {
+    this.bannerCounter = 0;
+    this.showBanner = true;
   }
 
   render(graphics) {
@@ -55,6 +84,52 @@ export class Radio extends StaticEntity {
     }
 
     graphics.drawSprite(sprite, this.x, this.y, this.width, this.height);
+
+    // if (this.state !== this.states.OFF && this.showBanner) {
+      this.drawRadioBanner(graphics);
+    // }
+  }
+
+  drawRadioBanner(graphics) {
+    let xx = this.x - 36;
+    let yy = this.y + 46;
+    const wordSpace = 22;
+
+    graphics.drawSprite(this.bannerAssets.img, xx, yy, 225, 225);
+
+    xx += 40;
+    yy += 106;
+
+    graphics.drawText(
+      `Now Playing:`,
+      xx,
+      yy,
+      'black',
+      true,
+      18,
+    );
+
+    yy += wordSpace;
+
+    graphics.drawText(
+      this.titles[this.state],
+      xx,
+      yy,
+      'black',
+      true,
+      18,
+    );
+
+    yy += wordSpace;
+
+    graphics.drawText(
+      this.artists[this.state],
+      xx,
+      yy,
+      'black',
+      true,
+      18,
+    );
   }
 
   wasClickedAt(x, y) {
@@ -80,6 +155,10 @@ export class Radio extends StaticEntity {
         this.state = this.states.OFF;
         sm.play('bgm');
         break;
+    }
+
+    if (this.state !== this.states.OFF) {
+      this.startBanner();
     }
   }
 }
