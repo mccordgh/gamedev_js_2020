@@ -1,4 +1,3 @@
-
 import { GameConstants } from '../../../../../../constants/game-constants';
 import { StaticEntity } from '../../../static-entity';
 import { Assets } from '../../../../../assets/assets';

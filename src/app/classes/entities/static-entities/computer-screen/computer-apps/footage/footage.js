@@ -34,10 +34,10 @@ export class Footage extends ComputerApp {
     this.footage = [
       new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnDies, false)
     ];
-
+      
     // skip opening/loading animation for dev
     // this.state = 'loading';
-    this.assets.animations['loading'].index = 10;
+    this.assets.animations['loading'].index = 63;
   }
 
   setActive() {

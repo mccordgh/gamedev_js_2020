@@ -70,13 +70,14 @@ createAnimationFor(email, 'loading', {
 const footage = new Assets('footage', 'footage.png');
 footage.icon = footage.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 createAnimationFor(footage, 'loading', {
-    speed: 240,
+    speed: 10,
     row: 0,
     col: 0,
-    length: 10,
+    length: 64,
     width: GameConstants.ICON_WIDTH,
     height: GameConstants.ICON_HEIGHT,
 });
+console.log(footage)
 
 const bigFootage = new Assets('bigFootage', 'big-footage.png');
 bigFootage.playButton = bigFootage.sheet.crop(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
