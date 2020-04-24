@@ -29,7 +29,7 @@ export class ComputerApp extends StaticEntity {
         const animation = this.assets.animations['loading'];
 
         // 9 is used here because this animation has 10 frames 0 to 9 and we want it to stop animating at the end
-        if (animation.index >= 9) {
+        if (animation.index >= animation.frames.length-1) {
           this.appLoaded();
 
           animation.index = 0;

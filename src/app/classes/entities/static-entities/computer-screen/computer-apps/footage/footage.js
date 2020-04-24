@@ -33,6 +33,8 @@ export class Footage extends ComputerApp {
       },
     };
 
+    this.assets.animations['loading'].index = 63;
+
     this.updateFootage(this.videos.johnDies);
 
     // skip opening/loading animation for dev

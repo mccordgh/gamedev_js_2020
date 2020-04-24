@@ -40,21 +40,21 @@ export class EmailInbox extends StaticEntity {
   }
 
   initializeEmailItems() {
-    let xx = this.paddingX + 16;
-    let yy = this.paddingY + 64 + 38;
+    let xx = this.paddingX + 16 +4;
+    let yy = this.paddingY + 118;
 
     const subjectColX = xx + 74
 
     for (let i = 0; i < this.emails.length; i += 1) {
       const email = this.emails[i];
-      const bgColor = (i % 2) ? GameConstants.COLORS.PURPLE : GameConstants.COLORS.RED;
-      const highlightColor = (i % 2) ? GameConstants.COLORS.LIGHT_PURPLE : GameConstants.COLORS.LIGHT_RED;
+      const bgColor = (i % 2) ? GameConstants.COLORS.RED : GameConstants.COLORS.PURPLE;
+      const highlightColor = (i % 2) ? GameConstants.COLORS.LIGHT_RED : GameConstants.COLORS.LIGHT_PURPLE;
 
       const emailItem = new EmailInboxItem(
         this.handler,
         xx,
         yy,
-        this.width,
+        this.width-8,
         34,
         email,
         bgColor,

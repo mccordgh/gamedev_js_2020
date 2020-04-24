@@ -42,6 +42,7 @@ let config = {
     new HtmlWebpackInlineSourcePlugin(),
     new CopyWebpackPlugin([
       { from: 'src/resources/*', to: '' },
+      { from: 'src/music/*', to: '' },
       ])
   ],
   stats: 'minimal',
