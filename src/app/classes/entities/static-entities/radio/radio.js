@@ -42,7 +42,7 @@ export class Radio extends StaticEntity {
     };
 
     this.bannerCounter = 0;
-    this.showBannerMax = 60 * 8;
+    this.showBannerMax = 60 * 6;
     this.showBanner = false;
   }
 
@@ -85,9 +85,9 @@ export class Radio extends StaticEntity {
 
     graphics.drawSprite(sprite, this.x, this.y, this.width, this.height);
 
-    // if (this.state !== this.states.OFF && this.showBanner) {
+    if (this.state !== this.states.OFF && this.showBanner) {
       this.drawRadioBanner(graphics);
-    // }
+    }
   }
 
   drawRadioBanner(graphics) {
