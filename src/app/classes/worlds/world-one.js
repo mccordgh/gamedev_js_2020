@@ -8,6 +8,7 @@ import { EasterEggGame } from '../entities/static-entities/easter-eggs/easter-eg
 import { TheCore } from '../entities/static-entities/easter-eggs/the-core';
 import { MeMyselfAndI } from '../entities/static-entities/easter-eggs/me-myself-and-i';
 import { TheCodersGame } from '../entities/static-entities/easter-eggs/the-coder';
+import { Radio } from '../entities/static-entities/radio/radio';
 
 let counter = 0;
 
@@ -35,10 +36,11 @@ export class WorldOne {
             IDLE: 'idle',
             TEST: 'test',
             TEST_INIT: 'test-init',
+            GAME_WON: 'game-won',
         };
 
-        this.state = this.states.IDLE;
-        // this.state = this.states.INITIALIZE;
+        // this.state = this.states.IDLE;
+        this.state = this.states.INITIALIZE;
         // this.state = this.states.TEST_INIT;
     }
 
@@ -47,11 +49,30 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    'Hey, newbie! Better get crackin...',
-                    'The boys upstairs really did it this time.',
-                ]
+                    // 'Hey, newbie! Looks like the manager',
+                    // 'is out sick today...',
+                    // 'I bet you can figure this one out',
+                    // 'on your own though...',
+                    // 'Check your email!'
+                ],
             ),
         );
+    }
+
+    gameWon() {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(
+                this.handler,
+                [
+                    'Yo, newbie! You did it!',
+                    'Looks like John Smith is alive!',
+                    'Great Job!',
+                    'Also we need you in on Saturday...',
+                ],
+            ),
+        );
+
+        this.state = this.states.GAME_WON;
     }
 
     dialogueFinished() {
@@ -69,13 +90,24 @@ export class WorldOne {
                 this.entityManager.render(graphics);
                 break;
 
+            case this.states.GAME_WON:
+                console.log('game won dialogue finished');
+                break;
+
             default:
                 throw new Error(`World One animation state "${this.state} is not accounted for`)
         }
     }
 
     loadEntities() {
-        this.entityManager.addEntity(new ComputerScreen(this.handler, 256, 136));
+        const entities = [
+            new ComputerScreen(this.handler, 256, 136),
+            new Radio(this.handler, 52, 62),
+        ];
+
+        entities.forEach(entity => {
+            this.entityManager.addEntity(entity);
+        });
     }
 
     tick(deltaTime) {
@@ -95,6 +127,7 @@ export class WorldOne {
                 this.state = this.states.INTRO;
                 break;
 
+            case this.states.GAME_WON:
             case this.states.INTRO:
                 if (this.dialogue) {
                     this.dialogue.tick();
@@ -103,13 +136,13 @@ export class WorldOne {
 
 
             case this.states.IDLE:
-                this.entityManager.tick(deltaTime);
                 break;
 
             default:
                 throw new Error(`World One animation state "${this.state} is not accounted for`)
         }
 
+        this.entityManager.tick(deltaTime);
     }
 
     render(graphics) {
@@ -120,6 +153,7 @@ export class WorldOne {
             case this.states.INITIALIZE:
                 break;
 
+            case this.states.GAME_WON:
             case this.states.INTRO:
                 if (this.dialogue) {
                     this.dialogue.render(graphics);
@@ -129,13 +163,14 @@ export class WorldOne {
 
             case this.states.TEST:
             case this.states.IDLE:
-                this.spatialGrid.render(graphics);
-                this.entityManager.render(graphics);
                 break;
 
             default:
                 throw new Error(`World One state "${this.state} is not accounted for`)
         }
+
+        // this.spatialGrid.render(graphics);
+        this.entityManager.render(graphics);
     }
 
     init() {

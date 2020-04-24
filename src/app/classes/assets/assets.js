@@ -92,6 +92,16 @@ createAnimationFor(johnDies, 'playing', {
     height: GameConstants.SCREEN_HEIGHT,
 });
 
+const johnLives = new Assets('johnLives', 'john-lives.png');
+createAnimationFor(johnLives, 'playing', {
+    speed: 200,
+    row: 0,
+    col: 0,
+    length: 10,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
 const os = new Assets('os', 'jam-os-bootup.png');
 createAnimationFor(os, 'booting', {
     speed: 300,
@@ -107,3 +117,12 @@ inbox.bg = inbox.sheet.crop(0, 0, 768, 672);
 
 const footageLibrary = new Assets('footageLibrary', 'footage-library-bg.png');
 footageLibrary.bg = footageLibrary.sheet.crop(0, 0, 768, 672);
+
+const radio = new Assets('radio', 'radio.png');
+radio.off = radio.sheet.crop(0, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station1 = radio.sheet.crop(GameConstants.RADIO_WIDTH, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station2 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 2, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station3 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 3, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+
+const radioBanner = new Assets('radioBanner', 'radio-banner.png');
+radioBanner.img = radioBanner.sheet.crop(0, 0, 225, 225);

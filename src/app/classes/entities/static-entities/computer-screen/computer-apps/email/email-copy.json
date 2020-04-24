@@ -1,14 +1,15 @@
 {
   "first": {
-    "sender": "sender",
-    "subject": "subject",
+    "sender": "MGMT",
+    "subject": "Re: John Smith",
     "text": [
       "Regarding John:",
       "",
       "There has been an incident with John Smith.",
       "",
-      "I've given you access to the Fate app.",
+      "I've given you access to the Footage app.",
       "Please review the footage of John.",
+      "We need him alive...",
       "",
       "Thanks,",
       "MGMT"

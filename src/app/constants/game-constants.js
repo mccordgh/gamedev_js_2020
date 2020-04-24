@@ -50,6 +50,9 @@ export const GameConstants = {
 
     SPATIAL_GRID_SIZE: 64,
 
+    RADIO_WIDTH: 133,
+    RADIO_HEIGHT: 74,
+
     TYPES: {
         EMAIL_ITEMS: 'email-items',
         EMAIL_INBOX_ITEMS: 'email-inbox-items',
@@ -67,4 +70,5 @@ export const GameConstants = {
 
     BASE_PATH: basePath,
     ASSETS_PATH: `${basePath}src/resources`,
+    MUSIC_PATH: `${basePath}src/music`
 };

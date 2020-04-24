@@ -107,7 +107,7 @@ export class EmailInbox extends StaticEntity {
   }
 
   wasClickedAt() {
-    const entityManager = this.handler.getEntityManager()
+    const entityManager = this.handler.getEntityManager();
 
     for (let i = 0; i < this.emailItems.length; i += 1) {
       entityManager.removeEntity(this.emailItems[i]);

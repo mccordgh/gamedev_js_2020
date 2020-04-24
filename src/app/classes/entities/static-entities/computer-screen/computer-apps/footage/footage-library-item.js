@@ -48,7 +48,7 @@ export class FootageLibraryItem extends StaticEntity {
       );
 
       graphics.drawText(
-        this.video.video.status,
+        this.video.video.status || 'N/A (Please watch video)',
         this.x + 224,
         this.y - 4,
         'white',

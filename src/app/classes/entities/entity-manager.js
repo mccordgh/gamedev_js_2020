@@ -56,11 +56,15 @@ export class EntityManager {
         }
     }
 
-    addEntity(entity) {
+    addEntity(entity, addToFront = false) {
         entity.id = idCounter;
         idCounter += 1;
 
-        this.entities.push(entity);
+        if (addToFront) {
+            this.entities.unshift(entity);
+        } else {
+            this.entities.push(entity);
+        }
 
         const rectangle = new Rectangle(
             entity.x + entity.bounds.x, entity.y + entity.bounds.y, entity.bounds.width, entity.bounds.height
@@ -69,6 +73,10 @@ export class EntityManager {
         this.handler.getWorld().getSpatialGrid().insert(rectangle, entity);
 
         return entity;
+    }
+
+    findEntityByName(name) {
+        return this.entities.find(entity => entity.name === name);
     }
 
     removeEntity(entity) {

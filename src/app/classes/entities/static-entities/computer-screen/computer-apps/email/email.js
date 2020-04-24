@@ -27,7 +27,7 @@ export class Email extends ComputerApp {
 
     // skip opening/loading animation for dev
     // this.state = 'loading';
-    this.assets.animations['loading'].index = 10;
+    // this.assets.animations['loading'].index = 10;
   }
 
   setActive() {

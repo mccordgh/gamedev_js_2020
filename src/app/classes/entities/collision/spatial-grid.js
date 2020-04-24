@@ -91,13 +91,13 @@ export class SpatialGrid {
         var xpos = (x * this.size);
         var ypos = (y * this.size);
 
-        // _g.fillStyle = 'orange';
-        // _g.strokeRect(xpos, ypos, this.size, this.size);
+        _g.fillStyle = 'orange';
+        _g.strokeRect(xpos, ypos, this.size, this.size);
 
-        // if (this.grid[x][y].length > 0){
-        //   _g.fillStyle = "yellow";
-        //   _g.fillRect(xpos, ypos, this.size, this.size);
-        // }
+        if (this.grid[x][y].length > 0){
+          _g.fillStyle = "yellow";
+          _g.fillRect(xpos, ypos, this.size, this.size);
+        }
       }
     }
   }

@@ -71,8 +71,9 @@ export class Dialogue extends StaticEntity{
     graphics.drawText(this.dialogue, this.textX, this.textY, 'black', false, this.fontSize);
 
     if (!this.words[0].length) {
-      graphics.fillStyle = 'blue';
-      graphics.fillRect(this.x + this.width - 64, this.y + this.height - 64, 32, 32);
+      graphics.drawText('>>', this.x + this.width - 96, this.y + this.height - 8, 'black', false, 64);
+      // graphics.fillStyle = 'blue';
+      // graphics.fillRect(this.x + this.width - 64, this.y + this.height - 64, 32, 32);
     }
   }
 

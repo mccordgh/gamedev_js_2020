@@ -109,6 +109,7 @@ export class ComputerApp extends StaticEntity {
         break;
 
       case "loading":
+      case "inactive":
         break;
 
       default:

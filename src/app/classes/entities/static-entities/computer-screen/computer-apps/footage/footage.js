@@ -23,21 +23,23 @@ export class Footage extends ComputerApp {
     this.videos = {
       johnDies: {
         who: "John Smith",
-        status: "He ded",
+        type: 'death',
         assets: Assets.getAssets('johnDies'),
+      },
+      johnLives: {
+        who: "John Smith",
+        type: "alive",
+        assets: Assets.getAssets('johnLives'),
       },
     };
 
-    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
-    const screenPos = { x: computer.x, y: computer.y };
+    this.assets.animations['loading'].index = 63;
 
-    this.footage = [
-      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnDies, false)
-    ];
-      
+    this.updateFootage(this.videos.johnDies);
+
     // skip opening/loading animation for dev
     // this.state = 'loading';
-    this.assets.animations['loading'].index = 63;
+    // this.assets.animations['loading'].index = 10;
   }
 
   setActive() {
@@ -46,5 +48,17 @@ export class Footage extends ComputerApp {
 
   appLoaded() {
     this.handler.getEntityManager().addEntity(new FootageLibrary(this.handler, this.footage, this.setActive.bind(this)));
+  }
+
+  intervened() {
+    console.log('footage intervened!');
+    this.updateFootage(this.videos.johnLives)
+  }
+
+  updateFootage(video) {
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+    const screenPos = { x: computer.x, y: computer.y };
+
+    this.footage = [ new BigFootage(this.handler, screenPos.x, screenPos.y, video, false) ];
   }
 }

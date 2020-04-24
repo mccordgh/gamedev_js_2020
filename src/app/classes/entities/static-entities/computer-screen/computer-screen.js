@@ -33,27 +33,26 @@ export class ComputerScreen extends StaticEntity {
         this.bootCounter = 0;
         this.bootWait = 0;
         // this.bootWait = 120;
-        this.type = GameConstants.TYPES.COMPUTER;
+        this.type = GameConstants.TYPES.INTERACTIVE;
 
         const entityManager = this.handler.getEntityManager();
 
-        // this.state = this.states.OFF;
+        this.state = this.states.OFF;
         // this.state = this.states.IDLE;
 
-
-        this.state = this.states.INITIALIZE;
-        this.assets.animations[this.states.BOOTING].index = 9;
+        // this.state = this.states.INITIALIZE;
+        // this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
-        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
       ];
     }
 
     addApp(app) {
       this.apps.push(app);
+      this.handler.getEntityManager().addEntity(app);
       this.resetAppPositions();
     }
 
@@ -116,7 +115,6 @@ export class ComputerScreen extends StaticEntity {
     tick() {
       switch (this.state) {
         case this.states.OFF:
-          this.state = this.states.INITIALIZE;
           break;
 
         case this.states.INITIALIZE:
@@ -156,7 +154,7 @@ export class ComputerScreen extends StaticEntity {
 
     getCurrentAnimationFrame() {
       switch (this.state) {
-        case "off":
+        case this.states.OFF:
         case this.states.INITIALIZE:
         case this.states.IDLE:
           break;
@@ -182,7 +180,7 @@ export class ComputerScreen extends StaticEntity {
       graphics.fillRect(this.x, this.y, this.width, this.height);
 
       switch (this.state) {
-        case "off":
+        case this.states.OFF:
         case this.states.INITIALIZE:
           break;
 
@@ -213,11 +211,10 @@ export class ComputerScreen extends StaticEntity {
 
     }
 
-    // wasHoveredAt(x, y) {
-    //   //
-    // }
-
-    // wasClickedAt(x, y) {
-    //  //
-    // }
+    wasClickedAt(x, y) {
+      if (this.state === this.states.OFF) {
+        this.type = GameConstants.TYPES.COMPUTER;
+        this.state = this.states.INITIALIZE;
+      }
+    }
 }

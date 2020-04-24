@@ -4,6 +4,8 @@ import { EntityManager } from '../entities/entity-manager';
 import { StateManager } from '../states/state-manager';
 import { WorldOne } from '../worlds/world-one';
 import { EmailManager } from '../entities/static-entities/computer-screen/computer-apps/email/email-manager';
+import { FootageManager } from '../entities/static-entities/computer-screen/computer-apps/footage/footage-manager';
+import { SoundManager } from '../sounds/sound-manager';
 
 export class ManagerHandler {
     constructor(game) {
@@ -23,6 +25,10 @@ export class ManagerHandler {
         return this.emailManager;
     }
 
+    getFootageManager() {
+        return this.footageManager;
+    }
+
     getEntityManager() {
         return this.entityManager;
     }
@@ -39,8 +45,8 @@ export class ManagerHandler {
         return this.mouseManager;
     }
 
-    getUiManager() {
-        return this.uiManager;
+    getSoundManager() {
+        return this.soundManager;
     }
 
     getWorld() {
@@ -55,6 +61,10 @@ export class ManagerHandler {
         return this.emailManager = new EmailManager(this);
     }
 
+    createFootageManager() {
+        return this.footageManager = new FootageManager(this);
+    }
+
     createGraphicsManager() {
         return this.graphicsManager = new GraphicsManager();
     }
@@ -63,12 +73,12 @@ export class ManagerHandler {
         return this.mouseManager = new MouseManager(this);
     }
 
-    createStateManager() {
-        return this.stateManager = new StateManager();
+    createSoundManager() {
+        return this.soundManager = new SoundManager(this);
     }
 
-    createUiManager() {
-        return this.uiManager = new UiManager(this);
+    createStateManager() {
+        return this.stateManager = new StateManager();
     }
 
     createWorld() {
