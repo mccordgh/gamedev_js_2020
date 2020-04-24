@@ -12,6 +12,7 @@ export class Game {
         this.mouseManager = this.managerHandler.createMouseManager();
         this.managerHandler.createEmailManager();
         this.managerHandler.createFootageManager();
+        this.managerHandler.createSoundManager();
 
         const world = this.managerHandler.createWorld();
         world.init();

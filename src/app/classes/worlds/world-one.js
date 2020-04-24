@@ -49,11 +49,11 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    'Hey, newbie! Looks like the manager',
-                    'is out sick today...',
-                    'I bet you can figure this one out',
-                    'on your own though...',
-                    'Check your email!'
+                    // 'Hey, newbie! Looks like the manager',
+                    // 'is out sick today...',
+                    // 'I bet you can figure this one out',
+                    // 'on your own though...',
+                    // 'Check your email!'
                 ],
             ),
         );
@@ -136,13 +136,13 @@ export class WorldOne {
 
 
             case this.states.IDLE:
-                this.entityManager.tick(deltaTime);
                 break;
 
             default:
                 throw new Error(`World One animation state "${this.state} is not accounted for`)
         }
 
+        this.entityManager.tick(deltaTime);
     }
 
     render(graphics) {
@@ -163,13 +163,14 @@ export class WorldOne {
 
             case this.states.TEST:
             case this.states.IDLE:
-                this.spatialGrid.render(graphics);
-                this.entityManager.render(graphics);
                 break;
 
             default:
                 throw new Error(`World One state "${this.state} is not accounted for`)
         }
+
+        // this.spatialGrid.render(graphics);
+        this.entityManager.render(graphics);
     }
 
     init() {

@@ -116,3 +116,9 @@ inbox.bg = inbox.sheet.crop(0, 0, 768, 672);
 
 const footageLibrary = new Assets('footageLibrary', 'footage-library-bg.png');
 footageLibrary.bg = footageLibrary.sheet.crop(0, 0, 768, 672);
+
+const radio = new Assets('radio', 'radio.png');
+radio.off = radio.sheet.crop(0, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station1 = radio.sheet.crop(GameConstants.RADIO_WIDTH, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station2 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 2, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
+radio.station3 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 3, 0, GameConstants.RADIO_WIDTH, GameConstants.RADIO_HEIGHT);
