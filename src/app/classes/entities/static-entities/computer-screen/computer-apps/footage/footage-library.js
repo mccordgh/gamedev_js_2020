@@ -40,21 +40,21 @@ export class FootageLibrary extends StaticEntity {
   }
 
   initializeFootageItems() {
-    let xx = this.paddingX + 16;
-    let yy = this.paddingY + 64 + 38;
+    let xx = this.paddingX + 16 + 4;
+    let yy = this.paddingY + 118;
 
     const subjectColX = xx + 74
 
     for (let i = 0; i < this.footage.length; i += 1) {
       const video = this.footage[i];
-      const bgColor = 'black';
-      const highlightColor = 'grey';
+      const bgColor = (i % 2) ? GameConstants.COLORS.RED : GameConstants.COLORS.PURPLE;
+      const highlightColor = (i % 2) ? GameConstants.COLORS.LIGHT_RED : GameConstants.COLORS.LIGHT_PURPLE;
 
       const footageItem = new FootageLibraryItem(
         this.handler,
         xx,
         yy,
-        this.width,
+        this.width-8,
         34,
         video,
         bgColor,
