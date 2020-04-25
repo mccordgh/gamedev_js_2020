@@ -81,12 +81,12 @@ createAnimationFor(footage, 'loading', {
 const bigFootage = new Assets('bigFootage', 'big-footage.png');
 bigFootage.playButton = bigFootage.sheet.crop(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
 
-const johnDies = new Assets('johnDies', 'john-dies-black.png');
+const johnDies = new Assets('johnDies', 'john-dies.png');
 createAnimationFor(johnDies, 'playing', {
     speed: 100,
     row: 0,
     col: 0,
-    length: 19,
+    length: 18,
     width: GameConstants.SCREEN_WIDTH,
     height: GameConstants.SCREEN_HEIGHT,
 });
@@ -96,7 +96,7 @@ createAnimationFor(johnLives, 'playing', {
     speed: 100,
     row: 0,
     col: 0,
-    length: 19,
+    length: 18,
     width: GameConstants.SCREEN_WIDTH,
     height: GameConstants.SCREEN_HEIGHT,
 });
