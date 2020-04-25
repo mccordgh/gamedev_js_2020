@@ -3,10 +3,30 @@ import { GameConstants } from '../../constants/game-constants';
 export class SoundManager {
   constructor() {
     this.sources = {
-      bgm: this.getMusic('bgm'),
-      station1: this.getMusic('station1'),
-      station2: this.getMusic('station2'),
-      station3: this.getMusic('station3'),
+      bgm: {
+        source: this.getMusic('bgm'),
+        loops: true,
+      },
+      station1: {
+        source: this.getMusic('station1'),
+        loops: true,
+      },
+      station2: {
+        source: this.getMusic('station2'),
+        loops: true,
+      },
+      station3: {
+        source: this.getMusic('station3'),
+        loops: true,
+      },
+      phoneRinging: {
+        source: this.getMusic('phone-ringing'),
+        loops: false,
+      },
+      dialing: {
+        source: this.getMusic('dialing'),
+        loops: false,
+      },
     };
 
     const bgm = this.sources.bgm;
@@ -24,8 +44,8 @@ export class SoundManager {
   }
 
   initSound(source) {
-    const sound = new Audio(source);
-    sound.loop = true;
+    const sound = new Audio(source.source);
+    sound.loop = source.loops;
 
     return sound;
   }
@@ -35,7 +55,7 @@ export class SoundManager {
 
     if (source) {
       try {
-        if (this.lastSoundPlayed) {
+        if (this.lastSoundPlayed && source.loops) {
           this.stopSound(this.lastSoundPlayed);
         }
 

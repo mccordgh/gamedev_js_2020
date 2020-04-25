@@ -43,6 +43,7 @@ let config = {
     new CopyWebpackPlugin([
       { from: 'src/resources/*', to: '' },
       { from: 'src/music/*', to: '' },
+      { from: 'src/sfx/*', to: '' },
       ])
   ],
   stats: 'minimal',

@@ -39,6 +39,9 @@ export const GameConstants = {
         HEIGHT: 256 / 1.5,
     },
 
+    TELEBUTTON_WIDTH: 35,
+    TELEBUTTON_HEIGHT: 28,
+
     SCREEN_WIDTH: 512,
     SCREEN_HEIGHT: 384,
 
@@ -54,6 +57,7 @@ export const GameConstants = {
     RADIO_HEIGHT: 74,
 
     TYPES: {
+        TELEBUTTONS: 'tele-buttons',
         EMAIL_ITEMS: 'email-items',
         EMAIL_INBOX_ITEMS: 'email-inbox-items',
         FOOTAGE_ITEMS: 'footage-items',

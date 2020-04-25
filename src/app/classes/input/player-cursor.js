@@ -14,10 +14,10 @@ export class PlayerCursor {
         };
 
         this.arrowBounds = {
-            x: 0,
+            x: 4,
             y: 0,
-            width: 12,
-            height: 12,
+            width: 6,
+            height: 6,
         };
 
         this.assets = {

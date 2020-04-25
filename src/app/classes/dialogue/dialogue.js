@@ -30,7 +30,8 @@ export class Dialogue extends StaticEntity{
 
     this.addWords(textArray);
   }
-	tick(h) {
+
+	tick() {
     if (!this.words.length) {
       this.handler.getWorld().dialogueFinished();
 

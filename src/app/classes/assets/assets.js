@@ -77,7 +77,6 @@ createAnimationFor(footage, 'loading', {
     width: GameConstants.ICON_WIDTH,
     height: GameConstants.ICON_HEIGHT,
 });
-console.log(footage)
 
 const bigFootage = new Assets('bigFootage', 'big-footage.png');
 bigFootage.playButton = bigFootage.sheet.crop(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
@@ -126,3 +125,6 @@ radio.station3 = radio.sheet.crop(GameConstants.RADIO_WIDTH * 3, 0, GameConstant
 
 const radioBanner = new Assets('radioBanner', 'radio-banner.png');
 radioBanner.img = radioBanner.sheet.crop(0, 0, 225, 225);
+
+const telephone = new Assets('telephone', 'telephone.png');
+telephone.img = telephone.sheet.crop(0, 0, 248, 185);

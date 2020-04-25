@@ -4,6 +4,7 @@ import { GameConstants } from '../../constants/game-constants';
 
 const clickableTypes = [
     GameConstants.TYPES.INTERACTIVE,
+    GameConstants.TYPES.TELEBUTTONS,
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_ITEMS,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
@@ -12,6 +13,7 @@ const clickableTypes = [
 ];
 
 const dontRenderTypes = [
+    GameConstants.TYPES.TELEBUTTONS,
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
     GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,

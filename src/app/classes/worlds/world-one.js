@@ -9,6 +9,7 @@ import { TheCore } from '../entities/static-entities/easter-eggs/the-core';
 import { MeMyselfAndI } from '../entities/static-entities/easter-eggs/me-myself-and-i';
 import { TheCodersGame } from '../entities/static-entities/easter-eggs/the-coder';
 import { Radio } from '../entities/static-entities/radio/radio';
+import { Telephone } from '../entities/static-entities/telephone/telephone';
 
 let counter = 0;
 
@@ -44,6 +45,35 @@ export class WorldOne {
         // this.state = this.states.TEST_INIT;
     }
 
+    addCorrectPhoneDialogue(callback) {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(
+                this.handler,
+                [
+                    'Hello? HELLO????',
+                    'Listen keep your voice down... OKAY?!',
+                    "I'm not supposed to tell you this, but...",
+                    "The clue is BONK.",
+                ],
+            ),
+        );
+
+        callback();
+    }
+
+    addBadPhoneDialogue(callback) {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(
+                this.handler,
+                [
+                    'No answer...',
+                ],
+            ),
+        );
+
+        callback();
+    }
+
     initDialogue() {
         this.dialogue = this.entityManager.addEntity(
             new Dialogue(
@@ -75,19 +105,14 @@ export class WorldOne {
         this.state = this.states.GAME_WON;
     }
 
-    dialogueFinished() {
+    dialogueFinished(graphics) {
         switch (this.state) {
             case this.states.INITIALIZE:
+            case this.states.IDLE:
                 break;
 
             case this.states.INTRO:
                 this.state = this.states.IDLE;
-                break;
-
-
-            case this.states.IDLE:
-                this.spatialGrid.render(graphics);
-                this.entityManager.render(graphics);
                 break;
 
             case this.states.GAME_WON:
@@ -95,7 +120,7 @@ export class WorldOne {
                 break;
 
             default:
-                throw new Error(`World One animation state "${this.state} is not accounted for`)
+                throw new Error(`World One dialogue finished state "${this.state} is not accounted for`)
         }
     }
 
@@ -103,6 +128,7 @@ export class WorldOne {
         const entities = [
             new ComputerScreen(this.handler, 256, 136),
             new Radio(this.handler, 52, 62),
+            new Telephone(this.handler, 0, 480),
         ];
 
         entities.forEach(entity => {
