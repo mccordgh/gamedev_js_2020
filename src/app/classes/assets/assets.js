@@ -93,10 +93,10 @@ createAnimationFor(johnDies, 'playing', {
 
 const johnLives = new Assets('johnLives', 'john-lives.png');
 createAnimationFor(johnLives, 'playing', {
-    speed: 200,
+    speed: 100,
     row: 0,
     col: 0,
-    length: 10,
+    length: 19,
     width: GameConstants.SCREEN_WIDTH,
     height: GameConstants.SCREEN_HEIGHT,
 });
