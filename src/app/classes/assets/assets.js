@@ -128,3 +128,11 @@ radioBanner.img = radioBanner.sheet.crop(0, 0, 225, 225);
 
 const telephone = new Assets('telephone', 'telephone.png');
 telephone.img = telephone.sheet.crop(0, 0, 248, 185);
+
+const wallPaperSize = 192;
+const wallPaper = new Assets('wallPaper', 'wall-paper-tear.png');
+wallPaper.one = wallPaper.sheet.crop(0, 0, wallPaperSize, wallPaperSize);
+wallPaper.two = wallPaper.sheet.crop(wallPaperSize, 0, wallPaperSize, wallPaperSize);
+wallPaper.three = wallPaper.sheet.crop(wallPaperSize * 2, 0, wallPaperSize, wallPaperSize);
+wallPaper.four = wallPaper.sheet.crop(wallPaperSize * 3, 0, wallPaperSize, wallPaperSize);
+wallPaper.five = wallPaper.sheet.crop(wallPaperSize * 4, 0, wallPaperSize, wallPaperSize);

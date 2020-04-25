@@ -10,6 +10,7 @@ import { MeMyselfAndI } from '../entities/static-entities/easter-eggs/me-myself-
 import { TheCodersGame } from '../entities/static-entities/easter-eggs/the-coder';
 import { Radio } from '../entities/static-entities/radio/radio';
 import { Telephone } from '../entities/static-entities/telephone/telephone';
+import { WallPaperTear } from '../entities/static-entities/wall-paper-tear/wall-paper-tear';
 
 let counter = 0;
 
@@ -129,6 +130,7 @@ export class WorldOne {
             new ComputerScreen(this.handler, 256, 136),
             new Radio(this.handler, 52, 62),
             new Telephone(this.handler, 0, 480),
+            new WallPaperTear(this.handler, 832, 120),
         ];
 
         entities.forEach(entity => {
