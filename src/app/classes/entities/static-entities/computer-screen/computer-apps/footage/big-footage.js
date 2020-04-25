@@ -40,7 +40,7 @@ export class BigFootage extends StaticEntity {
         const animation = this.video.assets.animations[this.states.PLAYING];
 
         // 9 is used here because this animation has 10 frames 0 to 9 and we want it to stop animating at the end
-        if (animation.index >= 9) {
+        if (animation.index >= animation.frames.length-1) {
           this.video.status = this.video.type === 'death' ? 'Deceased' : 'Alive';
 
 console.log(this.video.type);
