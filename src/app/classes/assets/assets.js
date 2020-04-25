@@ -59,7 +59,7 @@ bg.image = bg.sheet.crop(0, 0, GameConstants.GAME_WIDTH, GameConstants.GAME_HEIG
 const email = new Assets('email', 'email.png');
 email.icon = email.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 createAnimationFor(email, 'loading', {
-    speed: 240,
+    speed: 120,
     row: 0,
     col: 0,
     length: 10,
@@ -70,24 +70,23 @@ createAnimationFor(email, 'loading', {
 const footage = new Assets('footage', 'footage.png');
 footage.icon = footage.sheet.crop(0, 0, GameConstants.ICON_WIDTH, GameConstants.ICON_HEIGHT);
 createAnimationFor(footage, 'loading', {
-    speed: 10,
+    speed: 1,
     row: 0,
     col: 0,
     length: 64,
     width: GameConstants.ICON_WIDTH,
     height: GameConstants.ICON_HEIGHT,
 });
-console.log(footage)
 
 const bigFootage = new Assets('bigFootage', 'big-footage.png');
 bigFootage.playButton = bigFootage.sheet.crop(0, 0, GameConstants.SCREEN_WIDTH, GameConstants.SCREEN_HEIGHT);
 
-const johnDies = new Assets('johnDies', 'john-dies.png');
+const johnDies = new Assets('johnDies', 'john-dies-black.png');
 createAnimationFor(johnDies, 'playing', {
-    speed: 200,
+    speed: 100,
     row: 0,
     col: 0,
-    length: 10,
+    length: 19,
     width: GameConstants.SCREEN_WIDTH,
     height: GameConstants.SCREEN_HEIGHT,
 });
