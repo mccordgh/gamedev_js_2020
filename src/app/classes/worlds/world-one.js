@@ -117,7 +117,6 @@ export class WorldOne {
                 break;
 
             case this.states.GAME_WON:
-                console.log('game won dialogue finished');
                 break;
 
             default:

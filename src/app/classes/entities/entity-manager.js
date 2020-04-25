@@ -10,6 +10,8 @@ const clickableTypes = [
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
     GameConstants.TYPES.FOOTAGE_ITEMS,
     GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
+    GameConstants.TYPES.SETTINGS_ITEMS,
+    GameConstants.TYPES.SETTINGS_WINDOW_ITEMS,
 ];
 
 const dontRenderTypes = [
@@ -17,6 +19,7 @@ const dontRenderTypes = [
     GameConstants.TYPES.COMPUTER_APP,
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
     GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
+    GameConstants.TYPES.SETTINGS_WINDOW_ITEMS,
 ];
 
 const hoverableTypes = [
@@ -26,6 +29,8 @@ const hoverableTypes = [
     GameConstants.TYPES.EMAIL_INBOX_ITEMS,
     GameConstants.TYPES.FOOTAGE_ITEMS,
     GameConstants.TYPES.FOOTAGE_LIBRARY_ITEMS,
+    GameConstants.TYPES.SETTINGS_ITEMS,
+    GameConstants.TYPES.SETTINGS_WINDOW_ITEMS,
 ];
 
 let idCounter = 1;
@@ -177,6 +182,7 @@ export class EntityManager {
     }
 
     getEntitiesByType(type) {
+        // console.log({type, entities: this.entities})
         return this.entities.filter(entity => entity.type == type);
     }
 }

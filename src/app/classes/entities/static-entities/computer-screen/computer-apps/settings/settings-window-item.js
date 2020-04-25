@@ -10,7 +10,7 @@ export class SettingsWindowItem extends StaticEntity {
 
     this.hovered = false;
     this.setting = setting;
-console.log('SettingsWindowItem setting:', this.setting);
+// console.log('SettingsWindowItem setting:', this.setting);
 
     this.bounds = {
       x: -32,
@@ -76,7 +76,7 @@ console.log('SettingsWindowItem setting:', this.setting);
       return;
     }
 
-    console.log('settings item clicked');
+    // console.log('settings item clicked');
 
     this.toggled = true;
     this.setting.checked = !this.setting.checked;

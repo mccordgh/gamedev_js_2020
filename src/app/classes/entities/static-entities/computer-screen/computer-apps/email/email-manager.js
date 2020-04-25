@@ -10,6 +10,11 @@ export class EmailManager {
   unlockApp(appName) {
     const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
 
+    if (!computer) {
+      // console.log({computer});
+      throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+    }
+
     switch (appName) {
       case GameConstants.APPS.FOOTAGE:
         if (!this.appExistsOnComputer(computer, GameConstants.APPS.FOOTAGE)) {

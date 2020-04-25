@@ -18,6 +18,7 @@ export const GameConstants = {
     APPS: {
         FOOTAGE: 'Footage',
         EMAIL: 'Email',
+        SETTINGS: 'Settings',
     },
 
     COLORS: {
@@ -62,6 +63,8 @@ export const GameConstants = {
         EMAIL_INBOX_ITEMS: 'email-inbox-items',
         FOOTAGE_ITEMS: 'footage-items',
         FOOTAGE_LIBRARY_ITEMS: 'footage-library-items',
+        SETTINGS_ITEMS: 'settings-items',
+        SETTINGS_WINDOW_ITEMS: 'settings-window-items',
         INTERACTIVE: 'interactive',
         // Make sure no one uses COMPUTER type except computer-screen.
         COMPUTER: 'computer',

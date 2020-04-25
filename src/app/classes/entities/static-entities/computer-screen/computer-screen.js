@@ -3,6 +3,7 @@ import { Assets } from '../../../assets/assets';
 import { GameConstants } from '../../../../constants/game-constants';
 import { Email } from './computer-apps/email/email';
 import { Footage } from './computer-apps/footage/footage';
+import { Settings } from './computer-apps/settings/settings';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
@@ -37,16 +38,21 @@ export class ComputerScreen extends StaticEntity {
 
         const entityManager = this.handler.getEntityManager();
 
-        this.state = this.states.OFF;
+        // this.state = this.states.OFF;
         // this.state = this.states.IDLE;
 
-        // this.state = this.states.INITIALIZE;
-        // this.assets.animations[this.states.BOOTING].index = 9;
+
+        // Below is for quick dev testing only keep commented in real game mode
+        this.type = GameConstants.TYPES.COMPUTER;
+        this.state = this.states.INITIALIZE;
+        this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
+        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
+        this.handler.getEntityManager().addEntity(new Settings(this.handler)),
       ];
     }
 
@@ -56,30 +62,30 @@ export class ComputerScreen extends StaticEntity {
       this.resetAppPositions();
     }
 
-    alignIconsTopLeftToBottomRight() {
-      let currentX = this.x;
-      let currentY = this.y;
-      currentY += this.padding;
+    // alignIconsTopLeftToBottomRight() {
+    //   let currentX = this.x;
+    //   let currentY = this.y;
+    //   currentY += this.padding;
 
-      // This handles positioning all apps in the correct row / column.
-      for (let i = 0; i < this.apps.length; i += 1) {
-        const app = this.apps[i];
+    //   // This handles positioning all apps in the correct row / column.
+    //   for (let i = 0; i < this.apps.length; i += 1) {
+    //     const app = this.apps[i];
 
-        currentX += this.padding;
+    //     currentX += this.padding;
 
-        if ((i % this.iconsPerRow) === 0 && i !== 0) {
-          currentY += app.height + this.padding;
-          currentX = this.x + this.padding;
-        }
+    //     if ((i % this.iconsPerRow) === 0 && i !== 0) {
+    //       currentY += app.height + this.padding;
+    //       currentX = this.x + this.padding;
+    //     }
 
-        app.x = currentX;
-        app.y = currentY;
+    //     app.x = currentX;
+    //     app.y = currentY;
 
-        currentX += app.width;
+    //     currentX += app.width;
 
-        currentX += this.padding;
-      }
-    }
+    //     currentX += this.padding;
+    //   }
+    // }
 
     resetAppPositions() {
       // this.alignIconsTopLeftToBottomRight()
@@ -105,6 +111,21 @@ export class ComputerScreen extends StaticEntity {
 
         app2.x = centerX - (app2.bounds.width / 2) + 96;
         app2.y = centerY - (app2.bounds.height);
+
+        return;
+      }
+
+      if (this.apps.length === 3) {
+        const [app1, app2, app3] = this.apps;
+
+        app1.x = centerX - (app1.bounds.width / 2) - 96;
+        app1.y = centerY - (app1.bounds.height) - 96 + 16;
+
+        app2.x = centerX - (app2.bounds.width / 2) + 96;
+        app2.y = centerY - (app2.bounds.height) - 96 + 16;
+
+        app3.x = centerX - (app3.bounds.width / 2);
+        app3.y = centerY - (app2.bounds.height) + 32 + 16;
 
         return;
       }
@@ -189,7 +210,7 @@ export class ComputerScreen extends StaticEntity {
           for (let i = 0; i < this.apps.length; i += 1) {
             const app = this.apps[i];
 
-            graphics.drawText(app.name, app.x + app.textXOffset, app.y + app.textYOffset);
+            graphics.drawText(app.name, app.x + app.textXOffset, app.y + app.textYOffset, GameConstants.COLORS.CREAM, false);
             app.render(graphics);
           }
           break;
