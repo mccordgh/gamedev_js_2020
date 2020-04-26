@@ -31,7 +31,7 @@ export class CodeMan extends ComputerApp {
     this.handler.getWorld().createDialogue([
       'iNPuT NoT ReCoGNiZeD'.toUpperCase(),
       'TRy aGaiN, HuMaN... :O'.toUpperCase(),
-    ]);
+    ], true);
   }
 
   appLoaded() {
@@ -70,12 +70,12 @@ export class CodeMan extends ComputerApp {
       this.handler.getWorld().createDialogue([
         'SySTeM SeTTiNGS HaVe BeeN uPDaTeD'.toUpperCase(),
         'HaVe a NiCe DaY, HuMaN... :)'.toUpperCase(),
-      ]);
+      ], true);
     } else {
       this.handler.getWorld().createDialogue([
         'I aLReaDY uPDaTeD THaT SeTTiNG'.toUpperCase(),
         'FoR YoU, HuMaN... :|'.toUpperCase(),
-      ])
+      ], true)
     }
   }
 }

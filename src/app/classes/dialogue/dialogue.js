@@ -2,7 +2,7 @@ import { StaticEntity } from '../entities/static-entities/static-entity';
 import { GameConstants } from '../../constants/game-constants';
 
 export class Dialogue extends StaticEntity{
-  constructor(handler, textArray) {
+  constructor(handler, textArray, isRobot = false) {
     super(handler, GameConstants.DIALOGUE.X, GameConstants.DIALOGUE.Y)
 
     this.x = GameConstants.DIALOGUE.X;
@@ -25,11 +25,16 @@ export class Dialogue extends StaticEntity{
     this.dialogue = '';
     this.speechTimer = 5;
     this.wasClicked = false;
+    this.isRobot = isRobot;
 
     this.words = [];
+    this.soundManager = this.handler.getSoundManager();
 
     this.nextCounter = 0;
     this.nextCounterMax = 30;
+
+    this.soundCounter = 0;
+    this.soundCounterMax = 2;
 
     this.addWords(textArray);
   }
@@ -45,7 +50,13 @@ export class Dialogue extends StaticEntity{
 		if (this.speechTimer >= 2) {
 			if (this.words.length) {
 				if (this.words[0].length) {
-				  // h.getSM().play('txt'); <~ play sound later for text
+          this.soundCounter += 1;
+
+          if (this.soundCounter > this.soundCounterMax) {
+            this.soundManager.speak(this.isRobot);
+            this.soundCounter = 0;
+          }
+
 					this.sayNextLetter();
 				} else {
 					if (this.wasClicked) {

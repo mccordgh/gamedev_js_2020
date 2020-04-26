@@ -27,6 +27,30 @@ export class SoundManager {
         source: this.getMusic('dialing'),
         loops: false,
       },
+      speak1: {
+        source: this.getMusic('speak-1'),
+        loops: false,
+      },
+      speak2: {
+        source: this.getMusic('speak-2'),
+        loops: false,
+      },
+      speak3: {
+        source: this.getMusic('speak-3'),
+        loops: false,
+      },
+      roboSpeak1: {
+        source: this.getMusic('robo-speak-1'),
+        loops: false,
+      },
+      roboSpeak2: {
+        source: this.getMusic('robo-speak-2'),
+        loops: false,
+      },
+      roboSpeak3: {
+        source: this.getMusic('robo-speak-3'),
+        loops: false,
+      },
     };
 
     const bgm = this.sources.bgm;
@@ -44,14 +68,23 @@ export class SoundManager {
     sound.src = "";
   }
 
-  initSound(source) {
+  initSound(source, volume) {
     const sound = new Audio(source.source);
     sound.loop = source.loops;
+    sound.volume = volume;
 
     return sound;
   }
 
-  play(name) {
+  speak(isRobot = false) {
+    if (isRobot) {
+      this.play('roboSpeak' + rndInt(1, 3), 0.35);
+    } else {
+      this.play('speak' + rndInt(1, 3), 0.2);
+    }
+  }
+
+  play(name, volume = 0.8) {
     const source = this.sources[name];
 
     if (source) {
@@ -60,7 +93,7 @@ export class SoundManager {
           this.stopSound(this.lastSoundPlayed);
         }
 
-        const sound = this.initSound(source);
+        const sound = this.initSound(source, volume);
         sound.play();
         this.lastSoundPlayed = sound;
 

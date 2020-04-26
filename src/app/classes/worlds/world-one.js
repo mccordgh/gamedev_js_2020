@@ -77,7 +77,7 @@ export class WorldOne {
 
     createDialogue(textArray) {
         this.dialogue = this.entityManager.addEntity(
-            new Dialogue(this.handler, textArray),
+            new Dialogue(this.handler, textArray, true),
         );
     }
 
