@@ -4,6 +4,7 @@ import { GameConstants } from '../../../../constants/game-constants';
 import { Email } from './computer-apps/email/email';
 import { Footage } from './computer-apps/footage/footage';
 import { Settings } from './computer-apps/settings/settings';
+import { CodeMan } from './computer-apps/code-man/code-man';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
@@ -53,6 +54,7 @@ export class ComputerScreen extends StaticEntity {
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
         this.handler.getEntityManager().addEntity(new Footage(this.handler)),
         this.handler.getEntityManager().addEntity(new Settings(this.handler)),
+        this.handler.getEntityManager().addEntity(new CodeMan(this.handler)),
       ];
     }
 
@@ -126,6 +128,24 @@ export class ComputerScreen extends StaticEntity {
 
         app3.x = centerX - (app3.bounds.width / 2);
         app3.y = centerY - (app2.bounds.height) + 32 + 16;
+
+        return;
+      }
+
+      if (this.apps.length === 4) {
+        const [app1, app2, app3, app4] = this.apps;
+
+        app1.x = centerX - (app1.bounds.width / 2) - 96;
+        app1.y = centerY - (app1.bounds.height) - 96 + 16;
+
+        app2.x = centerX - (app2.bounds.width / 2) + 96;
+        app2.y = centerY - (app2.bounds.height) - 96 + 16;
+
+        app3.x = centerX - (app1.bounds.width / 2) - 96;
+        app3.y = centerY - (app1.bounds.height) + 96 - 32;
+
+        app4.x = centerX - (app2.bounds.width / 2) + 96;
+        app4.y = centerY - (app2.bounds.height) + 96 - 32;
 
         return;
       }

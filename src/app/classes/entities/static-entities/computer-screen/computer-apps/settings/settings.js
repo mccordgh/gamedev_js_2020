@@ -22,19 +22,19 @@ export class Settings extends ComputerApp {
     this.settings = [
       {
         clueNumber: 1,
-        hidden: false,
+        hidden: true,
         label: 'Falling Pianos',
         checked: true,
       },
       {
         clueNumber: 2,
-        hidden: false,
+        hidden: true,
         label: 'UFO Intervention',
         checked: false,
       },
       {
         clueNumber: 3,
-        hidden: false,
+        hidden: true,
         label: 'Third clue',
         checked: true,
       },
@@ -43,6 +43,18 @@ export class Settings extends ComputerApp {
     // skip opening/loading animation for dev
     // this.state = 'loading';
     // this.assets.animations['loading'].index = 10;
+  }
+
+  showSetting(number) {
+    const setting = this.settings[number - 1];
+
+    if (setting.hidden === false) {
+      return false;
+    }
+
+    setting.hidden = false;
+
+    return true;
   }
 
   setActive() {

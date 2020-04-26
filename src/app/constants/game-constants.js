@@ -16,6 +16,7 @@ export const GameConstants = {
     APP_NAME_SIZE: 16,
 
     APPS: {
+        CODE_MAN:'Code Man',
         FOOTAGE: 'Footage',
         EMAIL: 'Email',
         SETTINGS: 'Settings',

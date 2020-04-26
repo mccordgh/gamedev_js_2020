@@ -75,6 +75,12 @@ export class WorldOne {
         callback();
     }
 
+    createDialogue(textArray) {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(this.handler, textArray),
+        );
+    }
+
     initDialogue() {
         this.dialogue = this.entityManager.addEntity(
             new Dialogue(

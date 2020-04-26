@@ -72,7 +72,7 @@ export class SettingsWindowItem extends StaticEntity {
   }
 
   wasClickedAt() {
-    if (this.toggled) {
+    if (this.hidden || this.toggled) {
       return;
     }
 

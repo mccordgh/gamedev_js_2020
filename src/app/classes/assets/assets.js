@@ -140,7 +140,7 @@ wallPaper.five = wallPaper.sheet.crop(wallPaperSize * 4, 0, wallPaperSize, wallP
 const settings = new Assets('settings', 'settings-cog.png');
 settings.icon = settings.sheet.crop(0, 0, 64, 64);
 createAnimationFor(settings, 'loading', {
-    speed: 120,
+    speed: 160,
     row: 0,
     col: 0,
     length: 8,
@@ -155,3 +155,13 @@ const settingsCheck = new Assets('settingsCheck', 'settings-checkbox.png');
 settingsCheck.box = settingsCheck.sheet.crop(0, 0, 45, 45);
 settingsCheck.check = settingsCheck.sheet.crop(45, 0, 45, 45);
 
+const codeMan = new Assets('codeMan', 'code-man.png');
+codeMan.icon = codeMan.sheet.crop(0, 0, 64, 64);
+createAnimationFor(codeMan, 'loading', {
+    speed: 160,
+    row: 0,
+    col: 0,
+    length: 8,
+    width: GameConstants.ICON_WIDTH,
+    height: GameConstants.ICON_HEIGHT,
+});
