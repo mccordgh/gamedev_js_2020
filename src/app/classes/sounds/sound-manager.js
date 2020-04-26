@@ -64,7 +64,6 @@ export class SoundManager {
     var audios = document.getElementsByTagName('audio');
     for(var i = 0, len = audios.length; i < len;i++){
         if(audios[i] != e.target){
-          console.log('PAUSE', audios[i])
             audios[i].pause();
         }
     }
