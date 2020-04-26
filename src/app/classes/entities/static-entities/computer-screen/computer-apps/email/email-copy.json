@@ -47,5 +47,16 @@
       "Game on yo",
       "Kenny from the basement"
     ]
+  },
+    "third": {
+    "sender": "Dev Team",
+    "subject": "Re: Thanks for playing!",
+    "text": [
+      "Hey thanks for playing our game!",
+      "We hope you enjoyed it.",
+        " ",
+      "Have a great rest of your day!",
+      "The Dev Team"
+    ]
   }
 }

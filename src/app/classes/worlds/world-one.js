@@ -101,7 +101,7 @@ export class WorldOne {
                 this.handler,
                 [
                     'Yo, newbie! You did it!',
-                    'Looks like John Smith is alive!',
+                    'Looks like they\'re alive!',
                     'Great Job!',
                     'Also we need you in on Saturday...',
                 ],
@@ -128,6 +128,7 @@ export class WorldOne {
 
             case this.states.GAME_WON:
                 this.handler.getEmailManager().addEmail('easterEggs');
+                this.handler.getEmailManager().addEmail('third');
                 this.state = this.states.IDLE;
 
                 break;

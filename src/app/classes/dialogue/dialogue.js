@@ -31,7 +31,7 @@ export class Dialogue extends StaticEntity{
     this.soundManager = this.handler.getSoundManager();
 
     this.nextCounter = 0;
-    this.nextCounterMax = 30;
+    this.nextCounterMax = 70;
 
     this.soundCounter = 0;
     this.soundCounterMax = 2;
