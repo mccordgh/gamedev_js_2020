@@ -5,10 +5,10 @@ export class SoundManager {
     this.handler = handler;
 
     this.sources = {
-      // bgm: {
-      //   source: this.getMusic('bgm'),
-      //   loops: true,
-      // },
+      bgm: {
+        source: this.getMusic('bgm'),
+        loops: true,
+      },
       station1: {
         source: this.getMusic('station1'),
         loops: true,
@@ -61,14 +61,18 @@ export class SoundManager {
   }
 
   stop() {
-    if (!this.lastSoundPlayed) {
-      return;
+    var audios = document.getElementsByTagName('audio');
+    for(var i = 0, len = audios.length; i < len;i++){
+        if(audios[i] != e.target){
+          console.log('PAUSE', audios[i])
+            audios[i].pause();
+        }
     }
-
-    this.stopSound(this.lastSoundPlayed);
   }
 
   stopSound(sound) {
+    this.stop();
+
     sound.pause();
     sound.currentTime = 0;
     sound.src = "";
@@ -97,10 +101,9 @@ export class SoundManager {
       const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
 
       if (radio) {
+        this.stop();
         radio.state = radio.states.OFF;
       }
-
-      return;
     }
 
     if (source) {
