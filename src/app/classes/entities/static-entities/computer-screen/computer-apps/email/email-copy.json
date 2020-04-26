@@ -58,5 +58,17 @@
       "Have a great rest of your day!",
       "The Dev Team"
     ]
+  },
+    "phoneHint": {
+    "sender": "Your Mom",
+    "subject": "Re: If you get stuck...",
+    "text": [
+      "Hey, Newbie!",
+      "If you are stuck call me.",
+      "My number is: 42",
+    "",
+      "Love ya,",
+      "Your Mom"
+    ]
   }
 }

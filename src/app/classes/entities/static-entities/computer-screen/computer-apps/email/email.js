@@ -27,6 +27,7 @@ export class Email extends ComputerApp {
 
     this.emails = [
       new BigEmail(this.handler, emailCopy.first, false, GameConstants.APPS.FOOTAGE),
+      new BigEmail(this.handler, emailCopy.phoneHint)
     ];
 
     // skip opening/loading animation for dev
