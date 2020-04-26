@@ -13,6 +13,7 @@ export class Game {
         this.managerHandler.createEmailManager();
         this.managerHandler.createFootageManager();
         this.managerHandler.createSoundManager();
+        this.managerHandler.createSettingsManager();
 
         const world = this.managerHandler.createWorld();
         world.init();

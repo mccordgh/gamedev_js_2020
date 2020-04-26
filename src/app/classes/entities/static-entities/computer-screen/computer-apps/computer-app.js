@@ -33,7 +33,12 @@ export class ComputerApp extends StaticEntity {
           this.appLoaded();
 
           animation.index = 0;
-          this.state = 'inactive';
+
+          if (this.name !== GameConstants.APPS.CODE_MAN) {
+            this.state = 'inactive';
+          } else {
+            this.state = 'idle';
+          }
 
           return;
         }

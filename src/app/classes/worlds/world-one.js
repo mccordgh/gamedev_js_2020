@@ -75,6 +75,12 @@ export class WorldOne {
         callback();
     }
 
+    createDialogue(textArray) {
+        this.dialogue = this.entityManager.addEntity(
+            new Dialogue(this.handler, textArray),
+        );
+    }
+
     initDialogue() {
         this.dialogue = this.entityManager.addEntity(
             new Dialogue(
@@ -117,7 +123,6 @@ export class WorldOne {
                 break;
 
             case this.states.GAME_WON:
-                console.log('game won dialogue finished');
                 break;
 
             default:

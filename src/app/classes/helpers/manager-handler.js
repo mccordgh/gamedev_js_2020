@@ -6,6 +6,7 @@ import { WorldOne } from '../worlds/world-one';
 import { EmailManager } from '../entities/static-entities/computer-screen/computer-apps/email/email-manager';
 import { FootageManager } from '../entities/static-entities/computer-screen/computer-apps/footage/footage-manager';
 import { SoundManager } from '../sounds/sound-manager';
+import { SettingsManager } from '../entities/static-entities/computer-screen/computer-apps/settings/settings-manager';
 
 export class ManagerHandler {
     constructor(game) {
@@ -45,6 +46,10 @@ export class ManagerHandler {
         return this.mouseManager;
     }
 
+    getSettingsManager() {
+        return this.settingsManager;
+    }
+
     getSoundManager() {
         return this.soundManager;
     }
@@ -71,6 +76,10 @@ export class ManagerHandler {
 
     createMouseManager() {
         return this.mouseManager = new MouseManager(this);
+    }
+
+    createSettingsManager() {
+        return this.settingsManager = new SettingsManager(this);
     }
 
     createSoundManager() {

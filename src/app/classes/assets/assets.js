@@ -136,3 +136,32 @@ wallPaper.two = wallPaper.sheet.crop(wallPaperSize, 0, wallPaperSize, wallPaperS
 wallPaper.three = wallPaper.sheet.crop(wallPaperSize * 2, 0, wallPaperSize, wallPaperSize);
 wallPaper.four = wallPaper.sheet.crop(wallPaperSize * 3, 0, wallPaperSize, wallPaperSize);
 wallPaper.five = wallPaper.sheet.crop(wallPaperSize * 4, 0, wallPaperSize, wallPaperSize);
+
+const settings = new Assets('settings', 'settings-cog.png');
+settings.icon = settings.sheet.crop(0, 0, 64, 64);
+createAnimationFor(settings, 'loading', {
+    speed: 160,
+    row: 0,
+    col: 0,
+    length: 8,
+    width: GameConstants.ICON_WIDTH,
+    height: GameConstants.ICON_HEIGHT,
+});
+
+const settingsWindow = new Assets('settingsWindow', 'settings-window.png');
+settingsWindow.bg = settingsWindow.sheet.crop(0, 0, 416, 278);
+
+const settingsCheck = new Assets('settingsCheck', 'settings-checkbox.png');
+settingsCheck.box = settingsCheck.sheet.crop(0, 0, 45, 45);
+settingsCheck.check = settingsCheck.sheet.crop(45, 0, 45, 45);
+
+const codeMan = new Assets('codeMan', 'code-man.png');
+codeMan.icon = codeMan.sheet.crop(0, 0, 64, 64);
+createAnimationFor(codeMan, 'loading', {
+    speed: 160,
+    row: 0,
+    col: 0,
+    length: 8,
+    width: GameConstants.ICON_WIDTH,
+    height: GameConstants.ICON_HEIGHT,
+});
