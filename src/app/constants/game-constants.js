@@ -20,6 +20,9 @@ export const GameConstants = {
         FOOTAGE: 'Footage',
         EMAIL: 'Email',
         SETTINGS: 'Settings',
+        THE_CORE: 'The Core',
+        ME_MYSELF_I: 'Me, Myself, & I',
+        THE_CODERS_GAME: 'Coder\'s Game',
     },
 
     COLORS: {

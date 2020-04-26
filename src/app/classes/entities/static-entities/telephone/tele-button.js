@@ -31,7 +31,7 @@ export default class TeleButton extends StaticEntity {
       (this.number.toString().length > 1) ? this.x + 7 : this.x + 11,
       this.y + 21,
       'black',
-      true,
+      false,
       GameConstants.BIG_FONT_SIZE - 12,
     );
   }

@@ -21,18 +21,21 @@ export class Settings extends ComputerApp {
 
     this.settings = [
       {
+        number: 3731,
         clueNumber: 1,
         hidden: true,
-        label: 'Falling Pianos',
-        checked: true,
+        label: 'Piano Hammer',
+        checked: false,
       },
       {
+        number: 9182,
         clueNumber: 2,
         hidden: true,
         label: 'UFO Intervention',
         checked: false,
       },
       {
+        number: 8742,
         clueNumber: 3,
         hidden: true,
         label: 'Kamikaze Bird',

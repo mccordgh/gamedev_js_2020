@@ -75,11 +75,33 @@ export class Email extends ComputerApp {
         email = emailCopy.second;
         break;
 
+      case 'easterEggs':
+        email = emailCopy.easterEggs;
+        break;
+
       default:
         throw new Error(`No email by name ${name} found in emailCopy`);
     }
 
-    const unlocks = (name === 'second') ? GameConstants.APPS.CODE_MAN : undefined;
+    let unlocks;
+
+    switch (name) {
+      case 'second':
+        unlocks = GameConstants.APPS.CODE_MAN;
+        break;
+
+      case 'easterEggs':
+        unlocks = [
+          GameConstants.APPS.THE_CORE,
+          GameConstants.APPS.ME_MYSELF_I,
+          GameConstants.APPS.THE_CODERS_GAME,
+        ];
+        break;
+
+      default:
+        throw new Error(`No email by name ${name} found in emailCopy`);
+    }
+
 
     this.emails.push(
       new BigEmail(this.handler, email, false, unlocks),

@@ -30,5 +30,22 @@
       "GL HF on your first day",
       "Bill from HR"
     ]
+  },
+  "easterEggs": {
+    "sender": "Kenny from the basement",
+    "subject": "Re: Sick Games",
+    "text": [
+      "Yo, I heard you did good today.",
+      "Me and the crew have some secret games",
+      "installed on the netweork.",
+      "",
+      "I gave you access to a few new apps.",
+      "Check your desktop!",
+      "",
+      "It's games from the js13k game jam!!",
+      "",
+      "Game on yo",
+      "Kenny from the basement"
+    ]
   }
 }

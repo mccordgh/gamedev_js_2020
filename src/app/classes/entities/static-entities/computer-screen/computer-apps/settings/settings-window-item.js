@@ -3,10 +3,11 @@ import { GameConstants } from '../../../../../../constants/game-constants';
 import { Assets } from '../../../../../assets/assets';
 
 export class SettingsWindowItem extends StaticEntity {
-  constructor(handler, x, y, width, height, setting) {
+  constructor(handler, x, y, width, height, setting, number) {
     super(handler, x, y);
     this.width = width;
     this.height = height;
+    this.number = number;
 
     this.hovered = false;
     this.setting = setting;
@@ -53,6 +54,15 @@ export class SettingsWindowItem extends StaticEntity {
 
       graphics.drawText(
         this.setting.label,
+        this.x + 50,
+        this.y + 32,
+        'black',
+        false,
+        24,
+      );
+    } else {
+      graphics.drawText(
+        `[missing setting #${this.setting.number}]`,
         this.x + 50,
         this.y + 32,
         'black',

@@ -28,6 +28,13 @@ export class ComputerApp extends StaticEntity {
       case "loading":
         const animation = this.assets.animations['loading'];
 
+        // for the easter egg games that dont have animations
+        if (!animation) {
+          this.appLoaded();
+          this.state = 'idle';
+          return;
+        }
+
         // 9 is used here because this animation has 10 frames 0 to 9 and we want it to stop animating at the end
         if (animation.index >= animation.frames.length-1) {
           this.appLoaded();
@@ -63,6 +70,10 @@ export class ComputerApp extends StaticEntity {
         break;
 
       case "loading":
+        if (!this.assets || !this.assets.animations || !this.assets.animations.loading) {
+          return;
+        }
+
         const animation = this.assets.animations['loading'];
 
         return animation.getCurrentFrame();
@@ -92,7 +103,9 @@ export class ComputerApp extends StaticEntity {
         break;
 
       case "loading":
-        graphics.drawSprite(this.getCurrentAnimationFrame(), this.x, this.y, this.width, this.height);
+        if (this.getCurrentAnimationFrame()) {
+          graphics.drawSprite(this.getCurrentAnimationFrame(), this.x, this.y, this.width, this.height);
+        }
 
         break;
 

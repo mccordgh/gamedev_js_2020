@@ -21,6 +21,20 @@ export class CodeMan extends ComputerApp {
     // skip opening/loading animation for dev
     // this.state = 'loading';
     // this.assets.animations['loading'].index = 10;
+
+    // MORE DDEV STUFF
+      this.handler.getSettingsManager().showSetting(1);
+      this.handler.getSettingsManager().showSetting(2);
+      this.handler.getSettingsManager().showSetting(3);
+      this.handler.getFootageManager().interveneClue(1);
+      this.handler.getFootageManager().interveneClue(2);
+      this.handler.getFootageManager().interveneClue(3);
+      this.handler.getFootageManager().updateWatchedBestVideo(1);
+      this.handler.getFootageManager().updateWatchedBestVideo(2);
+      this.handler.getFootageManager().updateWatchedBestVideo(3);
+      if (this.handler.getFootageManager().isLogComplete()) {
+        this.handler.getWorld().gameWon();
+      }
   }
 
   setActive() {

@@ -86,10 +86,10 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    'Hey, newbie!',
-                    'Looks like the manager is out sick today...',
-                    'I bet you can figure this one out on your own, though.',
-                    'Boot up that computer and check your email!',
+                    // 'Hey, newbie!',
+                    // 'Looks like the manager is out sick today...',
+                    // 'I bet you can figure this one out on your own, though.',
+                    // 'Boot up that computer and check your email!',
                 ],
             ),
         );
@@ -100,10 +100,10 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    'Yo, newbie! You did it!',
-                    'Looks like John Smith is alive!',
-                    'Great Job!',
-                    'Also we need you in on Saturday...',
+                    // 'Yo, newbie! You did it!',
+                    // 'Looks like John Smith is alive!',
+                    // 'Great Job!',
+                    // 'Also we need you in on Saturday...',
                 ],
             ),
         );
@@ -115,6 +115,7 @@ export class WorldOne {
         switch (this.state) {
             case this.states.INITIALIZE:
             case this.states.IDLE:
+
                 break;
 
             case this.states.INTRO:
@@ -124,6 +125,9 @@ export class WorldOne {
                 break;
 
             case this.states.GAME_WON:
+                this.handler.getEmailManager().addEmail('easterEggs');
+                this.state = this.states.IDLE;
+
                 break;
 
             default:
@@ -162,9 +166,9 @@ export class WorldOne {
 
             case this.states.GAME_WON:
             case this.states.INTRO:
-                if (this.dialogue) {
-                    this.dialogue.tick();
-                }
+                // if (this.dialogue) {
+                //     this.dialogue.tick();
+                // }
                 break;
 
 
@@ -188,9 +192,9 @@ export class WorldOne {
 
             case this.states.GAME_WON:
             case this.states.INTRO:
-                if (this.dialogue) {
-                    this.dialogue.render(graphics);
-                }
+                // if (this.dialogue) {
+                //     this.dialogue.render(graphics);
+                // }
                 break;
 
 

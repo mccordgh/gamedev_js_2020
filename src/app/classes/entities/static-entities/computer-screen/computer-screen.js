@@ -5,6 +5,9 @@ import { Email } from './computer-apps/email/email';
 import { Footage } from './computer-apps/footage/footage';
 import { Settings } from './computer-apps/settings/settings';
 import { CodeMan } from './computer-apps/code-man/code-man';
+import { TheCoreApp } from './computer-apps/easter-eggs/the-core';
+import { CodersGameApp } from './computer-apps/easter-eggs/coders-game';
+import { MeMyselfIApp } from './computer-apps/easter-eggs/me-myself-i';
 
 export class ComputerScreen extends StaticEntity {
     constructor(handler, x, y) {
@@ -41,26 +44,32 @@ export class ComputerScreen extends StaticEntity {
 
         const entityManager = this.handler.getEntityManager();
 
-        this.state = this.states.OFF;
-        // this.state = this.states.IDLE;
+        this.clickMeText = [
+          '[Click to initiate booting sequence]',
+        ]
 
+        // this.state = this.states.OFF;
 
         // Below is for quick dev testing only keep commented in real game mode
-        // this.type = GameConstants.TYPES.COMPUTER;
-        // this.state = this.states.INITIALIZE;
-        // this.assets.animations[this.states.BOOTING].index = 9;
+        this.type = GameConstants.TYPES.COMPUTER;
+        this.state = this.states.INITIALIZE;
+        this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
-        // this.handler.getEntityManager().addEntity(new Footage(this.handler)),
-        // this.handler.getEntityManager().addEntity(new Settings(this.handler)),
-        // this.handler.getEntityManager().addEntity(new CodeMan(this.handler)),
+        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
+        this.handler.getEntityManager().addEntity(new Settings(this.handler)),
+        this.handler.getEntityManager().addEntity(new CodeMan(this.handler)),
+        this.handler.getEntityManager().addEntity(new TheCoreApp(this.handler)),
+        this.handler.getEntityManager().addEntity(new CodersGameApp(this.handler)),
+        this.handler.getEntityManager().addEntity(new MeMyselfIApp(this.handler)),
       ];
     }
 
     addApp(app) {
+      console.log('adding app', app)
       this.apps.push(app);
       this.handler.getEntityManager().addEntity(app);
       this.resetAppPositions();
@@ -152,6 +161,38 @@ export class ComputerScreen extends StaticEntity {
         return;
       }
 
+      if (this.apps.length === 5 || this.apps.length === 6) {
+        console.log('leaving early app length is', this.apps.length);
+        return;
+      }
+
+      if (this.apps.length === 7) {
+        const [app1, app2, app3, app4, app5, app6, app7] = this.apps;
+
+        app1.x = centerX - (app1.bounds.width / 2) - 96;
+        app1.y = centerY - (app1.bounds.height) - 96 - 32 - 16;
+
+        app2.x = centerX - (app2.bounds.width / 2) + 96;
+        app2.y = centerY - (app2.bounds.height) - 96 - 32 - 16;
+
+        app3.x = centerX - (app1.bounds.width / 2) - 96;
+        app3.y = centerY - (app1.bounds.height) + 112 - 16;
+
+        app4.x = centerX - (app2.bounds.width / 2) + 96;
+        app4.y = centerY - (app2.bounds.height) + 112 - 16;
+
+        app5.x = centerX - (app5.bounds.width / 2) + 8 + 8;
+        app5.y = centerY - (app5.bounds.height) + 16 - 8;
+
+        app6.x = centerX - (app6.bounds.width / 2) - 124;
+        app6.y = centerY - (app6.bounds.height) + 16 - 8;
+
+        app7.x = centerX - (app7.bounds.width / 2) + 160 + 32;
+        app7.y = centerY - (app7.bounds.height) + 16 - 8;
+
+        return;
+      }
+
       throw new Error(`apps length is great then expected (${this.apps.length}) in ComputerScreen.resetAppPositions()`)
     }
 
@@ -224,6 +265,15 @@ export class ComputerScreen extends StaticEntity {
 
       switch (this.state) {
         case this.states.OFF:
+            graphics.drawText(
+              this.clickMeText,
+              this.x + 120,
+              this.y + 200,
+              GameConstants.COLORS.CREAM,
+              false
+            );
+          break;
+
         case this.states.INITIALIZE:
           break;
 

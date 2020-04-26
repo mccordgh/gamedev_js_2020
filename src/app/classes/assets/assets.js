@@ -205,3 +205,12 @@ createAnimationFor(codeMan, 'loading', {
     width: GameConstants.ICON_WIDTH,
     height: GameConstants.ICON_HEIGHT,
 });
+
+const theCore = new Assets('theCore', 'code-man.png');
+theCore.icon = theCore.sheet.crop(0, 0, 64, 64);
+
+const meMyselfI = new Assets('meMyselfI', 'code-man.png');
+meMyselfI.icon = meMyselfI.sheet.crop(0, 0, 64, 64);
+
+const codersGame = new Assets('codersGame', 'code-man.png');
+codersGame.icon = codersGame.sheet.crop(0, 0, 64, 64);
