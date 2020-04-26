@@ -116,6 +116,8 @@ export class EasterEggGame extends StaticEntity {
     }
 
     closeSelf() {
+      this.handler.getSoundManager().play('bgm');
+
       this.parentWindow.removeChild(this.wrapper);
 
       this.destroySelf();

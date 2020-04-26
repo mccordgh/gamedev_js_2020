@@ -29,6 +29,7 @@ export class TheCoreApp extends ComputerApp {
   }
 
   appLoaded() {
+    this.handler.getSoundManager().stop();
     this.handler.getEntityManager().addEntity(new TheCore(this.handler));
   }
 }

@@ -30,6 +30,7 @@ export class CodersGameApp extends ComputerApp {
   }
 
   appLoaded() {
+    this.handler.getSoundManager().stop();
     this.handler.getEntityManager().addEntity(new TheCodersGame(this.handler));
   }
 }

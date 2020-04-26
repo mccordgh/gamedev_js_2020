@@ -86,10 +86,10 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    // 'Hey, newbie!',
-                    // 'Looks like the manager is out sick today...',
-                    // 'I bet you can figure this one out on your own, though.',
-                    // 'Boot up that computer and check your email!',
+                    'Hey, newbie!',
+                    'Looks like the manager is out sick today...',
+                    'I bet you can figure this one out on your own, though.',
+                    'Boot up that computer and check your email!',
                 ],
             ),
         );
@@ -100,10 +100,10 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    // 'Yo, newbie! You did it!',
-                    // 'Looks like John Smith is alive!',
-                    // 'Great Job!',
-                    // 'Also we need you in on Saturday...',
+                    'Yo, newbie! You did it!',
+                    'Looks like John Smith is alive!',
+                    'Great Job!',
+                    'Also we need you in on Saturday...',
                 ],
             ),
         );

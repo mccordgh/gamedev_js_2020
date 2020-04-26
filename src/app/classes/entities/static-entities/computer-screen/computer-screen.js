@@ -48,12 +48,12 @@ export class ComputerScreen extends StaticEntity {
           '[Click to initiate booting sequence]',
         ]
 
-        // this.state = this.states.OFF;
+        this.state = this.states.OFF;
 
         // Below is for quick dev testing only keep commented in real game mode
-        this.type = GameConstants.TYPES.COMPUTER;
-        this.state = this.states.INITIALIZE;
-        this.assets.animations[this.states.BOOTING].index = 9;
+        // this.type = GameConstants.TYPES.COMPUTER;
+        // this.state = this.states.INITIALIZE;
+        // this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {

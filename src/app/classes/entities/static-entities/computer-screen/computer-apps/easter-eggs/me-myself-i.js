@@ -29,6 +29,7 @@ export class MeMyselfIApp extends ComputerApp {
   }
 
   appLoaded() {
+    this.handler.getSoundManager().stop();
     this.handler.getEntityManager().addEntity(new MeMyselfAndI(this.handler));
   }
 }

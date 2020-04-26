@@ -16,6 +16,7 @@ export class Radio extends StaticEntity {
       height: this.height - 22,
     };
 
+    this.isRadio = true;
     this.type = GameConstants.TYPES.INTERACTIVE;
     this.assets = Assets.getAssets('radio');
     this.bannerAssets = Assets.getAssets('radioBanner');

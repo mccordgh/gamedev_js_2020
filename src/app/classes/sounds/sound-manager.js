@@ -1,7 +1,9 @@
 import { GameConstants } from '../../constants/game-constants';
 
 export class SoundManager {
-  constructor() {
+  constructor(handler) {
+    this.handler = handler;
+
     this.sources = {
       bgm: {
         source: this.getMusic('bgm'),
@@ -53,13 +55,19 @@ export class SoundManager {
       },
     };
 
-    const bgm = this.sources.bgm;
     this.lastSoundPlayed = null;
-    // this.lastSoundPlayed = this.play('bgm');
   }
 
   getMusic(name) {
     return `${GameConstants.MUSIC_PATH}/${name}.mp3`;
+  }
+
+  stop() {
+    if (!this.lastSoundPlayed) {
+      return;
+    }
+
+    this.stopSound(this.lastSoundPlayed);
   }
 
   stopSound(sound) {
@@ -87,6 +95,17 @@ export class SoundManager {
   play(name, volume = 0.8) {
     const source = this.sources[name];
 
+    if (name === 'bgm') {
+      const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
+
+      if (radio) {
+        radio.state = radio.states.OFF;
+        console.log('reset radio banner');
+      } else {
+        console.log('no radio???');
+      }
+    }
+
     if (source) {
       try {
         if (this.lastSoundPlayed && source.loops) {
@@ -101,7 +120,6 @@ export class SoundManager {
       } catch (e) {
         throw new Error(e);
       }
-
     }
 
     throw new Error(`Sound with name "${name}" not found.`);
