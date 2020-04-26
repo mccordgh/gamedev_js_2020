@@ -5,10 +5,10 @@ export class SoundManager {
     this.handler = handler;
 
     this.sources = {
-      bgm: {
-        source: this.getMusic('bgm'),
-        loops: true,
-      },
+      // bgm: {
+      //   source: this.getMusic('bgm'),
+      //   loops: true,
+      // },
       station1: {
         source: this.getMusic('station1'),
         loops: true,
@@ -99,6 +99,8 @@ export class SoundManager {
       if (radio) {
         radio.state = radio.states.OFF;
       }
+
+      return;
     }
 
     if (source) {

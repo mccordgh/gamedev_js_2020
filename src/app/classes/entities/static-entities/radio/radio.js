@@ -33,7 +33,7 @@ export class Radio extends StaticEntity {
     this.titles = {
       [this.states.STATION1]: 'Dirt',
       [this.states.STATION2]: 'Råtten',
-      [this.states.STATION3]: 'B-L-U-E',
+      [this.states.STATION3]: 'BLUE',
     };
 
     this.artists = {
