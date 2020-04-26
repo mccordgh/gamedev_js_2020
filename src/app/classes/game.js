@@ -17,8 +17,8 @@ export class Game {
         this.managerHandler.createSoundManager();
         this.managerHandler.createSettingsManager();
 
-        // const world = new StartMenuWorld(this.managerHandler);
-        const world = this.managerHandler.setWorld(new WorldOne(this.managerHandler));
+        const world = new StartMenuWorld(this.managerHandler);
+        // const world = this.managerHandler.setWorld(new WorldOne(this.managerHandler));
         this.managerHandler.setWorld(world);
         world.init();
 

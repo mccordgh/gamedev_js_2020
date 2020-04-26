@@ -54,8 +54,6 @@ export class SoundManager {
         loops: false,
       },
     };
-
-    this.lastSoundPlayed = null;
   }
 
   getMusic(name) {
@@ -95,14 +93,11 @@ export class SoundManager {
   play(name, volume = 0.8) {
     const source = this.sources[name];
 
-    if (name === 'bgm') {
+    if (name === 'bgm'&& this.handler.getEntityManager()) {
       const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
 
       if (radio) {
         radio.state = radio.states.OFF;
-        console.log('reset radio banner');
-      } else {
-        console.log('no radio???');
       }
     }
 
@@ -115,7 +110,6 @@ export class SoundManager {
         const sound = this.initSound(source, volume);
         sound.play();
         this.lastSoundPlayed = sound;
-
         return sound;
       } catch (e) {
         throw new Error(e);

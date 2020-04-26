@@ -121,6 +121,8 @@ export class WorldOne {
             case this.states.INTRO:
                 this.entityManager.addEntity(new WallPaperTear(this.handler, 832, 120)),
 
+                this.handler.getSoundManager().play('bgm');
+
                 this.state = this.states.IDLE;
                 break;
 

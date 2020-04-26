@@ -69,7 +69,6 @@ export class ComputerScreen extends StaticEntity {
     }
 
     addApp(app) {
-      console.log('adding app', app)
       this.apps.push(app);
       this.handler.getEntityManager().addEntity(app);
       this.resetAppPositions();
@@ -162,7 +161,6 @@ export class ComputerScreen extends StaticEntity {
       }
 
       if (this.apps.length === 5 || this.apps.length === 6) {
-        console.log('leaving early app length is', this.apps.length);
         return;
       }
 

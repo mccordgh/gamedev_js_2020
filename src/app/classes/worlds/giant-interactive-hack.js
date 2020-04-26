@@ -23,23 +23,30 @@ export class GiantInteractiveHack extends StaticEntity {
   tick() {}
 
   render(graphics) {
-    graphics.drawText(
-      "ACME Time Fixers",
-      400,
-      300,
-      GameConstants.COLORS.CREAM,
-      true,
-      GameConstants.BIG_FONT_SIZE,
-    );
+    const spacer = 64;
+    let yy = 100;
 
-    graphics.drawText(
-      "Click Here to Begin.",
-      400,
-      400,
-      GameConstants.COLORS.CREAM,
-      true,
-      GameConstants.BIG_FONT_SIZE,
-    );
+    [
+        "ACME Time Fixers",
+        "",
+        "Credits:",
+        "Matthew McCord: Programming, Sound, Game Design, Art",
+        "The Coder: Art, Programming",
+        "Keith Davis: Narrative, Game Design",
+        "",
+        "Click Here to Begin.",
+    ].forEach((text) => {
+      graphics.drawText(
+        text,
+        100,
+        yy,
+        GameConstants.COLORS.CREAM,
+        true,
+        GameConstants.BIG_FONT_SIZE,
+      );
+
+      yy += spacer;
+    });
 
     // this.drawCollisionBounds(graphics);
   }
@@ -49,7 +56,8 @@ export class GiantInteractiveHack extends StaticEntity {
     this.handler.updateWorld(world);
     world.init();
 
-    const sm = this.handler.getSoundManager();
-    sm.play('bgm');
+    // const sm = this.handler.getSoundManager();
+    // const bgm = sm.sources.bgm;
+    // sm.lastSoundPlayed = sm.play('bgm');
   }
 }
