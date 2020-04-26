@@ -28,7 +28,7 @@ export class GraphicsManager {
             highlight = true,
             size = GameConstants.FONT_SIZE
         ) => {
-            this.graphics.font = `${size}px Arial`;
+            this.graphics.font = `${size}px Roboto Slab`;
 
             if (highlight) {
                 this.graphics.fillStyle = color === 'black';
