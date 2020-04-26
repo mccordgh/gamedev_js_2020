@@ -38,25 +38,25 @@ export class Footage extends ComputerApp {
         clueNumber: 2,
         who: "Olivia Bouqets",
         type: 'death',
-        assets: Assets.getAssets('johnDies'),
+        assets: Assets.getAssets('oliviaDies'),
       },
       oliviaLives: {
         clueNumber: 2,
         who: "Olivia Bouqets",
         type: "alive",
-        assets: Assets.getAssets('johnLives'),
+        assets: Assets.getAssets('oliviaLives'),
       },
       peterDies: {
         clueNumber: 3,
         who: "Peter Pipers",
         type: 'death',
-        assets: Assets.getAssets('johnDies'),
+        assets: Assets.getAssets('peterDies'),
       },
       peterLives: {
         clueNumber: 3,
         who: "Peter Pipers",
         type: "alive",
-        assets: Assets.getAssets('johnLives'),
+        assets: Assets.getAssets('peterLives'),
       },
     };
 

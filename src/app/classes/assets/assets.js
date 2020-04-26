@@ -101,6 +101,46 @@ createAnimationFor(johnLives, 'playing', {
     height: GameConstants.SCREEN_HEIGHT,
 });
 
+const oliviaDies = new Assets('oliviaDies', 'olivia-dies.png');
+createAnimationFor(oliviaDies, 'playing', {
+    speed: 100,
+    row: 0,
+    col: 0,
+    length: 18,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
+const oliviaLives = new Assets('oliviaLives', 'olivia-lives.png');
+createAnimationFor(oliviaLives, 'playing', {
+    speed: 100,
+    row: 0,
+    col: 0,
+    length: 18,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
+const peterDies = new Assets('peterDies', 'peter-dies.png');
+createAnimationFor(peterDies, 'playing', {
+    speed: 100,
+    row: 0,
+    col: 0,
+    length: 18,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
+const peterLives = new Assets('peterLives', 'peter-lives.png');
+createAnimationFor(peterLives, 'playing', {
+    speed: 100,
+    row: 0,
+    col: 0,
+    length: 18,
+    width: GameConstants.SCREEN_WIDTH,
+    height: GameConstants.SCREEN_HEIGHT,
+});
+
 const os = new Assets('os', 'jam-os-bootup.png');
 createAnimationFor(os, 'booting', {
     speed: 300,
