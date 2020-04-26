@@ -41,14 +41,14 @@ export class ComputerScreen extends StaticEntity {
 
         const entityManager = this.handler.getEntityManager();
 
-        // this.state = this.states.OFF;
+        this.state = this.states.OFF;
         // this.state = this.states.IDLE;
 
 
         // Below is for quick dev testing only keep commented in real game mode
-        this.type = GameConstants.TYPES.COMPUTER;
-        this.state = this.states.INITIALIZE;
-        this.assets.animations[this.states.BOOTING].index = 9;
+        // this.type = GameConstants.TYPES.COMPUTER;
+        // this.state = this.states.INITIALIZE;
+        // this.assets.animations[this.states.BOOTING].index = 9;
     }
 
     initializeApps() {

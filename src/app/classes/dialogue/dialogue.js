@@ -17,7 +17,7 @@ export class Dialogue extends StaticEntity{
       height: GameConstants.GAME_HEIGHT,
     };
 
-    this.fontSize = 42;
+    this.fontSize = 34;
     this.textX = this.x + this.fontSize;
     this.textY = this.y + (this.height / 2) + this.fontSize / 3;
 
@@ -27,6 +27,9 @@ export class Dialogue extends StaticEntity{
     this.wasClicked = false;
 
     this.words = [];
+
+    this.nextCounter = 0;
+    this.nextCounterMax = 30;
 
     this.addWords(textArray);
   }
@@ -72,9 +75,15 @@ export class Dialogue extends StaticEntity{
     graphics.drawText(this.dialogue, this.textX, this.textY, 'black', false, this.fontSize);
 
     if (!this.words[0].length) {
-      graphics.drawText('>>', this.x + this.width - 96, this.y + this.height - 8, 'black', false, 64);
-      // graphics.fillStyle = 'blue';
-      // graphics.fillRect(this.x + this.width - 64, this.y + this.height - 64, 32, 32);
+      this.nextCounter += 1;
+
+      if (this.nextCounter < (this.nextCounterMax / 2)) {
+        graphics.drawText('>', this.x + this.width - 64, this.y + this.height- 16, 'black', false, 48);
+      }
+
+      if (this.nextCounter >= this.nextCounterMax) {
+        this.nextCounter = 0;
+      }
     }
   }
 

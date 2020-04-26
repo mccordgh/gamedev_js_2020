@@ -86,11 +86,10 @@ export class WorldOne {
             new Dialogue(
                 this.handler,
                 [
-                    // 'Hey, newbie! Looks like the manager',
-                    // 'is out sick today...',
-                    // 'I bet you can figure this one out',
-                    // 'on your own though...',
-                    // 'Check your email!'
+                    'Hey, newbie!',
+                    'Looks like the manager is out sick today...',
+                    'I bet you can figure this one out on your own, though.',
+                    'Boot up that computer and check your email!',
                 ],
             ),
         );
@@ -119,6 +118,8 @@ export class WorldOne {
                 break;
 
             case this.states.INTRO:
+                this.entityManager.addEntity(new WallPaperTear(this.handler, 832, 120)),
+
                 this.state = this.states.IDLE;
                 break;
 
@@ -135,7 +136,6 @@ export class WorldOne {
             new ComputerScreen(this.handler, 256, 136),
             new Radio(this.handler, 52, 62),
             new Telephone(this.handler, 0, 480),
-            new WallPaperTear(this.handler, 832, 120),
         ];
 
         entities.forEach(entity => {
