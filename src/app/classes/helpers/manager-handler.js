@@ -7,6 +7,7 @@ import { EmailManager } from '../entities/static-entities/computer-screen/comput
 import { FootageManager } from '../entities/static-entities/computer-screen/computer-apps/footage/footage-manager';
 import { SoundManager } from '../sounds/sound-manager';
 import { SettingsManager } from '../entities/static-entities/computer-screen/computer-apps/settings/settings-manager';
+import { GameState } from '../states/game-state';
 
 export class ManagerHandler {
     constructor(game) {
@@ -90,8 +91,15 @@ export class ManagerHandler {
         return this.stateManager = new StateManager();
     }
 
-    createWorld() {
-        return this.world = new WorldOne(this);
+    setWorld(world) {
+        return this.world = world;
+    }
+
+    updateWorld(world) {
+        this.setWorld(world);
+
+        const gameState = new GameState(this, world);
+        this.stateManager.setState(gameState);
     }
 
     event(type, data) {

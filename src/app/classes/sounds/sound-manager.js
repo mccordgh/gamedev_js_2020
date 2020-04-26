@@ -30,6 +30,7 @@ export class SoundManager {
     };
 
     const bgm = this.sources.bgm;
+    this.lastSoundPlayed = null;
     // this.lastSoundPlayed = this.play('bgm');
   }
 

@@ -2,6 +2,8 @@ import { GameState } from './states/game-state';
 import { ManagerHandler } from './helpers/manager-handler';
 
 import { GameConstants } from '../constants/game-constants';
+import { StartMenuWorld } from './worlds/start-menu-world';
+import { WorldOne } from './worlds/world-one';
 
 export class Game {
     // setup all the things aka managers of input, sound, etc
@@ -15,11 +17,13 @@ export class Game {
         this.managerHandler.createSoundManager();
         this.managerHandler.createSettingsManager();
 
-        const world = this.managerHandler.createWorld();
+        const world = new StartMenuWorld(this.managerHandler);
+        this.managerHandler.setWorld(world);
         world.init();
 
-        const gameState = new GameState(this.managerHandler, world);
+        // const world = this.managerHandler.setWorld(new WorldOne(this.managerHandler));
 
+        const gameState = new GameState(this.managerHandler, world);
         this.stateManager.setState(gameState);
     }
 
