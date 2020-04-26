@@ -129,6 +129,7 @@ export class WorldOne {
 
             case this.states.GAME_WON:
                 this.handler.getEmailManager().addEmail('easterEggs');
+                this.handler.getEmailManager().addEmail('third');
                 this.state = this.states.IDLE;
 
                 break;
