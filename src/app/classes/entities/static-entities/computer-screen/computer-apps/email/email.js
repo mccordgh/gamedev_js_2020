@@ -78,6 +78,10 @@ export class Email extends ComputerApp {
       case 'easterEggs':
         email = emailCopy.easterEggs;
         break;
+    
+      case 'third':
+        email = emailCopy.third;
+        break;
 
       default:
         throw new Error(`No email by name ${name} found in emailCopy`);
@@ -96,6 +100,10 @@ export class Email extends ComputerApp {
           GameConstants.APPS.ME_MYSELF_I,
           GameConstants.APPS.THE_CODERS_GAME,
         ];
+        break;
+        
+      case 'third':
+        unlocks = [];
         break;
 
       default:
