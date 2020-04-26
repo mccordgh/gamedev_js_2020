@@ -95,16 +95,21 @@ export class SoundManager {
   }
 
   play(name, volume = 0.8) {
+    this.stop();
+    if (name === 'bgm') {
+      return;
+    }
+
     const source = this.sources[name];
 
-    if (name === 'bgm'&& this.handler.getEntityManager()) {
-      const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
+    // if (name === 'bgm'&& this.handler.getEntityManager()) {
+    //   const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
 
-      if (radio) {
-        this.stop();
-        radio.state = radio.states.OFF;
-      }
-    }
+    //   if (radio) {
+    //     this.stop();
+    //     radio.state = radio.states.OFF;
+    //   }
+    // }
 
     if (source) {
       try {
