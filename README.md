@@ -1,7 +1,9 @@
 # Gamedev.js 2020 JAM
 
-Node version is `v11.6.0`
-NPM version is `6.5.0`
-`$ npm install`
-`$ npm run start`
-Navigate to `http://localhost:8080/`
+### ACME Time Fixers
+* https://mccordgh.github.io/gamedev_js_2020/
+
+### Credits:
+* Matthew McCord: Programming, Sound, Game Design, Art
+* Addison Craik: Art, Programming
+* Keith Davis: Narrative, Game Design
