@@ -35,7 +35,7 @@ export class Settings extends ComputerApp {
       {
         clueNumber: 3,
         hidden: true,
-        label: 'Third clue',
+        label: 'Kamikaze Bird',
         checked: true,
       },
     ];

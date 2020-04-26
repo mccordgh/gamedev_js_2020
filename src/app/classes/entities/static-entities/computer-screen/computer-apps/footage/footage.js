@@ -19,6 +19,7 @@ export class Footage extends ComputerApp {
     this.textYOffset = this.height + 18;
 
     this.assets = Assets.getAssets('footage');
+    this.watchedCounter = 0;
 
     this.videos = {
       johnDies: {
@@ -63,9 +64,9 @@ export class Footage extends ComputerApp {
     const screenPos = { x: computer.x, y: computer.y };
 
     this.footage = [
-      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnDies, false),
-      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.oliviaDies, false),
-      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.peterDies, false),
+      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnDies, false, this.increaseWatchedCounter.bind(this)),
+      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.oliviaDies, false, this.increaseWatchedCounter.bind(this)),
+      new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.peterDies, false, this.increaseWatchedCounter.bind(this)),
     ];
 
     // skip opening/loading animation for dev
@@ -75,6 +76,16 @@ export class Footage extends ComputerApp {
 
   setActive() {
     this.state = 'idle';
+  }
+
+  increaseWatchedCounter() {
+    console.log('increase watched counter')
+    this.watchedCounter += 1;
+
+    if (this.watchedCounter === 1 ) {
+      console.log('adding email "second"')
+      this.handler.getEmailManager().addEmail('second');
+    }
   }
 
   appLoaded() {

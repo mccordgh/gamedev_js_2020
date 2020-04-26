@@ -35,7 +35,7 @@ export class CodeMan extends ComputerApp {
   }
 
   appLoaded() {
-    const clue = prompt('GIVE YOUR CLUE TO CODE MAN NOW:');
+    const clue = prompt('GIVE YOUR CODE TO CODE MAN NOW:');
 
     if (!clue) {
       this.badClue();

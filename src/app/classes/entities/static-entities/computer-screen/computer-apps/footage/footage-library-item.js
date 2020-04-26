@@ -80,7 +80,7 @@ export class FootageLibraryItem extends StaticEntity {
   wasClickedAt() {
     this.setHiddenCallback(true);
 
-    this.video.video.isViewed = true;
+    this.video.isViewed = true;
     this.video.setHiddenCallback = this.setHiddenCallback;
 
     this.handler.getEntityManager().addEntity(this.video);

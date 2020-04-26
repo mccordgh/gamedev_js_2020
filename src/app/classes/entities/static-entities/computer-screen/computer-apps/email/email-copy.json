@@ -5,14 +5,32 @@
     "text": [
       "Regarding John:",
       "",
-      "There has been an incident with John Smith.",
+      "There have been a few incidents",
+      "Regarding ACME products.",
       "",
       "I've given you access to the Footage app.",
-      "Please review the footage of John.",
-      "We need him alive...",
+      "Please review the footage of the incidents.",
+      "We need these folks \"Alive\"...",
       "",
       "Thanks,",
       "MGMT"
-  ]
-}
+    ]
+  },
+  "second": {
+    "sender": "Bill from HR",
+    "subject": "Re: Codes",
+    "text": [
+      "Hey there, newbie!",
+      "How is your first day going?",
+      "",
+      "In this place we keep lots of secrets...",
+      "You'll need to utilize the CODE MAN app.",
+      "I've given you access to it.",
+      "There are clues to codes everywhere... :)",
+      "Explore and find them!",
+      "",
+      "GL HF on your first day",
+      "Bill from HR"
+    ]
+  }
 }

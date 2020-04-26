@@ -3,7 +3,7 @@ import { GameConstants } from '../../../../../../constants/game-constants';
 import { Assets } from '../../../../../assets/assets';
 
 export class BigFootage extends StaticEntity {
-  constructor(handler, x, y, video, isViewed = false) {
+  constructor(handler, x, y, video, isViewed = false, increaseWatchedCounterCallback) {
     super(handler, x, y);
 
     this.x = x;
@@ -19,6 +19,8 @@ export class BigFootage extends StaticEntity {
     this.type = GameConstants.TYPES.INTERACTIVE;
     this.isViewed = isViewed;
     this.video = video;
+
+    this.increaseWatchedCounterCallback = increaseWatchedCounterCallback;
 
     this.states = {
       IDLE: 'idle',
@@ -142,6 +144,10 @@ export class BigFootage extends StaticEntity {
 
         this.setHiddenCallback(false);
         this.state = this.states.IDLE;
+
+        if (this.increaseWatchedCounterCallback) {
+          this.increaseWatchedCounterCallback();
+        }
 
         if (this.handler.getFootageManager().isLogComplete()) {
           this.handler.getWorld().gameWon();

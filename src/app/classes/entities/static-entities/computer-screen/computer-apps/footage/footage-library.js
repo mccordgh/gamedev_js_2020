@@ -27,7 +27,7 @@ export class FootageLibrary extends StaticEntity {
 
     this.type = GameConstants.TYPES.FOOTAGE_ITEMS;
     this.hidden = false;
-    // console.log(footage)
+    //console.log(footage)
 
     this.footage = footage;
     this.assets = Assets.getAssets('footageLibrary');

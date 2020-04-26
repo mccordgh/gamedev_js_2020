@@ -31,11 +31,11 @@ export class PlayerCursor {
 
     render(graphics) {
         //offset x, y for hand cursor so click zone isnt at top left of sprite
-        const isHandCursor = this.cursor === this.assets.hand;
-        const offset = isHandCursor ? 16 : 0;
-        const size = isHandCursor ? 64 : 32;
+        // const isHandCursor = this.cursor === this.assets.hand;
+        // const offset = isHandCursor ? 16 : 0;
+        // const size = isHandCursor ? 64 : 32;
 
-        graphics.drawSprite(this.cursor, this.x - offset, this.y - offset, size, size);
+        // graphics.drawSprite(this.cursor, this.x - offset, this.y - offset, size, size);
 
         // draw collision bounds for debugging
         // graphics.fillStyle = this.bounds === this.arrowBounds ? "red" : "blue";

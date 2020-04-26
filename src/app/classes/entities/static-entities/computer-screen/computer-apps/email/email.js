@@ -16,6 +16,10 @@ export class Email extends ComputerApp {
       height: 36,
     };
 
+    this.newEmail = true;
+    this.newFlasher = 0;
+    this.newFlasherMax = 70;
+
     this.textXOffset = 10;
     this.textYOffset = this.height + 18;
 
@@ -34,7 +38,59 @@ export class Email extends ComputerApp {
     this.state = 'idle';
   }
 
+  render(graphics) {
+    super.render(graphics);
+
+    if (this.newEmail && this.state === 'idle') {
+      this.newFlasher += 1;
+
+      if (this.newFlasher < (this.newFlasherMax / 2)) {
+        graphics.fillStyle = 'black';
+        graphics.fillRect(this.x + 28, this.y + 18, 46 + 4, 20 + 4)
+        graphics.fillStyle = GameConstants.COLORS.RED;
+        graphics.fillRect(this.x + 30, this.y + 20, 46, 20)
+        graphics.fillStyle = 'black';
+
+        graphics.drawText(
+          'NEW!',
+          this.x + 32,
+          this.y + 36,
+          GameConstants.COLORS.CREAM,
+          false,
+          16,
+        );
+      } else {
+        if (this.newFlasher > this.newFlasherMax) {
+          this.newFlasher = 0;
+        }
+      }
+    }
+  }
+
+  addEmail(name) {
+    let email;
+
+    switch (name) {
+      case 'second':
+        email = emailCopy.second;
+        break;
+
+      default:
+        console.log({emailCopy});
+        throw new Error(`No email by name ${name} found in emailCopy`);
+    }
+
+    const unlocks = (name === 'second') ? GameConstants.APPS.CODE_MAN : undefined;
+
+    this.emails.push(
+      new BigEmail(this.handler, email, false, unlocks),
+    )
+
+    this.newEmail = true;
+  }
+
   appLoaded() {
+    this.newEmail = false;
     this.handler.getEntityManager().addEntity(new EmailInbox(this.handler, this.emails, this.setActive.bind(this)));
   }
 }
