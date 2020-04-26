@@ -61,14 +61,18 @@ export class SoundManager {
   }
 
   stop() {
-    if (!this.lastSoundPlayed) {
-      return;
+    var audios = document.getElementsByTagName('audio');
+    for(var i = 0, len = audios.length; i < len;i++){
+        if(audios[i] != e.target){
+          console.log('PAUSE', audios[i])
+            audios[i].pause();
+        }
     }
-
-    this.stopSound(this.lastSoundPlayed);
   }
 
   stopSound(sound) {
+    this.stop();
+
     sound.pause();
     sound.currentTime = 0;
     sound.src = "";
@@ -91,15 +95,21 @@ export class SoundManager {
   }
 
   play(name, volume = 0.8) {
+    this.stop();
+    if (name === 'bgm') {
+      return;
+    }
+
     const source = this.sources[name];
 
-    if (name === 'bgm'&& this.handler.getEntityManager()) {
-      const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
+    // if (name === 'bgm'&& this.handler.getEntityManager()) {
+    //   const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
 
-      if (radio) {
-        radio.state = radio.states.OFF;
-      }
-    }
+    //   if (radio) {
+    //     this.stop();
+    //     radio.state = radio.states.OFF;
+    //   }
+    // }
 
     if (source) {
       try {

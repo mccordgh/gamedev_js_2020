@@ -31,7 +31,7 @@ export class GiantInteractiveHack extends StaticEntity {
         "",
         "Credits:",
         "Matthew McCord: Programming, Sound, Game Design, Art",
-        "The Coder: Art, Programming",
+        "Addison Craik: Art, Programming",
         "Keith Davis: Narrative, Game Design",
         "",
         "Click Here to Begin.",

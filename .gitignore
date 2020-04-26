@@ -1,5 +1,6 @@
 # build directory
 dist/
+dist.zip
 
 # visual studio code local settings
 .vscode/

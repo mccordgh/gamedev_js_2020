@@ -17,7 +17,7 @@ export class Dialogue extends StaticEntity{
       height: GameConstants.GAME_HEIGHT,
     };
 
-    this.fontSize = 34;
+    this.fontSize = 30;
     this.textX = this.x + this.fontSize;
     this.textY = this.y + (this.height / 2) + this.fontSize / 3;
 

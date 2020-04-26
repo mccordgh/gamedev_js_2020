@@ -101,9 +101,10 @@ export class WorldOne {
                 this.handler,
                 [
                     'Yo, newbie! You did it!',
-                    'Looks like they\'re alive!',
+                    'Looks like the incidents were resolved!',
                     'Great Job!',
-                    'Also we need you in on Saturday...',
+                    'Also, we need you in on Saturday...',
+                    'And that piano hammer comes out of your check...',
                 ],
             ),
         );
