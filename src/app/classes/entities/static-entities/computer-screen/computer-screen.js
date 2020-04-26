@@ -59,12 +59,12 @@ export class ComputerScreen extends StaticEntity {
     initializeApps() {
       this.apps = [
         this.handler.getEntityManager().addEntity(new Email(this.handler)),
-        this.handler.getEntityManager().addEntity(new Footage(this.handler)),
-        this.handler.getEntityManager().addEntity(new Settings(this.handler)),
-        this.handler.getEntityManager().addEntity(new CodeMan(this.handler)),
-        this.handler.getEntityManager().addEntity(new TheCoreApp(this.handler)),
-        this.handler.getEntityManager().addEntity(new CodersGameApp(this.handler)),
-        this.handler.getEntityManager().addEntity(new MeMyselfIApp(this.handler)),
+        // this.handler.getEntityManager().addEntity(new Footage(this.handler)),
+        // this.handler.getEntityManager().addEntity(new Settings(this.handler)),
+        // this.handler.getEntityManager().addEntity(new CodeMan(this.handler)),
+        // this.handler.getEntityManager().addEntity(new TheCoreApp(this.handler)),
+        // this.handler.getEntityManager().addEntity(new CodersGameApp(this.handler)),
+        // this.handler.getEntityManager().addEntity(new MeMyselfIApp(this.handler)),
       ];
     }
 
