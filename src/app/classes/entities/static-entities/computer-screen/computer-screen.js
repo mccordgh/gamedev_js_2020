@@ -27,6 +27,8 @@ export class ComputerScreen extends StaticEntity {
           height: this.height - 4,
         };
 
+        this.activeAppName = null;
+
         this.assets = Assets.getAssets('os');
 
         this.padding = 32;

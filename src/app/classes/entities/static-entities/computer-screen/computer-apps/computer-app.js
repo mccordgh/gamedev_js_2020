@@ -32,13 +32,16 @@ export class ComputerApp extends StaticEntity {
         if (animation.index >= animation.frames.length-1) {
           this.appLoaded();
 
+          const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+
+          if (!computer) {
+            throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+          }
+
+          computer.activeAppName = this.name === GameConstants.APPS.CODE_MAN ? null : this.name;
           animation.index = 0;
 
-          if (this.name !== GameConstants.APPS.CODE_MAN) {
-            this.state = 'inactive';
-          } else {
-            this.state = 'idle';
-          }
+          this.state = 'idle';
 
           return;
         }
@@ -99,13 +102,19 @@ export class ComputerApp extends StaticEntity {
       default:
         throw new Error(`Computer App state "${this.state} is not accounted for`)
     }
-
-    //draw collision bounds for debugging
-    // graphics.fillStyle = "yellow";
-    // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
   }
 
   wasClickedAt(x, y) {
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+
+    if (!computer) {
+      throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+    }
+
+    if (computer.activeAppName !== this.name && computer.activeAppName) {
+      return;
+    }
+
     this.hovered = false;
 
     switch (this.state) {

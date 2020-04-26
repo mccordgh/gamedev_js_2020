@@ -182,7 +182,6 @@ export class EntityManager {
     }
 
     getEntitiesByType(type) {
-        // console.log({type, entities: this.entities})
         return this.entities.filter(entity => entity.type == type);
     }
 }

@@ -20,7 +20,7 @@ export class EmailInbox extends StaticEntity {
 
     this.bounds = {
       x: 850,
-      y: 52,
+      y: 64,
       width: 34,
       height: 30,
     };
@@ -83,9 +83,7 @@ export class EmailInbox extends StaticEntity {
       this.drawEmailItems(graphics);
     }
 
-    // draw collision bounds for debugging
-    // graphics.fillStyle = "yellow";
-    // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+    // this.drawCollisionBounds(graphics);
   }
 
   setHidden(value) {
@@ -113,8 +111,15 @@ export class EmailInbox extends StaticEntity {
       entityManager.removeEntity(this.emailItems[i]);
     }
 
-    entityManager.removeEntity(this);
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+
+    if (!computer) {
+      throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+    }
+
+    computer.activeAppName = null;
 
     this.setActiveCallback();
+    entityManager.removeEntity(this);
   }
 }

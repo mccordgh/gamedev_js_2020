@@ -35,15 +35,17 @@ export class CodeMan extends ComputerApp {
   }
 
   appLoaded() {
-    const clue = prompt('GIVE YOUR CODE TO CODE MAN NOW:');
+    let clue = prompt('GIVE YOUR CODE TO CODE MAN NOW:');
 
     if (!clue) {
       this.badClue();
-
       return;
     }
 
     let correct = false;
+
+    clue = clue.trim();
+    clue = clue.toUpperCase();
 
     switch (clue) {
       case 'BONK':
@@ -60,6 +62,7 @@ export class CodeMan extends ComputerApp {
 
       default:
         this.badClue();
+
         return;
     }
 

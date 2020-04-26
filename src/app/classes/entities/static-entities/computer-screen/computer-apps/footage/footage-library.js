@@ -20,14 +20,13 @@ export class FootageLibrary extends StaticEntity {
 
     this.bounds = {
       x: 850,
-      y: 52,
+      y: 64,
       width: 34,
       height: 30,
     };
 
     this.type = GameConstants.TYPES.FOOTAGE_ITEMS;
     this.hidden = false;
-    //console.log(footage)
 
     this.footage = footage;
     this.assets = Assets.getAssets('footageLibrary');
@@ -84,9 +83,7 @@ export class FootageLibrary extends StaticEntity {
       this.drawFootageItems(graphics);
     }
 
-    // draw collision bounds for debugging
-    // graphics.fillStyle = "yellow";
-    // graphics.fillRect(this.x + this.bounds.x, this.y + this.bounds.y, this.bounds.width, this.bounds.height)
+    // this.drawCollisionBounds(graphics);
   }
 
   setHidden(value) {
@@ -113,6 +110,14 @@ export class FootageLibrary extends StaticEntity {
     for (let i = 0; i < this.footageItems.length; i += 1) {
       entityManager.removeEntity(this.footageItems[i]);
     }
+
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+
+    if (!computer) {
+      throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+    }
+
+    computer.activeAppName = null;
 
     entityManager.removeEntity(this);
 

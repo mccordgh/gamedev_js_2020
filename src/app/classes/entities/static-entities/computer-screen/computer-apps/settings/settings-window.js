@@ -105,6 +105,14 @@ export class SettingsWindow extends StaticEntity {
       entityManager.removeEntity(this.settingsItems[i]);
     }
 
+    const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+
+    if (!computer) {
+      throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
+    }
+
+    computer.activeAppName = null;
+
     entityManager.removeEntity(this);
 
     this.setActiveCallback();

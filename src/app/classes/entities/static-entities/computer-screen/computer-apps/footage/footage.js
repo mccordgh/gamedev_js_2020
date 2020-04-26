@@ -79,11 +79,9 @@ export class Footage extends ComputerApp {
   }
 
   increaseWatchedCounter() {
-    console.log('increase watched counter')
     this.watchedCounter += 1;
 
     if (this.watchedCounter === 1 ) {
-      console.log('adding email "second"')
       this.handler.getEmailManager().addEmail('second');
     }
   }
@@ -93,30 +91,25 @@ export class Footage extends ComputerApp {
   }
 
   updateFootage(clueNumber) {
-    // console.log(`Footage.updateFootage for clue number ${clueNumber}`)
     const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
     const screenPos = { x: computer.x, y: computer.y };
 
     let replaced = false;
 
     for (let i = 0; i < this.footage.length; i += 1) {
-      // console.log(this.footage[i]);
       if (this.footage[i].video.clueNumber === clueNumber) {
         switch (clueNumber) {
           case 1:
-          // console.log('clue 1=', clueNumber, 'replacing', this.footage[i], 'with', this.videos.johnLives)
             this.footage[i] = new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.johnLives, false);
             replaced = true;
             break;
 
           case 2:
-          // console.log('clue 2=', clueNumber, 'replacing', this.footage[i], 'with', this.videos.oliviaLives)
             this.footage[i] = new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.oliviaLives, false);
             replaced = true;
             break;
 
           case 3:
-          // console.log('clue 3=', clueNumber, 'replacing', this.footage[i], 'with', this.videos.peterLives)
             this.footage[i] = new BigFootage(this.handler, screenPos.x, screenPos.y, this.videos.peterLives, false);
             replaced = true;
             break;

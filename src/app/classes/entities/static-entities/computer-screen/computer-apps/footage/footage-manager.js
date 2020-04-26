@@ -27,8 +27,6 @@ export class FootageManager {
   }
 
   interveneClue(clueNumber) {
-    // console.log('FootageManager.interveneClue!! Clue Number', clueNumber)
-
     switch (clueNumber) {
       case 1:
         this.log.john.intervened = true;
@@ -56,8 +54,6 @@ export class FootageManager {
   };
 
   updateWatchedBestVideo(clueNumber) {
-     // console.log('watched best vid!! Clue Numbger', clueNumber)
-
     switch (clueNumber) {
       case 1:
         this.log.john.watchedBestVideo = true;

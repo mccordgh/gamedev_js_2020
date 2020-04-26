@@ -76,7 +76,6 @@ export class Email extends ComputerApp {
         break;
 
       default:
-        console.log({emailCopy});
         throw new Error(`No email by name ${name} found in emailCopy`);
     }
 

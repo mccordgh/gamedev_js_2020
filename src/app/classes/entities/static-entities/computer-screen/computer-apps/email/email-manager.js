@@ -12,7 +12,6 @@ export class EmailManager {
     const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
 
     if (!computer) {
-      // console.log({computer});
       throw new Error(`entity with type ${GameConstants.TYPES.COMPUTER} not found.`);
     }
 
@@ -35,7 +34,6 @@ export class EmailManager {
   }
 
   addEmail(name) {
-    console.log(`EmailManager.addEmail(${name}`)
     const emailApp = this.handler.getEntityManager().findEntityByName(GameConstants.APPS.EMAIL);
 
     if (!emailApp) {

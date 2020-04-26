@@ -1,4 +1,5 @@
 import { GameConstants } from '../../../../../../constants/game-constants';
+import { Settings } from './settings';
 
 export class SettingsManager {
   constructor(handler) {
@@ -6,10 +7,13 @@ export class SettingsManager {
   }
 
   showSetting(number) {
-    const settingsApp = this.handler.getEntityManager().findEntityByName(GameConstants.APPS.SETTINGS);
+    let settingsApp = this.handler.getEntityManager().findEntityByName(GameConstants.APPS.SETTINGS);
 
     if (!settingsApp) {
-      throw new Error(`Settings app not found with name ${APPS.SETTINGS} in entities list`)
+      settingsApp = new Settings(this.handler);
+
+      const [ computer ] = this.handler.getEntityManager().getEntitiesByType(GameConstants.TYPES.COMPUTER);
+      computer.addApp(settingsApp);
     }
 
     return settingsApp.showSetting(number);

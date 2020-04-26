@@ -45,9 +45,7 @@ export class BigFootage extends StaticEntity {
         if (animation.index >= animation.frames.length-1) {
           this.video.status = this.video.type === 'death' ? 'Deceased' : 'Alive';
 
-          // console.log({VIDEO: this.video});
           if (this.video.type === 'alive') {
-            // console.log('just watched best vid');
             this.handler.getFootageManager().updateWatchedBestVideo(this.video.clueNumber);
           }
 
