@@ -4,52 +4,69 @@ export class SoundManager {
   constructor(handler) {
     this.handler = handler;
 
+    this.channels = {
+      music: new Audio(),
+      sfx: new Audio(),
+    }
+
     this.sources = {
       bgm: {
+        type: 'music',
         source: this.getMusic('bgm'),
         loops: true,
       },
       station1: {
+        type: 'music',
         source: this.getMusic('station1'),
         loops: true,
       },
       station2: {
+        type: 'music',
         source: this.getMusic('station2'),
         loops: true,
       },
       station3: {
+        type: 'music',
         source: this.getMusic('station3'),
         loops: true,
       },
       phoneRinging: {
+        type: 'sfx',
         source: this.getMusic('phone-ringing'),
         loops: false,
       },
       dialing: {
+        type: 'sfx',
         source: this.getMusic('dialing'),
         loops: false,
       },
       speak1: {
+        type: 'sfx',
         source: this.getMusic('speak-1'),
         loops: false,
       },
       speak2: {
+        type: 'sfx',
         source: this.getMusic('speak-2'),
         loops: false,
       },
       speak3: {
+        type: 'sfx',
         source: this.getMusic('speak-3'),
         loops: false,
       },
       roboSpeak1: {
+        type: 'sfx',
         source: this.getMusic('robo-speak-1'),
         loops: false,
       },
       roboSpeak2: {
+        type: 'sfx',
         source: this.getMusic('robo-speak-2'),
         loops: false,
       },
       roboSpeak3: {
+        type: 'sfx',
         source: this.getMusic('robo-speak-3'),
         loops: false,
       },
@@ -60,25 +77,16 @@ export class SoundManager {
     return `${GameConstants.MUSIC_PATH}/${name}.mp3`;
   }
 
-  stop() {
-    var audios = document.getElementsByTagName('audio');
-    for(var i = 0, len = audios.length; i < len;i++){
-        if(audios[i] != e.target){
-            audios[i].pause();
-        }
-    }
-  }
-
-  stopSound(sound) {
-    this.stop();
-
-    sound.pause();
-    sound.currentTime = 0;
-    sound.src = "";
+  getChannelByType(type) {
+    return type === 'music' ? this.channels.music : this.channels.sfx;
   }
 
   initSound(source, volume) {
-    const sound = new Audio(source.source);
+    const sound = this.getChannelByType(source.type);
+
+    sound.pause();
+    sound.currentTime = 0;
+    sound.src = source.source;
     sound.loop = source.loops;
     sound.volume = volume;
 
@@ -94,31 +102,14 @@ export class SoundManager {
   }
 
   play(name, volume = 0.8) {
-    this.stop();
-    if (name === 'bgm') {
-      return;
-    }
-
     const source = this.sources[name];
-
-    // if (name === 'bgm'&& this.handler.getEntityManager()) {
-    //   const radio = this.handler.getEntityManager().entities.find(entity => entity.isRadio);
-
-    //   if (radio) {
-    //     this.stop();
-    //     radio.state = radio.states.OFF;
-    //   }
-    // }
 
     if (source) {
       try {
-        if (this.lastSoundPlayed && source.loops) {
-          this.stopSound(this.lastSoundPlayed);
-        }
-
         const sound = this.initSound(source, volume);
+
         sound.play();
-        this.lastSoundPlayed = sound;
+
         return sound;
       } catch (e) {
         throw new Error(e);
